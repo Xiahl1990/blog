@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>关联 GitHub, 让 Hexo 支持查看文章更新历史 | 夏红林</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="前言Hexo 的文章源文件就是一个个 Markdown 文本，自己一直把这些文件备份在 GitHub 上。渐渐发觉，如果只把 GitHub 当作普通网盘，那真是有点大材小用了。于是稍作折腾，成功地把 GitHub 上的备份关联到主题中。现在，在文章文末版权区，可以很方便地跳转查看文章更新记录、历史版本以及下载源文件。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关联 GitHub, 让 Hexo 支持查看文章更新历史">
+<meta property="og:url" content="http://xiahl.top/2016/01/10/hexo-post-version-control/index.html">
+<meta property="og:site_name" content="夏红林">
+<meta property="og:description" content="前言Hexo 的文章源文件就是一个个 Markdown 文本，自己一直把这些文件备份在 GitHub 上。渐渐发觉，如果只把 GitHub 当作普通网盘，那真是有点大材小用了。于是稍作折腾，成功地把 GitHub 上的备份关联到主题中。现在，在文章文末版权区，可以很方便地跳转查看文章更新记录、历史版本以及下载源文件。">
+<meta property="og:image" content="http://xiahl.top/resources/version-control.png">
+<meta property="og:updated_time" content="2016-06-27T12:27:14.323Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关联 GitHub, 让 Hexo 支持查看文章更新历史">
+<meta name="twitter:description" content="前言Hexo 的文章源文件就是一个个 Markdown 文本，自己一直把这些文件备份在 GitHub 上。渐渐发觉，如果只把 GitHub 当作普通网盘，那真是有点大材小用了。于是稍作折腾，成功地把 GitHub 上的备份关联到主题中。现在，在文章文末版权区，可以很方便地跳转查看文章更新记录、历史版本以及下载源文件。">
+<meta name="twitter:image" content="http://xiahl.top/resources/version-control.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/red/pace-theme-flash.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/vendor/editor/css/editormd.min.css">
+    <link rel="stylesheet" href="/css/tianxiamucun.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- jQuery -->
+    <script src="//cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- Pace -->
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+
+    <!-- niceScroll -->
+    <script src="//cdn.bootcss.com/jquery.nicescroll/3.6.7/jquery.nicescroll.min.js"></script>
+
+    <!-- fancyBox -->
+    <script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+
+    <!-- bootstrap-datepicker -->
+    <script src="//cdn.bootcss.com/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap-datepicker/1.6.1/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+   
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="skin-blue sidebar-mini">
+    <div id="container" class="wrapper">
+        <header id="header" class="main-header">
+    <!-- Logo -->
+    <a href="/" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini">xhl</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg">夏红林</span>
+    </a>
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+
+                <!-- User Account Menu -->
+                <li class="dropdown user user-menu">
+                    <!-- Menu Toggle Button -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <!-- The user image in the navbar-->
+                        <img src="/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                        <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                        <span class="hidden-xs">Xiahl</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- The user image in the menu -->
+                        <li class="user-header">
+                            <img src="/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            <p>
+                                Web Developer & Designer
+                            </p>
+                            <p>
+                                Harbin, China
+                            </p>
+                        </li>
+                        <!-- Menu Body -->
+                        <li class="user-body">
+                          <nav class="header-nav">
+                            <ul class="social">
+                                
+                                    <a class="fa fa-email " 
+                                    href="mailto:xiahl1990@gmail.com" 
+                                    title="Email" 
+                                    style="background-color: #90C9E2 !important"></a>
+                                
+                                    <a class="fa fa-github " 
+                                    href="https://github.com/Xiahl1990" 
+                                    title="GitHub" 
+                                    style="background-color: #F5F5F5 !important"></a>
+                                
+                                    <a class="fa fa-rss " 
+                                    href="/atom.xml" 
+                                    title="RSS" 
+                                    style="background-color: #EB965D !important"></a>
+                                
+                                    <a class="fa fa-weibo " 
+                                    href="/" 
+                                    title="WeiBo" 
+                                    style="background-color: #E8CA86 !important"></a>
+                                
+                                    <a class="fa fa-weixin " 
+                                    href="/" 
+                                    title="WeiXin" 
+                                    style="background-color: #27AE60 !important"></a>
+                                
+                            </ul>
+                          </nav>                           
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="row">
+                                <div class="col-xs-12 text-center">
+                                    <a href="https://github.com/Xiahl1990">Follow</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Control Sidebar Toggle Button -->
+                <li>
+                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</header>
+        <!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+
+  <!-- sidebar -->
+  <section class="sidebar">
+    <!-- search form (Optional) -->
+    <form class="sidebar-form">
+      <div id="search-input-group" class="input-group">
+          <input type="text" class="form-control" placeholder="搜索" />
+          <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+          </span>
+      </div>
+    </form>
+       
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+        INPUTSELECTOR: '#search-input-group'
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+    <!-- /.search form -->
+
+    <!-- Sidebar Menu -->
+    <ul class="sidebar-menu">
+      <li class="header">HEADER</li>
+      <!-- Optionally, you can add icons to the links -->
+      
+        <li><a class="main-nav-link" href="/."><i class="fa fa-home"></i> <span>Home</span></a></li>
+      
+        <li><a class="main-nav-link" href="/archives"><i class="fa fa-folder"></i> <span>Archives</span></a></li>
+      
+        <li><a class="main-nav-link" href="/categories"><i class="fa fa-copy"></i> <span>Categories</span></a></li>
+      
+        <li><a class="main-nav-link" href="/tags"><i class="fa fa-tags"></i> <span>Tags</span></a></li>
+      
+        <li><a class="main-nav-link" href="/editor"><i class="fa fa-edit"></i> <span>Editor</span></a></li>
+      
+        <li><a class="main-nav-link" href="/about"><i class="fa fa-info-circle"></i> <span>About</span></a></li>
+      
+    </ul>
+    <!-- /.sidebar-menu -->
+
+  </section>
+  <!-- /.sidebar -->
+
+</aside>
+        <!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+    	<div class="container-fluid">
+    		<div class="row">
+        		<article id="post-hexo-post-version-control" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            关联 GitHub, 让 Hexo 支持查看文章更新历史
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/01/10/hexo-post-version-control/">
+            <time datetime="2016-01-10T14:38:01.000Z" itemprop="datePublished">2016-01-10</time>
+        </a>
+    </div>
+
+
+                    
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/术业专攻/">术业专攻</a>
+    </div>
+
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/GitHub/">GitHub</a>, <a class="tag-link" href="/tags/Hexo/">Hexo</a>
+    </div>
+
+                </div>
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#intro"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件处理"><span class="toc-number">2.</span> <span class="toc-text">文件处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文件命名"><span class="toc-number">2.1.</span> <span class="toc-text">文件命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件备份"><span class="toc-number">2.2.</span> <span class="toc-text">文件备份</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码添加"><span class="toc-number">3.</span> <span class="toc-text">代码添加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码简析"><span class="toc-number">4.</span> <span class="toc-text">代码简析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Blame"><span class="toc-number">4.1.</span> <span class="toc-text">Blame</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#History"><span class="toc-number">4.2.</span> <span class="toc-text">History</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#md-Raw"><span class="toc-number">4.3.</span> <span class="toc-text">.md Raw</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-number">5.</span> <span class="toc-text">后记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关链接"><span class="toc-number">6.</span> <span class="toc-text">相关链接</span></a></li></ol>
+                </div>
+            
+            <p></p><h2 id="intro">前言</h2>Hexo 的文章源文件就是一个个 Markdown 文本，自己一直把这些文件备份在 <a href="https://github.com/MOxFIVE/Markdown-Archives-Backup" target="_blank" rel="external">GitHub</a> 上。渐渐发觉，如果只把 GitHub 当作普通网盘，那真是有点大材小用了。于是稍作折腾，成功地把 GitHub 上的备份关联到主题中。现在，在文章文末版权区，可以很方便地跳转查看文章更新记录、历史版本以及下载源文件。<p></p>
+<a id="more"></a>
+<p><img src="/resources/version-control.png" alt="version-control"></p>
+<h2 id="文件处理"><a href="#文件处理" class="headerlink" title="文件处理"></a>文件处理</h2><h3 id="文件命名"><a href="#文件命名" class="headerlink" title="文件命名"></a>文件命名</h3><ul>
+<li>为了便于文章识别和自动关联文件，文章 Markdown 的文件名应该符合规范。</li>
+<li>建议使用 文章建立日期.固定链接 <code>YY-MM-DD.permalink.md</code> 的形式。</li>
+<li>在文章 [Front-matter] 中设置固定链接 permalink，然后填写文件名，例如本文完整文件名为 <code>2016-01-10.hexo-post-version-control.md</code></li>
+<li>为什么不使用文章标题作为文件名:<blockquote>
+<p>一是因为标题偶尔会变动，修改相对麻烦；二是标题可能包含不能用作文件名的符号，导致关联出错。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="文件备份"><a href="#文件备份" class="headerlink" title="文件备份"></a>文件备份</h3><ul>
+<li>把 <code>hexo/sources/_posts</code> 文件夹同步备份到你的 GitHub 上，不熟悉 Git 的可使用 GitHub Desktop 操作，具体方法自行搜索。</li>
+</ul>
+<h2 id="代码添加"><a href="#代码添加" class="headerlink" title="代码添加"></a>代码添加</h2><p>把下面 EJS 代码添加到主题文章模板合适位置中，<a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" rel="external">Yelee</a> 主题是添加在文末版权区中。参考备份文件在 Github 的链接修改前半部分地址。</p>
+<figure class="highlight erb"><figcaption><span>yelee/layout/_partial/post/nav.ejs</span><a href="https://github.com/MOxFIVE/M-Hexo-Blog/commit/d8a4942dab23920837cc70249c31697d36e49235" target="_blank" rel="external">Post Version Control</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">%</span></span></span> if (post.backup != false)&#123; <span class="xml"><span class="tag">%&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>更新历史:<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-github"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;文章 Blame 地址&gt;/&lt;%=</span></span></span> post.date.format("YYYY-MM-DD") <span class="xml"><span class="tag"><span class="string">%&gt;.&lt;%=</span></span></span> post.slug <span class="xml"><span class="tag"><span class="string">%&gt;.md"</span> <span class="attr">title</span>=<span class="string">"顺序查看文章各部分修改记录"</span> <span class="attr">target</span> = <span class="string">"_blank"</span>&gt;</span>Blame<span class="tag">&lt;/<span class="name">a</span>&gt;</span>,</span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;文章 History 地址&gt;/&lt;%=</span></span></span> post.date.format("YYYY-MM-DD") <span class="xml"><span class="tag"><span class="string">%&gt;.&lt;%=</span></span></span> post.slug <span class="xml"><span class="tag"><span class="string">%&gt;.md"</span> <span class="attr">title</span>=<span class="string">"查看文章有关更新记录"</span> <span class="attr">target</span> = <span class="string">"_blank"</span>&gt;</span>History<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"raw"</span>&gt;</span>文本模式:<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-file-text-o"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;文章 Raw 地址&gt;/&lt;%=</span></span></span> post.date.format("YYYY-MM-DD") <span class="xml"><span class="tag"><span class="string">%&gt;.&lt;%=</span></span></span> post.slug <span class="xml"><span class="tag"><span class="string">%&gt;.md"</span> <span class="attr">title</span>=<span class="string">"查看 &amp; 下载文章 Markdown 原始文本"</span> <span class="attr">target</span> = <span class="string">"_blank"</span>&gt;</span> .md Raw<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span></span></span> &#125; <span class="xml"><span class="tag">%&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="代码简析"><a href="#代码简析" class="headerlink" title="代码简析"></a>代码简析</h2><figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!-- 不设置 backup: false 则默认显示 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span></span></span> if (post.backup != false)&#123; <span class="xml"><span class="tag">%&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>更新历史:<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-github"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 不同功能替换前面超链接即可，文件名不变 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 文件名生成: &lt;%=</span></span> post.date.format("YYYY-MM-DD") <span class="xml"><span class="comment">%&gt;.&lt;%=</span></span> post.slug <span class="xml"><span class="comment">%&gt; --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;文章 Blame 地址&gt;/&lt;%=</span></span></span> post.date.format("YYYY-MM-DD") <span class="xml"><span class="tag"><span class="string">%&gt;.&lt;%=</span></span></span> post.slug <span class="xml"><span class="tag"><span class="string">%&gt;.md"</span> <span class="attr">title</span>=<span class="string">"顺序查看文章各部分修改记录"</span> <span class="attr">target</span> = <span class="string">"_blank"</span>&gt;</span>Blame<span class="tag">&lt;/<span class="name">a</span>&gt;</span>,</span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;文章 History 地址&gt;/&lt;%=</span></span></span> post.date.format("YYYY-MM-DD") <span class="xml"><span class="tag"><span class="string">%&gt;.&lt;%=</span></span></span> post.slug <span class="xml"><span class="tag"><span class="string">%&gt;.md"</span> <span class="attr">title</span>=<span class="string">"查看文章有关更新记录"</span> <span class="attr">target</span> = <span class="string">"_blank"</span>&gt;</span>History<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"raw"</span>&gt;</span>文本模式:<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-file-text-o"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;文章 Raw 地址&gt;/&lt;%=</span></span></span> post.date.format("YYYY-MM-DD") <span class="xml"><span class="tag"><span class="string">%&gt;.&lt;%=</span></span></span> post.slug <span class="xml"><span class="tag"><span class="string">%&gt;.md"</span> <span class="attr">title</span>=<span class="string">"查看 &amp; 下载文章 Markdown 原始文本"</span> <span class="attr">target</span> = <span class="string">"_blank"</span>&gt;</span> .md Raw<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span></span></span> &#125; <span class="xml"><span class="tag">%&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="Blame"><a href="#Blame" class="headerlink" title="Blame"></a>Blame</h3><ul>
+<li>顺序列出文章内容，左侧显示各部分 commit 信息，最后修改时间等。<br><img src="/resources/Blame.png" alt="Blame"></li>
+</ul>
+<h3 id="History"><a href="#History" class="headerlink" title="History"></a>History</h3><ul>
+<li>列出与该文件相关的更新记录 (commit)，按路径匹配。我一般直接就用提交时间作为 commit 信息了，想要更直观查看变动的可以在提交时书写更完善的 commit 信息。</li>
+</ul>
+<p><img src="/resources/History.png" alt="History"></p>
+<h3 id="md-Raw"><a href="#md-Raw" class="headerlink" title=".md Raw"></a>.md Raw</h3><ul>
+<li>在线查看或者直接下载文章原始 Markdown 文本。<br><img src="/resources/Raw.png" alt="Raw"></li>
+</ul>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><blockquote>
+<ul>
+<li>这是半自动的版本控制，需要手动把文章同步备份到 GitHub；</li>
+<li>代码部分的变动基于 <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" rel="external">Yelee</a> 主题，其它主题用户可以参考 <a href="/2015/10/25/hexo-tag-cloud/">另一篇文章</a> 的方法，自行添加代码到合适位置；</li>
+<li>小图标来自 Font Awesome，需主题支持才会正常显示；</li>
+<li>本文不详解 Hexo 基础知识，有设置项不理解的请先阅读 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">Hexo 官方帮助文档</a>。</li>
+</ul>
+</blockquote>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ol>
+<li><strong>GitHub Desktop</strong>: <a href="https://desktop.github.com/" target="_blank" rel="external">https://desktop.github.com/</a></li>
+<li><strong>Font Awesome</strong>: <a href="http://fontawesome.io/" target="_blank" rel="external">http://fontawesome.io/</a></li>
+<li><strong>Hexo 使用文档</strong>: <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">https://hexo.io/zh-cn/docs/</a></li>
+<li><strong><em>Hexo 文章版本控制</em></strong>  by <strong>MOxFIVE</strong> on <code>2016/01/10</code>: <a href="https://github.com/MOxFIVE/M-Hexo-Blog/commit/d8a4942dab23920837cc70249c31697d36e49235" target="_blank" rel="external">https://github.com/MOxFIVE/M-Hexo-Blog/commit/d8a4942dab23920837cc70249c31697d36e49235</a></li>
+</ol>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://xiahl.top/2016/01/10/hexo-post-version-control/" data-id="ciq4pxixb000bjwvqp9aby1n4" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://xiahl.top/2016/01/10/hexo-post-version-control/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://xiahl.top/2016/01/10/hexo-post-version-control/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/03/27/hexo-browsersync/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    Hexo 页面自动刷新与移动端调试
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2016/01/02/hexo-comments/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">为 Hexo 主题添加评论模块 — Disqus, 多说, 友言</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://xiahl.top/2016/01/10/hexo-post-version-control/';
+            this.page.identifier = '2016/01/10/hexo-post-version-control/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//xiahl.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <aside class="comment-bar">
+        <a href="javascript:void(0);">
+            <i class="fa fa-commenting-o animated infinite pulse"></i>
+            <i class="fa fa-spinner fa-pulse"></i>
+            <span class="count-comment"></span>
+        </a>
+    </aside>
+    <script>
+        var $commentBar = $("#comments aside.comment-bar");
+        var load$hide = function(){
+            $commentBar.find("a > i").toggle();
+            loadComment();
+            $commentBar.fadeOut(800);
+        }
+        $commentBar.click(function(){
+            load$hide();
+        })
+        $commentBar.children("a").hover(function(){
+            load$hide();
+        })
+        if (window.location.hash === "#comments") {
+            load$hide();
+        }
+    </script>
+
+</section>
+
+
+    <script id="dsq-count-scr" src="//xiahl.disqus.com/count.js" async></script>
+    <span class="disqus-comment-count" data-disqus-identifier="2016/01/10/hexo-post-version-control/"></span>
+    <span class="disqus-comment-count" data-disqus-url="http://xiahl.top/2016/01/10/hexo-post-version-control/"></span>
+    <script>
+        $(".disqus-comment-count").hide();
+        var $disqusCount = $(".disqus-comment-count");
+        $disqusCount.bind("DOMNodeInserted", function(e) {
+            $(".count-comment").text(
+                $(this).text().replace(/[^0-9]/ig,"")
+            )
+            DISQUSWIDGETS.getCount({reset: true});
+        })
+    </script>
+
+    
+
+
+
+
+
+    <section class="scroll" id="article-nav-button">
+    
+        <a href="/2016/03/27/hexo-browsersync/" title="上一篇">
+            <i class="fa fa-angle-left"></i>
+        </a>
+    
+
+    <a href="/archives" title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times hide"></i></a>
+
+    
+        <a href="/2016/01/02/hexo-comments/" title="下一篇">
+            <i class="fa fa-angle-right"></i>
+        </a>
+    
+</section>
+
+    <section class="scroll" id="article-scroll-button">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="if (true) load$hide(); return false;" title="查看评论" class="to-comment" style="display: none;"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</section>
+
+
+
+        	</div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+        <footer class="main-footer" id="footer">
+	<!-- To the right -->
+	<div class="pull-right hidden-xs">
+	  Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/Xiahl1990">tianxiamucun</a>
+	</div>
+	<!-- Default to the left -->
+	&copy; 2016 夏红林<br>
+</footer>
+        <!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+  <!-- Create the tabs -->
+  <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+    <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i> Info</a></li>
+    <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i> Setting</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+
+    <!-- Home tab content -->
+    <div class="tab-pane active" id="control-sidebar-home-tab">
+      <h4 class='control-sidebar-heading'>Motto</h4>
+      <p>No matter what to do, insist on</p>
+      <h4 class='control-sidebar-heading'>Calendar</h4>
+      <div id="calendar" style="width: 100%"></div>
+    </div>
+    <!-- /.tab-pane -->
+
+    <!-- Settings tab content -->
+    <div class="tab-pane" id="control-sidebar-settings-tab">
+      <h4 class='control-sidebar-heading'>Theme</h4>
+<ul class="list-unstyled clearfix" id="theme-list">
+    <li>
+		<a href="/icarus" title="Icarus">
+          <i class="fa fa-flag-o"></i>
+	    </a>
+    </li>
+</ul>
+      <h4 class='control-sidebar-heading'>Skins</h4>
+<ul class="list-unstyled clearfix" id="skins-list">
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-blue" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px; background: #367fa9;"></span><span class="bg-light-blue" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-blue">Blue</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-black" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div style="box-shadow: 0 0 2px rgba(0,0,0,0.1)" class="clearfix"><span style="display:block; width: 20%; float: left; height: 7px; background: #fefefe;"></span><span style="display:block; width: 80%; float: left; height: 7px; background: #fefefe;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-black">Black</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-purple" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-purple-active"></span><span class="bg-purple" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-purple">Purple</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-green" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-green-active"></span><span class="bg-green" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-green">Green</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-red" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-red-active"></span><span class="bg-red" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-red">Red</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-yellow" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-yellow-active"></span><span class="bg-yellow" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-yellow">Yellow</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-blue-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px; background: #367fa9;"></span><span class="bg-light-blue" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-blue-light" style="font-size: 12px">Blue Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-black-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div style="box-shadow: 0 0 2px rgba(0,0,0,0.1)" class="clearfix"><span style="display:block; width: 20%; float: left; height: 7px; background: #fefefe;"></span><span style="display:block; width: 80%; float: left; height: 7px; background: #fefefe;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-black-light" style="font-size: 12px">Black Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-purple-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-purple-active"></span><span class="bg-purple" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-purple-light" style="font-size: 12px">Purple Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-green-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-green-active"></span><span class="bg-green" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-green-light" style="font-size: 12px">Green Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-red-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-red-active"></span><span class="bg-red" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-red-light" style="font-size: 12px">Red Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-yellow-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-yellow-active"></span><span class="bg-yellow" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-yellow-light" style="font-size: 12px;">Yellow Light</p>
+    </li>
+</ul>
+    </div>
+    <!-- /.tab-pane -->
+
+  </div>
+
+</aside>
+<!-- /.control-sidebar -->
+
+<div class="control-sidebar-bg"></div>
+    </div>
+    <!-- editormd -->
+<script src="/vendor/editor/editormd.js"></script>
+
+<!-- analytics -->
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/app.js"></script>
+
+<!-- Init Scripts -->
+<script>
+  $(function(){
+
+      $("html").niceScroll();
+
+      //jQuery UI sortable for the todo list
+      $(".todo-list").sortable({
+        placeholder: "sort-highlight",
+        handle: ".handle",
+        forcePlaceholderSize: true,
+        zIndex: 999999
+      });
+
+      $(".fancybox-thumb").fancybox({
+        prevEffect  : 'none',
+        nextEffect  : 'none',
+        helpers : {
+          title : {
+            type: 'inside'
+          },
+          thumbs  : {
+            width : 50,
+            height  : 50
+          }
+        }
+      });
+
+      $("#calendar").datepicker({
+        todayHighlight: true,
+        language: "zh-CN"
+      });
+
+  });
+</script>
+
+</body>
+</html>
