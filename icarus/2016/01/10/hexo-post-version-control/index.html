@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>关联 GitHub, 让 Hexo 支持查看文章更新历史 | 夏红林</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="前言Hexo 的文章源文件就是一个个 Markdown 文本，自己一直把这些文件备份在 GitHub 上。渐渐发觉，如果只把 GitHub 当作普通网盘，那真是有点大材小用了。于是稍作折腾，成功地把 GitHub 上的备份关联到主题中。现在，在文章文末版权区，可以很方便地跳转查看文章更新记录、历史版本以及下载源文件。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关联 GitHub, 让 Hexo 支持查看文章更新历史">
+<meta property="og:url" content="http://xiahl.top/2016/01/10/hexo-post-version-control/index.html">
+<meta property="og:site_name" content="夏红林">
+<meta property="og:description" content="前言Hexo 的文章源文件就是一个个 Markdown 文本，自己一直把这些文件备份在 GitHub 上。渐渐发觉，如果只把 GitHub 当作普通网盘，那真是有点大材小用了。于是稍作折腾，成功地把 GitHub 上的备份关联到主题中。现在，在文章文末版权区，可以很方便地跳转查看文章更新记录、历史版本以及下载源文件。">
+<meta property="og:image" content="http://xiahl.top/resources/version-control.png">
+<meta property="og:updated_time" content="2016-06-27T12:27:14.323Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关联 GitHub, 让 Hexo 支持查看文章更新历史">
+<meta name="twitter:description" content="前言Hexo 的文章源文件就是一个个 Markdown 文本，自己一直把这些文件备份在 GitHub 上。渐渐发觉，如果只把 GitHub 当作普通网盘，那真是有点大材小用了。于是稍作折腾，成功地把 GitHub 上的备份关联到主题中。现在，在文章文末版权区，可以很方便地跳转查看文章更新记录、历史版本以及下载源文件。">
+<meta name="twitter:image" content="http://xiahl.top/resources/version-control.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/icarus/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/icarus/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/icarus/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/icarus/css/style.css">
+
+    <!-- jQuery -->
+    <script src="//cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/icarus/vendor/fancybox/jquery.fancybox.css">
+    
+    
+    
+    
+
+</head>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/icarus/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">夏红林</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/icarus/.">Home</a>
+                
+                    <a class="main-nav-link" href="/icarus/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/icarus/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/icarus/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/icarus/about">About</a>
+                
+                    <a class="main-nav-link" href="http://xiahl.top/">Theme</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/icarus/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/icarus/',
+        CONTENT_URL: '/icarus/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/icarus/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/icarus/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/icarus/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/icarus/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/icarus/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/icarus/about">About</a></td>
+                
+                    <td><a class="main-nav-link" href="http://xiahl.top/">Theme</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/icarus/css/images/avatar.png" />
+            <h2 id="name">Tianxiamucun</h2>
+            <h3 id="title">Web Developer &amp; Designer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Harbin, China</span>
+            <a id="follow" target="_blank" href="https://github.com/Xiahl1990">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                9
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                7
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/Xiahl1990/hexo-theme-tianxiamucun" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/icarus/" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/icarus/" target="_blank" title="facebook" class=tooltip>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/icarus/" target="_blank" title="dribbble" class=tooltip>
+                            <i class="fa fa-dribbble"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/icarus/" target="_blank" title="rss" class=tooltip>
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-hexo-post-version-control" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            关联 GitHub, 让 Hexo 支持查看文章更新历史
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/icarus/2016/01/10/hexo-post-version-control/">
+            <time datetime="2016-01-10T14:38:01.000Z" itemprop="datePublished">2016-01-10</time>
+        </a>
+    </div>
+
+
+                    
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/icarus/categories/术业专攻/">术业专攻</a>
+    </div>
+
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/icarus/tags/GitHub/">GitHub</a>, <a class="tag-link" href="/icarus/tags/Hexo/">Hexo</a>
+    </div>
+
+                </div>
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#intro"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件处理"><span class="toc-number">2.</span> <span class="toc-text">文件处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文件命名"><span class="toc-number">2.1.</span> <span class="toc-text">文件命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件备份"><span class="toc-number">2.2.</span> <span class="toc-text">文件备份</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码添加"><span class="toc-number">3.</span> <span class="toc-text">代码添加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码简析"><span class="toc-number">4.</span> <span class="toc-text">代码简析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Blame"><span class="toc-number">4.1.</span> <span class="toc-text">Blame</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#History"><span class="toc-number">4.2.</span> <span class="toc-text">History</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#md-Raw"><span class="toc-number">4.3.</span> <span class="toc-text">.md Raw</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后记"><span class="toc-number">5.</span> <span class="toc-text">后记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#相关链接"><span class="toc-number">6.</span> <span class="toc-text">相关链接</span></a></li></ol>
+                </div>
+            
+            <p></p><h2 id="intro">前言</h2>Hexo 的文章源文件就是一个个 Markdown 文本，自己一直把这些文件备份在 <a href="https://github.com/MOxFIVE/Markdown-Archives-Backup" target="_blank" rel="external">GitHub</a> 上。渐渐发觉，如果只把 GitHub 当作普通网盘，那真是有点大材小用了。于是稍作折腾，成功地把 GitHub 上的备份关联到主题中。现在，在文章文末版权区，可以很方便地跳转查看文章更新记录、历史版本以及下载源文件。<p></p>
+<a id="more"></a>
+<p><img src="/resources/version-control.png" alt="version-control"></p>
+<h2 id="文件处理"><a href="#文件处理" class="headerlink" title="文件处理"></a>文件处理</h2><h3 id="文件命名"><a href="#文件命名" class="headerlink" title="文件命名"></a>文件命名</h3><ul>
+<li>为了便于文章识别和自动关联文件，文章 Markdown 的文件名应该符合规范。</li>
+<li>建议使用 文章建立日期.固定链接 <code>YY-MM-DD.permalink.md</code> 的形式。</li>
+<li>在文章 [Front-matter] 中设置固定链接 permalink，然后填写文件名，例如本文完整文件名为 <code>2016-01-10.hexo-post-version-control.md</code></li>
+<li>为什么不使用文章标题作为文件名:<blockquote>
+<p>一是因为标题偶尔会变动，修改相对麻烦；二是标题可能包含不能用作文件名的符号，导致关联出错。</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="文件备份"><a href="#文件备份" class="headerlink" title="文件备份"></a>文件备份</h3><ul>
+<li>把 <code>hexo/sources/_posts</code> 文件夹同步备份到你的 GitHub 上，不熟悉 Git 的可使用 GitHub Desktop 操作，具体方法自行搜索。</li>
+</ul>
+<h2 id="代码添加"><a href="#代码添加" class="headerlink" title="代码添加"></a>代码添加</h2><p>把下面 EJS 代码添加到主题文章模板合适位置中，<a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" rel="external">Yelee</a> 主题是添加在文末版权区中。参考备份文件在 Github 的链接修改前半部分地址。</p>
+<figure class="highlight erb"><figcaption><span>yelee/layout/_partial/post/nav.ejs</span><a href="https://github.com/MOxFIVE/M-Hexo-Blog/commit/d8a4942dab23920837cc70249c31697d36e49235" target="_blank" rel="external">Post Version Control</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">%</span></span></span> if (post.backup != false)&#123; <span class="xml"><span class="tag">%&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>更新历史:<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-github"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;文章 Blame 地址&gt;/&lt;%=</span></span></span> post.date.format("YYYY-MM-DD") <span class="xml"><span class="tag"><span class="string">%&gt;.&lt;%=</span></span></span> post.slug <span class="xml"><span class="tag"><span class="string">%&gt;.md"</span> <span class="attr">title</span>=<span class="string">"顺序查看文章各部分修改记录"</span> <span class="attr">target</span> = <span class="string">"_blank"</span>&gt;</span>Blame<span class="tag">&lt;/<span class="name">a</span>&gt;</span>,</span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;文章 History 地址&gt;/&lt;%=</span></span></span> post.date.format("YYYY-MM-DD") <span class="xml"><span class="tag"><span class="string">%&gt;.&lt;%=</span></span></span> post.slug <span class="xml"><span class="tag"><span class="string">%&gt;.md"</span> <span class="attr">title</span>=<span class="string">"查看文章有关更新记录"</span> <span class="attr">target</span> = <span class="string">"_blank"</span>&gt;</span>History<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"raw"</span>&gt;</span>文本模式:<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-file-text-o"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;文章 Raw 地址&gt;/&lt;%=</span></span></span> post.date.format("YYYY-MM-DD") <span class="xml"><span class="tag"><span class="string">%&gt;.&lt;%=</span></span></span> post.slug <span class="xml"><span class="tag"><span class="string">%&gt;.md"</span> <span class="attr">title</span>=<span class="string">"查看 &amp; 下载文章 Markdown 原始文本"</span> <span class="attr">target</span> = <span class="string">"_blank"</span>&gt;</span> .md Raw<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span></span></span> &#125; <span class="xml"><span class="tag">%&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="代码简析"><a href="#代码简析" class="headerlink" title="代码简析"></a>代码简析</h2><figure class="highlight erb"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!-- 不设置 backup: false 则默认显示 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span></span></span> if (post.backup != false)&#123; <span class="xml"><span class="tag">%&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>更新历史:<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-github"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 不同功能替换前面超链接即可，文件名不变 --&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 文件名生成: &lt;%=</span></span> post.date.format("YYYY-MM-DD") <span class="xml"><span class="comment">%&gt;.&lt;%=</span></span> post.slug <span class="xml"><span class="comment">%&gt; --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;文章 Blame 地址&gt;/&lt;%=</span></span></span> post.date.format("YYYY-MM-DD") <span class="xml"><span class="tag"><span class="string">%&gt;.&lt;%=</span></span></span> post.slug <span class="xml"><span class="tag"><span class="string">%&gt;.md"</span> <span class="attr">title</span>=<span class="string">"顺序查看文章各部分修改记录"</span> <span class="attr">target</span> = <span class="string">"_blank"</span>&gt;</span>Blame<span class="tag">&lt;/<span class="name">a</span>&gt;</span>,</span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;文章 History 地址&gt;/&lt;%=</span></span></span> post.date.format("YYYY-MM-DD") <span class="xml"><span class="tag"><span class="string">%&gt;.&lt;%=</span></span></span> post.slug <span class="xml"><span class="tag"><span class="string">%&gt;.md"</span> <span class="attr">title</span>=<span class="string">"查看文章有关更新记录"</span> <span class="attr">target</span> = <span class="string">"_blank"</span>&gt;</span>History<span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"raw"</span>&gt;</span>文本模式:<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"fa fa-file-text-o"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"&lt;文章 Raw 地址&gt;/&lt;%=</span></span></span> post.date.format("YYYY-MM-DD") <span class="xml"><span class="tag"><span class="string">%&gt;.&lt;%=</span></span></span> post.slug <span class="xml"><span class="tag"><span class="string">%&gt;.md"</span> <span class="attr">title</span>=<span class="string">"查看 &amp; 下载文章 Markdown 原始文本"</span> <span class="attr">target</span> = <span class="string">"_blank"</span>&gt;</span> .md Raw<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">%</span></span></span> &#125; <span class="xml"><span class="tag">%&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="Blame"><a href="#Blame" class="headerlink" title="Blame"></a>Blame</h3><ul>
+<li>顺序列出文章内容，左侧显示各部分 commit 信息，最后修改时间等。<br><img src="/resources/Blame.png" alt="Blame"></li>
+</ul>
+<h3 id="History"><a href="#History" class="headerlink" title="History"></a>History</h3><ul>
+<li>列出与该文件相关的更新记录 (commit)，按路径匹配。我一般直接就用提交时间作为 commit 信息了，想要更直观查看变动的可以在提交时书写更完善的 commit 信息。</li>
+</ul>
+<p><img src="/resources/History.png" alt="History"></p>
+<h3 id="md-Raw"><a href="#md-Raw" class="headerlink" title=".md Raw"></a>.md Raw</h3><ul>
+<li>在线查看或者直接下载文章原始 Markdown 文本。<br><img src="/resources/Raw.png" alt="Raw"></li>
+</ul>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><blockquote>
+<ul>
+<li>这是半自动的版本控制，需要手动把文章同步备份到 GitHub；</li>
+<li>代码部分的变动基于 <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" rel="external">Yelee</a> 主题，其它主题用户可以参考 <a href="/2015/10/25/hexo-tag-cloud/">另一篇文章</a> 的方法，自行添加代码到合适位置；</li>
+<li>小图标来自 Font Awesome，需主题支持才会正常显示；</li>
+<li>本文不详解 Hexo 基础知识，有设置项不理解的请先阅读 <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">Hexo 官方帮助文档</a>。</li>
+</ul>
+</blockquote>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><ol>
+<li><strong>GitHub Desktop</strong>: <a href="https://desktop.github.com/" target="_blank" rel="external">https://desktop.github.com/</a></li>
+<li><strong>Font Awesome</strong>: <a href="http://fontawesome.io/" target="_blank" rel="external">http://fontawesome.io/</a></li>
+<li><strong>Hexo 使用文档</strong>: <a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="external">https://hexo.io/zh-cn/docs/</a></li>
+<li><strong><em>Hexo 文章版本控制</em></strong>  by <strong>MOxFIVE</strong> on <code>2016/01/10</code>: <a href="https://github.com/MOxFIVE/M-Hexo-Blog/commit/d8a4942dab23920837cc70249c31697d36e49235" target="_blank" rel="external">https://github.com/MOxFIVE/M-Hexo-Blog/commit/d8a4942dab23920837cc70249c31697d36e49235</a></li>
+</ol>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://xiahl.top/icarus/2016/01/10/hexo-post-version-control/" data-id="ciq3woaw40006r4vq8z0vragu" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://xiahl.top/icarus/2016/01/10/hexo-post-version-control/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://xiahl.top/icarus/2016/01/10/hexo-post-version-control/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/icarus/2016/03/27/hexo-browsersync/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    Hexo 页面自动刷新与移动端调试
+                
+            </div>
+        </a>
+    
+    
+        <a href="/icarus/2016/01/02/hexo-comments/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">为 Hexo 主题添加评论模块 — Disqus, 多说, 友言</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/icarus/2016/06/13/hexo-collapsible-toc/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/resources/feat.toc.gif)" alt="为 Hexo 添加可折叠的文章目录" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/icarus/categories/术业专攻/">术业专攻</a></p>
+                            <p class="item-title"><a href="/icarus/2016/06/13/hexo-collapsible-toc/" class="title">为 Hexo 添加可折叠的文章目录</a></p>
+                            <p class="item-date"><time datetime="2016-06-13T12:06:30.000Z" itemprop="datePublished">2016-06-13</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/icarus/2016/05/31/hexo-local-search/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/resources/hexo-local-search.gif)" alt="让 Hexo 博客支持本地站内搜索" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/icarus/categories/术业专攻/">术业专攻</a></p>
+                            <p class="item-title"><a href="/icarus/2016/05/31/hexo-local-search/" class="title">让 Hexo 博客支持本地站内搜索</a></p>
+                            <p class="item-date"><time datetime="2016-05-31T05:50:19.000Z" itemprop="datePublished">2016-05-31</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/icarus/2016/03/27/hexo-browsersync/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/resources/browsersync.gif)" alt="Hexo 页面自动刷新与移动端调试" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/icarus/categories/术业专攻/">术业专攻</a></p>
+                            <p class="item-title"><a href="/icarus/2016/03/27/hexo-browsersync/" class="title">Hexo 页面自动刷新与移动端调试</a></p>
+                            <p class="item-date"><time datetime="2016-03-26T16:17:50.000Z" itemprop="datePublished">2016-03-27</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/icarus/2016/01/10/hexo-post-version-control/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/resources/version-control.png)" alt="关联 GitHub, 让 Hexo 支持查看文章更新历史" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/icarus/categories/术业专攻/">术业专攻</a></p>
+                            <p class="item-title"><a href="/icarus/2016/01/10/hexo-post-version-control/" class="title">关联 GitHub, 让 Hexo 支持查看文章更新历史</a></p>
+                            <p class="item-date"><time datetime="2016-01-10T14:38:01.000Z" itemprop="datePublished">2016-01-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/icarus/2016/01/02/hexo-comments/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/icarus/categories/术业专攻/">术业专攻</a></p>
+                            <p class="item-title"><a href="/icarus/2016/01/02/hexo-comments/" class="title">为 Hexo 主题添加评论模块 — Disqus, 多说, 友言</a></p>
+                            <p class="item-date"><time datetime="2016-01-01T17:26:48.000Z" itemprop="datePublished">2016-01-02</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/icarus/categories/术业专攻/">术业专攻</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/icarus/categories/自用笔记/">自用笔记</a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/icarus/categories/自用笔记/术业专攻/">术业专攻</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/icarus/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/icarus/archives/2016/05/">五月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/icarus/archives/2016/03/">三月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/icarus/archives/2016/01/">一月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/icarus/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/icarus/archives/2015/10/">十月 2015</a><span class="archive-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Browsersync/">Browsersync</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/CSS/">CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/GitHub/">GitHub</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Hexo/">Hexo</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/JavaScript/">JavaScript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/TagCloud/">TagCloud</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/jQuery/">jQuery</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/icarus/tags/Browsersync/" style="font-size: 10px;">Browsersync</a> <a href="/icarus/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/icarus/tags/GitHub/" style="font-size: 15px;">GitHub</a> <a href="/icarus/tags/Hexo/" style="font-size: 20px;">Hexo</a> <a href="/icarus/tags/JavaScript/" style="font-size: 10px;">JavaScript</a> <a href="/icarus/tags/TagCloud/" style="font-size: 10px;">TagCloud</a> <a href="/icarus/tags/jQuery/" style="font-size: 15px;">jQuery</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2016 夏红林<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'xiahl';
+    
+    
+    var disqus_url = 'http://xiahl.top/icarus/2016/01/10/hexo-post-version-control/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/icarus/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/icarus/js/main.js"></script>
+
+    </div>
+</body>
+</html>
