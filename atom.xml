@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://xiahl.top/"/>
-  <updated>2016-07-09T13:13:13.763Z</updated>
+  <updated>2016-07-09T13:46:10.563Z</updated>
   <id>http://xiahl.top/</id>
   
   <author>
@@ -20,15 +20,12 @@
     <link href="http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-wrap-up/"/>
     <id>http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-wrap-up/</id>
     <published>2016-07-09T11:00:00.000Z</published>
-    <updated>2016-07-09T13:13:13.763Z</updated>
+    <updated>2016-07-09T13:46:10.563Z</updated>
     
     <content type="html">&lt;style type=&quot;text/css&quot;&gt;
 	em {
 	    font-style: normal!important;
 	    font-weight: bold;
-	}
-	ul,ol {
-		padding-left: 0;
 	}
 	.l-sub-section {
 		margin: 100px 0 32px 0;
@@ -63,6 +60,7 @@
 &lt;/style&gt;
 &lt;h2 id=&quot;wrap-up&quot;&gt;&lt;a name=&quot;总结&quot; class=&quot;reference-link&quot;&gt;&lt;/a&gt;总结&lt;/h2&gt;
 &lt;p&gt;我们学到的这些只是关于Angular应用程序的八个主要构造块的一点皮毛&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;ol&gt;
 	&lt;li&gt;&lt;p&gt;&lt;a href=&quot;/2016/07/08/2016-07-08-angular2-architecture-module&quot;&gt;模块&lt;/a&gt;   &lt;/p&gt;
 	&lt;/li&gt;
@@ -113,10 +111,39 @@
 	    font-style: normal!important;
 	    font-weight: bold;
 	}
-	ul,ol {
-		padding-left: 0;
-	}
 	.l-sub-section {
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left: 4px solid #8BC34A;
+		border-radius: 4px;
+	}
+	.example-title {
+	    color: #fff;
+	    padding: 0 16px;
+	    font-size: 14px;
+	    border-color: #1976D2;
+	    background: #1976D2;
+	    box-shadow: none;
+	    line-height: 32px;
+	    margin-bottom: -5px;
+	    z-index: 1;
+	    position: relative;
+	    border-bottom-right-radius: 0;
+	    border-bottom-left-radius: 0;
+        border-width: 2px;
+    	border-style: solid;
+	    border-radius: 4px;
+	}
+	.highlight {
+		margin: 0!important;
+		padding: 0;
+	    color: inherit;
+	    background: inherit;
+	}
+&lt;/style&gt;
+&lt;h2 id=&quot;wrap-up&quot;&gt;&lt;a name=&quot;总结&quot; class=&quot;reference-link&quot;&gt;&lt;/a&gt;总结&lt;/h2&gt;
+&lt;p&gt;我们学到的这些只是关于Angular应用程序的八个主要构造块的一点皮毛&lt;/p&gt;
     
     </summary>
     
@@ -136,15 +163,12 @@
     <link href="http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-dependency-injection/"/>
     <id>http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-dependency-injection/</id>
     <published>2016-07-09T10:59:00.000Z</published>
-    <updated>2016-07-09T12:54:42.218Z</updated>
+    <updated>2016-07-09T13:44:46.320Z</updated>
     
     <content type="html">&lt;style type=&quot;text/css&quot;&gt;
 	em {
 	    font-style: normal!important;
 	    font-weight: bold;
-	}
-	ul {
-		padding-left: 0;
 	}
 	.l-sub-section {
 		margin: 100px 0 32px 0;
@@ -181,6 +205,7 @@
 &lt;img src=&quot;/resources/dependency-injection.png&quot; alt=&quot;&quot; align=&quot;left&quot; style=&quot;width:240px; margin-right:10px&quot;&gt;
 &lt;p&gt;“依赖注入”是提供类的新实例的一种方式，还负责处理好类所需的全部依赖。大多数依赖都是服务。
 Angular也使用依赖注入提供我们需要的组件以及这些组件所需的服务。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;br clear=&quot;all&quot;&gt;
 &lt;p&gt;在TypeScript里，Angular能通过查看构造函数的参数类型，来得知组件需要哪些服务。
 例如，&lt;code&gt;HeroListComponent&lt;/code&gt;组件的构造函数需要&lt;code&gt;HeroService&lt;/code&gt;：&lt;/p&gt;
@@ -238,11 +263,41 @@ Angular也使用依赖注入提供我们需要的组件以及这些组件所需�
 	    font-style: normal!important;
 	    font-weight: bold;
 	}
-	ul {
-		padding-left: 0;
-	}
 	.l-sub-section {
-		
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left: 4px solid #8BC34A;
+		border-radius: 4px;
+	}
+	.example-title {
+	    color: #fff;
+	    padding: 0 16px;
+	    font-size: 14px;
+	    border-color: #1976D2;
+	    background: #1976D2;
+	    box-shadow: none;
+	    line-height: 32px;
+	    margin-bottom: -5px;
+	    z-index: 1;
+	    position: relative;
+	    border-bottom-right-radius: 0;
+	    border-bottom-left-radius: 0;
+        border-width: 2px;
+    	border-style: solid;
+	    border-radius: 4px;
+	}
+	.highlight {
+		margin: 0!important;
+		padding: 0;
+	    color: inherit;
+	    background: inherit;
+	}
+&lt;/style&gt;
+&lt;h2 id=&quot;dependency-injection&quot;&gt;&lt;a name=&quot;依赖注入&quot; class=&quot;reference-link&quot;&gt;&lt;/a&gt;依赖注入&lt;/h2&gt;
+&lt;img src=&quot;/resources/dependency-injection.png&quot; alt=&quot;&quot; align=&quot;left&quot; style=&quot;width:240px; margin-right:10px&quot;&gt;
+&lt;p&gt;“依赖注入”是提供类的新实例的一种方式，还负责处理好类所需的全部依赖。大多数依赖都是服务。
+Angular也使用依赖注入提供我们需要的组件以及这些组件所需的服务。&lt;/p&gt;
     
     </summary>
     
@@ -262,15 +317,12 @@ Angular也使用依赖注入提供我们需要的组件以及这些组件所需�
     <link href="http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-service/"/>
     <id>http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-service/</id>
     <published>2016-07-09T10:57:00.000Z</published>
-    <updated>2016-07-09T12:02:08.395Z</updated>
+    <updated>2016-07-09T13:45:40.234Z</updated>
     
     <content type="html">&lt;style type=&quot;text/css&quot;&gt;
 	em {
 	    font-style: normal!important;
 	    font-weight: bold;
-	}
-	ul {
-		padding-left: 0;
 	}
 	.l-sub-section {
 		margin: 100px 0 32px 0;
@@ -308,6 +360,7 @@ Angular也使用依赖注入提供我们需要的组件以及这些组件所需�
 &lt;p&gt;“服务”分为很多种，包括：值、函数，以及应用所需的特性。&lt;/p&gt;
 &lt;p&gt;几乎任何东西都可以是一个服务。
 典型的服务是一个类，具有专注的、良好定义的用途。它应该做一件具体的事情，把它做好。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;br clear=&quot;all&quot;&gt;
 &lt;p&gt;例如：&lt;/p&gt;
 &lt;ul&gt;
@@ -355,11 +408,42 @@ Angular也使用依赖注入提供我们需要的组件以及这些组件所需�
 	    font-style: normal!important;
 	    font-weight: bold;
 	}
-	ul {
-		padding-left: 0;
-	}
 	.l-sub-section {
-		
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left: 4px solid #8BC34A;
+		border-radius: 4px;
+	}
+	.example-title {
+	    color: #fff;
+	    padding: 0 16px;
+	    font-size: 14px;
+	    border-color: #1976D2;
+	    background: #1976D2;
+	    box-shadow: none;
+	    line-height: 32px;
+	    margin-bottom: -5px;
+	    z-index: 1;
+	    position: relative;
+	    border-bottom-right-radius: 0;
+	    border-bottom-left-radius: 0;
+        border-width: 2px;
+    	border-style: solid;
+	    border-radius: 4px;
+	}
+	.highlight {
+		margin: 0!important;
+		padding: 0;
+	    color: inherit;
+	    background: inherit;
+	}
+&lt;/style&gt;
+&lt;h2 id=&quot;service&quot;&gt;&lt;a name=&quot;服务&quot; class=&quot;reference-link&quot;&gt;&lt;/a&gt;服务&lt;/h2&gt;
+&lt;img src=&quot;/resources/service.png&quot; alt=&quot;&quot; align=&quot;left&quot; style=&quot;width:240px; margin-right:10px&quot;&gt;
+&lt;p&gt;“服务”分为很多种，包括：值、函数，以及应用所需的特性。&lt;/p&gt;
+&lt;p&gt;几乎任何东西都可以是一个服务。
+典型的服务是一个类，具有专注的、良好定义的用途。它应该做一件具体的事情，把它做好。&lt;/p&gt;
     
     </summary>
     
@@ -379,15 +463,12 @@ Angular也使用依赖注入提供我们需要的组件以及这些组件所需�
     <link href="http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-directive/"/>
     <id>http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-directive/</id>
     <published>2016-07-09T10:55:00.000Z</published>
-    <updated>2016-07-09T11:13:14.325Z</updated>
+    <updated>2016-07-09T13:45:02.125Z</updated>
     
     <content type="html">&lt;style type=&quot;text/css&quot;&gt;
 	em {
 	    font-style: normal!important;
 	    font-weight: bold;
-	}
-	ul {
-		padding-left: 0;
 	}
 	.l-sub-section {
 		margin: 0px 0 32px 0;
@@ -424,6 +505,7 @@ Angular也使用依赖注入提供我们需要的组件以及这些组件所需�
 &lt;img src=&quot;/resources/directive.png&quot; alt=&quot;&quot; align=&quot;left&quot; style=&quot;width:240px; margin-right:10px&quot;&gt;
 &lt;p&gt;Angular模板是&lt;em&gt;动态的&lt;/em&gt;。当Angular渲染它们时，它会根据&lt;strong&gt;指令&lt;/strong&gt;提供的操作指南对DOM进行修改。&lt;/p&gt;
 &lt;p&gt;指令是一个带有“指令元数据”的类。在TypeScript中，要通过&lt;code&gt;@Directive&lt;/code&gt;装饰器把元数据附加到类上。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;br clear=&quot;all&quot;&gt;
 &lt;p&gt;我们已经遇到过指令的形式之一：组件。组件是一个&lt;em&gt;带模板的指令&lt;/em&gt;，而且&lt;code&gt;@Component&lt;/code&gt;装饰器实际上就是一个&lt;code&gt;@Directive&lt;/code&gt;装饰器，只是扩展了一些面向模板的属性。&lt;/p&gt;
 &lt;div class=&quot;l-sub-section&quot;&gt;
@@ -457,11 +539,41 @@ Angular也使用依赖注入提供我们需要的组件以及这些组件所需�
 	    font-style: normal!important;
 	    font-weight: bold;
 	}
-	ul {
-		padding-left: 0;
-	}
 	.l-sub-section {
-		
+		margin: 0px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left: 4px solid #8BC34A;
+		border-radius: 4px;
+	}
+	.example-title {
+	    color: #fff;
+	    padding: 0 16px;
+	    font-size: 14px;
+	    border-color: #1976D2;
+	    background: #1976D2;
+	    box-shadow: none;
+	    line-height: 32px;
+	    margin-bottom: -5px;
+	    z-index: 1;
+	    position: relative;
+	    border-bottom-right-radius: 0;
+	    border-bottom-left-radius: 0;
+        border-width: 2px;
+    	border-style: solid;
+	    border-radius: 4px;
+	}
+	.highlight {
+		margin: 0!important;
+		padding: 0;
+	    color: inherit;
+	    background: inherit;
+	}
+&lt;/style&gt;
+&lt;h2 id=&quot;directive&quot;&gt;&lt;a name=&quot;指令&quot; class=&quot;reference-link&quot;&gt;&lt;/a&gt;指令&lt;/h2&gt;
+&lt;img src=&quot;/resources/directive.png&quot; alt=&quot;&quot; align=&quot;left&quot; style=&quot;width:240px; margin-right:10px&quot;&gt;
+&lt;p&gt;Angular模板是&lt;em&gt;动态的&lt;/em&gt;。当Angular渲染它们时，它会根据&lt;strong&gt;指令&lt;/strong&gt;提供的操作指南对DOM进行修改。&lt;/p&gt;
+&lt;p&gt;指令是一个带有“指令元数据”的类。在TypeScript中，要通过&lt;code&gt;@Directive&lt;/code&gt;装饰器把元数据附加到类上。&lt;/p&gt;
     
     </summary>
     
@@ -481,15 +593,12 @@ Angular也使用依赖注入提供我们需要的组件以及这些组件所需�
     <link href="http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-databinding/"/>
     <id>http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-databinding/</id>
     <published>2016-07-09T10:26:00.000Z</published>
-    <updated>2016-07-09T10:53:20.871Z</updated>
+    <updated>2016-07-09T13:44:29.408Z</updated>
     
     <content type="html">&lt;style type=&quot;text/css&quot;&gt;
 	em {
 	    font-style: normal!important;
 	    font-weight: bold;
-	}
-	ul {
-		padding-left: 0;
 	}
 	.l-sub-section {
 		margin: 100px 0 32px 0;
@@ -525,6 +634,7 @@ Angular也使用依赖注入提供我们需要的组件以及这些组件所需�
 &lt;h2 id=&quot;data-binding&quot;&gt;&lt;a name=&quot;数据绑定&quot; class=&quot;reference-link&quot;&gt;&lt;/a&gt;数据绑定&lt;/h2&gt;
 &lt;p&gt;如果没有框架，我们就得自己把数据值推送到HTML控件中，并把用户的反馈转换成动作和值更新。
 如果手工写代码来实现这些推/拉逻辑，肯定会枯燥乏味、容易出错，读起来简直是噩梦 —— 写过jQuery的程序员大概都对此深有体会。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;img src=&quot;/resources/databinding.png&quot; alt=&quot;&quot; align=&quot;left&quot; style=&quot;width:240px; margin-right:10px&quot;&gt;
 &lt;p&gt;Angular支持&lt;strong&gt;数据绑定&lt;/strong&gt;，一种让模板的各部分与组件的各部分相互合作的机制。
 我们往模板HTML中添加绑定标记，来告诉Angular如何连接两者。&lt;/p&gt;
@@ -565,11 +675,40 @@ Angular也使用依赖注入提供我们需要的组件以及这些组件所需�
 	    font-style: normal!important;
 	    font-weight: bold;
 	}
-	ul {
-		padding-left: 0;
-	}
 	.l-sub-section {
-		
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left: 4px solid #8BC34A;
+		border-radius: 4px;
+	}
+	.example-title {
+	    color: #fff;
+	    padding: 0 16px;
+	    font-size: 14px;
+	    border-color: #1976D2;
+	    background: #1976D2;
+	    box-shadow: none;
+	    line-height: 32px;
+	    margin-bottom: -5px;
+	    z-index: 1;
+	    position: relative;
+	    border-bottom-right-radius: 0;
+	    border-bottom-left-radius: 0;
+        border-width: 2px;
+    	border-style: solid;
+	    border-radius: 4px;
+	}
+	.highlight {
+		margin: 0!important;
+		padding: 0;
+	    color: inherit;
+	    background: inherit;
+	}
+&lt;/style&gt;
+&lt;h2 id=&quot;data-binding&quot;&gt;&lt;a name=&quot;数据绑定&quot; class=&quot;reference-link&quot;&gt;&lt;/a&gt;数据绑定&lt;/h2&gt;
+&lt;p&gt;如果没有框架，我们就得自己把数据值推送到HTML控件中，并把用户的反馈转换成动作和值更新。
+如果手工写代码来实现这些推/拉逻辑，肯定会枯燥乏味、容易出错，读起来简直是噩梦 —— 写过jQuery的程序员大概都对此深有体会。&lt;/p&gt;
     
     </summary>
     
@@ -589,15 +728,12 @@ Angular也使用依赖注入提供我们需要的组件以及这些组件所需�
     <link href="http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-metadata/"/>
     <id>http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-metadata/</id>
     <published>2016-07-09T08:04:00.000Z</published>
-    <updated>2016-07-09T10:44:51.016Z</updated>
+    <updated>2016-07-09T13:45:15.194Z</updated>
     
     <content type="html">&lt;style type=&quot;text/css&quot;&gt;
 	em {
 	    font-style: normal!important;
 	    font-weight: bold;
-	}
-	ul {
-		padding-left: 0;
 	}
 	.l-sub-section {
 		margin: 100px 0 32px 0;
@@ -633,6 +769,7 @@ Angular也使用依赖注入提供我们需要的组件以及这些组件所需�
 &lt;h2 id=&quot;metadata&quot;&gt;&lt;a name=&quot;元数据&quot; class=&quot;reference-link&quot;&gt;&lt;/a&gt;元数据&lt;/h2&gt;
 &lt;img src=&quot;/resources/metadata.png&quot; alt=&quot;&quot; align=&quot;left&quot; style=&quot;width:240px; margin-right:10px&quot;&gt;
 &lt;p style=&quot;padding-top:10px&quot;&gt;元数据告诉Angular如何处理一个类。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;&lt;a href=&quot;/2016/07/09/2016-07-09-angular2-architecture-component&quot;&gt;回头看看 &lt;/a&gt;&lt;code&gt;HeroListComponent&lt;/code&gt; 就会明白：它只是一个类。 一点框架的痕迹也没有，里面完全没有出现 &quot;Angular&quot; 的字样。&lt;/p&gt;
 &lt;p&gt;实际上，它真的 &lt;strong&gt;只是一个类&lt;/strong&gt; 。直到我们 &lt;strong&gt;告诉 Angular&lt;/strong&gt; 这是一个组件为止。&lt;/p&gt;
 &lt;p&gt;只要把 &lt;strong&gt;元数据&lt;/strong&gt; 附加到这个类，就相当于告诉 Angular ： &lt;strong&gt;HeroListComponent&lt;/strong&gt; 是个组件。&lt;/p&gt;
@@ -683,11 +820,40 @@ Angular在运行期间会找出这份元数据，并由此知道该如何去“�
 	    font-style: normal!important;
 	    font-weight: bold;
 	}
-	ul {
-		padding-left: 0;
-	}
 	.l-sub-section {
-		
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left: 4px solid #8BC34A;
+		border-radius: 4px;
+	}
+	.example-title {
+	    color: #fff;
+	    padding: 0 16px;
+	    font-size: 14px;
+	    border-color: #1976D2;
+	    background: #1976D2;
+	    box-shadow: none;
+	    line-height: 32px;
+	    margin-bottom: -5px;
+	    z-index: 1;
+	    position: relative;
+	    border-bottom-right-radius: 0;
+	    border-bottom-left-radius: 0;
+        border-width: 2px;
+    	border-style: solid;
+	    border-radius: 4px;
+	}
+	.highlight {
+		margin: 0!important;
+		padding: 0;
+	    color: inherit;
+	    background: inherit;
+	}
+&lt;/style&gt;
+&lt;h2 id=&quot;metadata&quot;&gt;&lt;a name=&quot;元数据&quot; class=&quot;reference-link&quot;&gt;&lt;/a&gt;元数据&lt;/h2&gt;
+&lt;img src=&quot;/resources/metadata.png&quot; alt=&quot;&quot; align=&quot;left&quot; style=&quot;width:240px; margin-right:10px&quot;&gt;
+&lt;p style=&quot;padding-top:10px&quot;&gt;元数据告诉Angular如何处理一个类。&lt;/p&gt;
     
     </summary>
     
@@ -707,15 +873,12 @@ Angular在运行期间会找出这份元数据，并由此知道该如何去“�
     <link href="http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-template/"/>
     <id>http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-template/</id>
     <published>2016-07-09T07:03:00.000Z</published>
-    <updated>2016-07-09T07:52:24.426Z</updated>
+    <updated>2016-07-09T13:45:54.381Z</updated>
     
     <content type="html">&lt;style type=&quot;text/css&quot;&gt;
 	em {
 	    font-style: normal!important;
 	    font-weight: bold;
-	}
-	ul {
-		padding-left: 0;
 	}
 	.l-sub-section {
 		margin: 100px 0 32px 0;
@@ -752,6 +915,7 @@ Angular在运行期间会找出这份元数据，并由此知道该如何去“�
 &lt;img src=&quot;/resources/template.png&quot; alt=&quot;&quot; align=&quot;left&quot; style=&quot;width:240px; margin-right:10px&quot;&gt;
 &lt;p&gt;我们通过组件的自带的&lt;strong&gt;模板&lt;/strong&gt;来定义视图。模板以HTML形式存在，用来告诉Angular如何渲染组件(视图)。&lt;/p&gt;
 &lt;p&gt;多数情况下，模板看起来很像标准HTML……当然也有一小点儿奇怪的地方。下面是&lt;code&gt;HeroList&lt;/code&gt;组件的一个模板。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;div class=&quot;example-title&quot; style=&quot;margin-top: 80px;&quot;&gt;app/hero-list.component.html&lt;/div&gt;
 &lt;pre&gt;
 &lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;h2&lt;/span&gt;&amp;gt;&lt;/span&gt;Hero List&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;h2&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;p&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;i&lt;/span&gt;&amp;gt;&lt;/span&gt;Pick a hero from the list&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;i&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;p&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;div&lt;/span&gt; *&lt;span class=&quot;attr&quot;&gt;ngFor&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;let hero of heroes&quot;&lt;/span&gt; (&lt;span class=&quot;attr&quot;&gt;click&lt;/span&gt;)=&lt;span class=&quot;string&quot;&gt;&quot;selectHero(hero)&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#123;&amp;#123;hero.name&amp;#125;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;hero-detail&lt;/span&gt; *&lt;span class=&quot;attr&quot;&gt;ngIf&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;selectedHero&quot;&lt;/span&gt; [&lt;span class=&quot;attr&quot;&gt;hero&lt;/span&gt;]=&lt;span class=&quot;string&quot;&gt;&quot;selectedHero&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;hero-detail&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -780,11 +944,41 @@ Angular在运行期间会找出这份元数据，并由此知道该如何去“�
 	    font-style: normal!important;
 	    font-weight: bold;
 	}
-	ul {
-		padding-left: 0;
-	}
 	.l-sub-section {
-		
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left: 4px solid #8BC34A;
+		border-radius: 4px;
+	}
+	.example-title {
+	    color: #fff;
+	    padding: 0 16px;
+	    font-size: 14px;
+	    border-color: #1976D2;
+	    background: #1976D2;
+	    box-shadow: none;
+	    line-height: 32px;
+	    margin-bottom: -5px;
+	    z-index: 1;
+	    position: relative;
+	    border-bottom-right-radius: 0;
+	    border-bottom-left-radius: 0;
+        border-width: 2px;
+    	border-style: solid;
+	    border-radius: 4px;
+	}
+	.highlight {
+		margin: 0!important;
+		padding: 0;
+	    color: inherit;
+	    background: inherit;
+	}
+&lt;/style&gt;
+&lt;h2 id=&quot;template&quot;&gt;&lt;a name=&quot;模板&quot; class=&quot;reference-link&quot;&gt;&lt;/a&gt;模板&lt;/h2&gt;
+&lt;img src=&quot;/resources/template.png&quot; alt=&quot;&quot; align=&quot;left&quot; style=&quot;width:240px; margin-right:10px&quot;&gt;
+&lt;p&gt;我们通过组件的自带的&lt;strong&gt;模板&lt;/strong&gt;来定义视图。模板以HTML形式存在，用来告诉Angular如何渲染组件(视图)。&lt;/p&gt;
+&lt;p&gt;多数情况下，模板看起来很像标准HTML……当然也有一小点儿奇怪的地方。下面是&lt;code&gt;HeroList&lt;/code&gt;组件的一个模板。&lt;/p&gt;
     
     </summary>
     
@@ -804,15 +998,12 @@ Angular在运行期间会找出这份元数据，并由此知道该如何去“�
     <link href="http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-component/"/>
     <id>http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-component/</id>
     <published>2016-07-09T05:48:00.000Z</published>
-    <updated>2016-07-09T07:52:33.786Z</updated>
+    <updated>2016-07-09T13:44:12.760Z</updated>
     
     <content type="html">&lt;style type=&quot;text/css&quot;&gt;
 	em {
 	    font-style: normal!important;
 	    font-weight: bold;
-	}
-	ul {
-		padding-left: 0;
 	}
 	.l-sub-section {
 		margin: 100px 0 32px 0;
@@ -842,6 +1033,7 @@ Angular在运行期间会找出这份元数据，并由此知道该如何去“�
 &lt;h2 id=&quot;component&quot;&gt;&lt;a name=&quot;组件&quot; class=&quot;reference-link&quot;&gt;&lt;/a&gt;组件&lt;/h2&gt;
 &lt;img src=&quot;/resources/hero-component.png&quot; alt=&quot;&quot; align=&quot;left&quot; style=&quot;width:240px; margin-right:10px&quot;&gt;
 &lt;p&gt;&lt;strong&gt;组件&lt;/strong&gt;控制屏幕中巴掌大的那么一小块地方，这块地方被称之为&lt;em&gt;视图&lt;/em&gt;。应用的“外壳”包括一些导航链接、英雄列表、英雄编辑器…… 它们都是由组件控制的视图。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;我们在类中定义组件的应用逻辑(它被用来为视图提供支持)。组件通过一些由属性和方法组成的API与视图交互。&lt;/p&gt;
 &lt;p&gt;&lt;a id=&quot;component-code&quot;&gt;&lt;/a&gt;比如，在&lt;code&gt;HeroListComponent&lt;/code&gt;组件中，可能有一个&lt;code&gt;heroes&lt;/code&gt;属性，它返回一个英雄的数组，而这些数据是从服务中取得的。它可能还有一个&lt;code&gt;selectHero()&lt;/code&gt;方法，当用户从列表中点击一个英雄时，用它来设置&lt;code&gt;selectedHero&lt;/code&gt;属性。它可能是像这样的一个类：&lt;/p&gt;
 &lt;div class=&quot;example-title&quot;&gt;app/hero-list.component.ts&lt;/div&gt;
@@ -873,11 +1065,34 @@ export class HeroListComponent implements OnInit {
 	    font-style: normal!important;
 	    font-weight: bold;
 	}
-	ul {
-		padding-left: 0;
-	}
 	.l-sub-section {
-		
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left: 4px solid #8BC34A;
+		border-radius: 4px;
+	}
+	.example-title {
+	    color: #fff;
+	    padding: 0 16px;
+	    font-size: 14px;
+	    border-color: #1976D2;
+	    background: #1976D2;
+	    box-shadow: none;
+	    line-height: 32px;
+	    margin-bottom: -5px;
+	    z-index: 1;
+	    position: relative;
+	    border-bottom-right-radius: 0;
+	    border-bottom-left-radius: 0;
+        border-width: 2px;
+    	border-style: solid;
+	    border-radius: 4px;
+	}
+&lt;/style&gt;
+&lt;h2 id=&quot;component&quot;&gt;&lt;a name=&quot;组件&quot; class=&quot;reference-link&quot;&gt;&lt;/a&gt;组件&lt;/h2&gt;
+&lt;img src=&quot;/resources/hero-component.png&quot; alt=&quot;&quot; align=&quot;left&quot; style=&quot;width:240px; margin-right:10px&quot;&gt;
+&lt;p&gt;&lt;strong&gt;组件&lt;/strong&gt;控制屏幕中巴掌大的那么一小块地方，这块地方被称之为&lt;em&gt;视图&lt;/em&gt;。应用的“外壳”包括一些导航链接、英雄列表、英雄编辑器…… 它们都是由组件控制的视图。&lt;/p&gt;
     
     </summary>
     
@@ -897,15 +1112,12 @@ export class HeroListComponent implements OnInit {
     <link href="http://xiahl.top/2016/07/08/2016-07-08-angular2-architecture-module/"/>
     <id>http://xiahl.top/2016/07/08/2016-07-08-angular2-architecture-module/</id>
     <published>2016-07-08T13:54:00.000Z</published>
-    <updated>2016-07-09T07:52:39.856Z</updated>
+    <updated>2016-07-09T13:43:17.558Z</updated>
     
     <content type="html">&lt;style type=&quot;text/css&quot;&gt;
 	em {
 	    font-style: normal!important;
 	    font-weight: bold;
-	}
-	ul {
-		padding-left: 0;
 	}
 	.l-sub-section {
 		margin: 100px 0 32px 0;
@@ -933,6 +1145,7 @@ export class HeroListComponent implements OnInit {
 	}
 &lt;/style&gt;
 &lt;p&gt;Angular 2 是一个用 HTML 和 JavaScript 构建客户端应用的框架。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
 &lt;p&gt;该框架包括一系列紧密合作的库，有些是核心库，有些是可选库。&lt;/p&gt;
 &lt;p&gt;我们这样写应用程序：用带 Angular 扩展语法的 HTML 写 &lt;strong&gt;模板&lt;/strong&gt; ，用 &lt;strong&gt;组件&lt;/strong&gt; 类管理这些模板，用 &lt;strong&gt;服务&lt;/strong&gt; 添加应用逻辑，用根组件完成 Angular &lt;strong&gt;启动&lt;/strong&gt; 。&lt;/p&gt;
 &lt;p&gt;Angular 在浏览器中接管、展现应用的内容，并根据我们提供的操作指令响应用户的交互。&lt;/p&gt;
@@ -1015,11 +1228,32 @@ export class HeroListComponent implements OnInit {
 	    font-style: normal!important;
 	    font-weight: bold;
 	}
-	ul {
-		padding-left: 0;
-	}
 	.l-sub-section {
-		
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left: 4px solid #8BC34A;
+		border-radius: 4px;
+	}
+	.example-title {
+	    color: #fff;
+	    padding: 0 16px;
+	    font-size: 14px;
+	    border-color: #1976D2;
+	    background: #1976D2;
+	    box-shadow: none;
+	    line-height: 32px;
+	    margin-bottom: -5px;
+	    z-index: 1;
+	    position: relative;
+	    border-bottom-right-radius: 0;
+	    border-bottom-left-radius: 0;
+        border-width: 2px;
+    	border-style: solid;
+	    border-radius: 4px;
+	}
+&lt;/style&gt;
+&lt;p&gt;Angular 2 是一个用 HTML 和 JavaScript 构建客户端应用的框架。&lt;/p&gt;
     
     </summary>
     

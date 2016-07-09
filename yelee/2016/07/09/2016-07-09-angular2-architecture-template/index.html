@@ -19,14 +19,12 @@
 	    font-style: normal!important;
 	    font-weight: bold;
 	}
-	ul {
-		padding-left: 0;
-	}
 	.l-sub-section {
 		margin: 100px 0 32px 0;
 		padding: 16px 24px;
 		background: #f5f6f7;
-		border-left:">
+		border-left: 4px solid #8BC34A;
+		border">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Angular2-架构-Template">
 <meta property="og:url" content="http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-template/index.html">
@@ -35,31 +33,27 @@
 	    font-style: normal!important;
 	    font-weight: bold;
 	}
-	ul {
-		padding-left: 0;
-	}
 	.l-sub-section {
 		margin: 100px 0 32px 0;
 		padding: 16px 24px;
 		background: #f5f6f7;
-		border-left:">
+		border-left: 4px solid #8BC34A;
+		border">
 <meta property="og:image" content="http://xiahl.top/resources/template.png">
 <meta property="og:image" content="http://xiahl.top/resources/component-tree.png">
-<meta property="og:updated_time" content="2016-07-09T07:52:24.426Z">
+<meta property="og:updated_time" content="2016-07-09T13:45:54.381Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Angular2-架构-Template">
 <meta name="twitter:description" content="em {
 	    font-style: normal!important;
 	    font-weight: bold;
 	}
-	ul {
-		padding-left: 0;
-	}
 	.l-sub-section {
 		margin: 100px 0 32px 0;
 		padding: 16px 24px;
 		background: #f5f6f7;
-		border-left:">
+		border-left: 4px solid #8BC34A;
+		border">
 <meta name="twitter:image" content="http://xiahl.top/resources/template.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -346,9 +340,6 @@
 	    font-style: normal!important;
 	    font-weight: bold;
 	}
-	ul {
-		padding-left: 0;
-	}
 	.l-sub-section {
 		margin: 100px 0 32px 0;
 		padding: 16px 24px;
@@ -384,6 +375,7 @@
 <img src="/resources/template.png" alt="" align="left" style="width:240px; margin-right:10px">
 <p>我们通过组件的自带的<strong>模板</strong>来定义视图。模板以HTML形式存在，用来告诉Angular如何渲染组件(视图)。</p>
 <p>多数情况下，模板看起来很像标准HTML……当然也有一小点儿奇怪的地方。下面是<code>HeroList</code>组件的一个模板。</p>
+<a id="more"></a>
 <div class="example-title" style="margin-top: 80px;">app/hero-list.component.html</div>
 <pre>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Hero List<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span><span class="tag">&lt;<span class="name">i</span>&gt;</span>Pick a hero from the list<span class="tag">&lt;/<span class="name">i</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> *<span class="attr">ngFor</span>=<span class="string">"let hero of heroes"</span> (<span class="attr">click</span>)=<span class="string">"selectHero(hero)"</span>&gt;</span></span><br><span class="line">  &#123;&#123;hero.name&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">hero-detail</span> *<span class="attr">ngIf</span>=<span class="string">"selectedHero"</span> [<span class="attr">hero</span>]=<span class="string">"selectedHero"</span>&gt;</span><span class="tag">&lt;/<span class="name">hero-detail</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -414,7 +406,7 @@
         <p><span>本文标题:</span><a href="/yelee/2016/07/09/2016-07-09-angular2-architecture-template/">Angular2-架构-Template</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">夏红林</a></p>
         <p><span>发布时间:</span>2016-07-09, 15:03:00</p>
-        <p><span>最后更新:</span>2016-07-09, 15:52:24</p>
+        <p><span>最后更新:</span>2016-07-09, 21:45:54</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/yelee/2016/07/09/2016-07-09-angular2-architecture-template/" title="Angular2-架构-Template">http://xiahl.top/yelee/2016/07/09/2016-07-09-angular2-architecture-template/</a>
             <span class="copy-path" data-clipboard-text="原文: http://xiahl.top/yelee/2016/07/09/2016-07-09-angular2-architecture-template/　　作者: 夏红林" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
