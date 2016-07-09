@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Angular2-架构-DependencyInjection | 夏红林</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="em {
+	    font-style: normal!important;
+	    font-weight: bold;
+	}
+	ul {
+		padding-left: 0;
+	}
+	.l-sub-section {
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular2-架构-DependencyInjection">
+<meta property="og:url" content="http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-dependency-injection/index.html">
+<meta property="og:site_name" content="夏红林">
+<meta property="og:description" content="em {
+	    font-style: normal!important;
+	    font-weight: bold;
+	}
+	ul {
+		padding-left: 0;
+	}
+	.l-sub-section {
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left:">
+<meta property="og:image" content="http://xiahl.top/resources/dependency-injection.png">
+<meta property="og:updated_time" content="2016-07-09T12:54:42.218Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Angular2-架构-DependencyInjection">
+<meta name="twitter:description" content="em {
+	    font-style: normal!important;
+	    font-weight: bold;
+	}
+	ul {
+		padding-left: 0;
+	}
+	.l-sub-section {
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left:">
+<meta name="twitter:image" content="http://xiahl.top/resources/dependency-injection.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/red/pace-theme-flash.css" rel="stylesheet">    
+    <link href="//cdn.bootcss.com/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/vendor/editor/css/editormd.min.css">
+    <link rel="stylesheet" href="/css/tianxiamucun.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- jQuery -->
+    <script src="//cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- Pace -->
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+
+    <!-- niceScroll -->
+    <script src="//cdn.bootcss.com/jquery.nicescroll/3.6.7/jquery.nicescroll.min.js"></script>
+
+    <!-- fancyBox -->
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+    <link href="" rel="stylesheet">
+    <script src=""></script>
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/helpers/jquery.fancybox-thumbs.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/fancybox/2.1.5/helpers/jquery.fancybox-thumbs.js"></script>
+    <script src="//cdn.bootcss.com/fancybox/2.1.5/helpers/jquery.fancybox-media.js"></script>
+
+    <!-- bootstrap-datepicker -->
+    <script src="//cdn.bootcss.com/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap-datepicker/1.6.1/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+   
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="skin-blue sidebar-mini">
+    <div id="container" class="wrapper">
+        <header id="header" class="main-header">
+    <!-- Logo -->
+    <a href="/" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini">xhl</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg">夏红林</span>
+    </a>
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+
+                <!-- User Account Menu -->
+                <li class="dropdown user user-menu">
+                    <!-- Menu Toggle Button -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <!-- The user image in the navbar-->
+                        <img src="/img/xiahl.jpg" class="user-image" alt="User Image">
+                        <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                        <span class="hidden-xs">Xiahl</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- The user image in the menu -->
+                        <li class="user-header">
+                            <img src="/img/xiahl.jpg" class="img-circle" alt="User Image">
+                            <p>
+                                Web Developer & Designer
+                            </p>
+                            <p>
+                                Shenzhen, China
+                            </p>
+                        </li>
+                        <!-- Menu Body -->
+                        <li class="user-body">
+                          <nav class="header-nav">
+                            <ul class="social">
+                                
+                                    <a class="fa fa-email " 
+                                    href="mailto:xiahl1990@gmail.com" 
+                                    title="Email" 
+                                    style="background-color: #90C9E2 !important"></a>
+                                
+                                    <a class="fa fa-github " 
+                                    href="https://github.com/Xiahl1990" 
+                                    title="GitHub" 
+                                    style="background-color: #F5F5F5 !important"></a>
+                                
+                                    <a class="fa fa-rss " 
+                                    href="/atom.xml" 
+                                    title="RSS" 
+                                    style="background-color: #EB965D !important"></a>
+                                
+                                    <a class="fa fa-weibo " 
+                                    href="/" 
+                                    title="WeiBo" 
+                                    style="background-color: #E8CA86 !important"></a>
+                                
+                                    <a class="fa fa-weixin " 
+                                    href="/" 
+                                    title="WeiXin" 
+                                    style="background-color: #27AE60 !important"></a>
+                                
+                            </ul>
+                          </nav>                           
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="row">
+                                <div class="col-xs-12 text-center">
+                                    <a href="https://github.com/Xiahl1990">Follow</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Control Sidebar Toggle Button -->
+                <li>
+                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</header>
+        <!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+
+  <!-- sidebar -->
+  <section class="sidebar">
+    <!-- search form (Optional) -->
+    <form class="sidebar-form">
+      <div id="search-input-group" class="input-group">
+          <input type="text" class="form-control" placeholder="搜索" />
+          <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+          </span>
+      </div>
+    </form>
+       
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+        INPUTSELECTOR: '#search-input-group'
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+    <!-- /.search form -->
+
+    <!-- Sidebar Menu -->
+    <ul class="sidebar-menu">
+      <li class="header">HEADER</li>
+      <!-- Optionally, you can add icons to the links -->
+      
+        <li><a class="main-nav-link" href="/."><i class="fa fa-home"></i> <span>主页</span></a></li>
+      
+        <li><a class="main-nav-link" href="/archives"><i class="fa fa-folder"></i> <span>归档</span></a></li>
+      
+        <li><a class="main-nav-link" href="/categories"><i class="fa fa-copy"></i> <span>分类归档</span></a></li>
+      
+        <li><a class="main-nav-link" href="/tags"><i class="fa fa-tags"></i> <span>标签</span></a></li>
+      
+        <li><a class="main-nav-link" href="/editor"><i class="fa fa-edit"></i> <span>编辑器</span></a></li>
+      
+        <li><a class="main-nav-link" href="/about"><i class="fa fa-info-circle"></i> <span>关于我</span></a></li>
+      
+    </ul>
+    <!-- /.sidebar-menu -->
+
+  </section>
+  <!-- /.sidebar -->
+
+</aside>
+        <!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+    	<div class="container-fluid">
+    		<div class="row">
+        		<article id="post-2016-07-09-angular2-architecture-dependency-injection" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Angular2-架构-DependencyInjection
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/07/09/2016-07-09-angular2-architecture-dependency-injection/">
+            <time datetime="2016-07-09T10:59:00.000Z" itemprop="datePublished">2016-07-09</time>
+        </a>
+    </div>
+
+
+                    
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Angular2/">Angular2</a>
+    </div>
+
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Architecture/">Architecture</a>, <a class="tag-link" href="/tags/Basics/">Basics</a>, <a class="tag-link" href="/tags/Dependency-Injection/">Dependency Injection</a>
+    </div>
+
+                </div>
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <style type="text/css">
+	em {
+	    font-style: normal!important;
+	    font-weight: bold;
+	}
+	ul {
+		padding-left: 0;
+	}
+	.l-sub-section {
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left: 4px solid #8BC34A;
+		border-radius: 4px;
+	}
+	.example-title {
+	    color: #fff;
+	    padding: 0 16px;
+	    font-size: 14px;
+	    border-color: #1976D2;
+	    background: #1976D2;
+	    box-shadow: none;
+	    line-height: 32px;
+	    margin-bottom: -5px;
+	    z-index: 1;
+	    position: relative;
+	    border-bottom-right-radius: 0;
+	    border-bottom-left-radius: 0;
+        border-width: 2px;
+    	border-style: solid;
+	    border-radius: 4px;
+	}
+	.highlight {
+		margin: 0!important;
+		padding: 0;
+	    color: inherit;
+	    background: inherit;
+	}
+</style>
+<h2 id="dependency-injection"><a name="依赖注入" class="reference-link"></a>依赖注入</h2>
+<img src="/resources/dependency-injection.png" alt="" align="left" style="width:240px; margin-right:10px">
+<p>“依赖注入”是提供类的新实例的一种方式，还负责处理好类所需的全部依赖。大多数依赖都是服务。
+Angular也使用依赖注入提供我们需要的组件以及这些组件所需的服务。</p>
+<br clear="all">
+<p>在TypeScript里，Angular能通过查看构造函数的参数类型，来得知组件需要哪些服务。
+例如，<code>HeroListComponent</code>组件的构造函数需要<code>HeroService</code>：</p>
+<div class="example-title" style="margin-top:0px;">app/hero-list.component (构造函数)</div>
+<pre>
+	<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">constructor(private service: HeroService) &#123; &#125;</span><br></pre></td></tr></table></figure>
+
+</pre>
+<p>当Angular创建组件时，会首先为组件所需的服务找一个<strong>注入器Injector</strong>。</p>
+<p>注入器是一个维护服务实例的容器，存放着以前创建的实例。如果容器中还没有所请求的服务实例，注入器就会创建一个服务实例，并且添加到容器中，然后把这个服务返回给Angular。
+当所有的服务都被解析完并返回时，Angular会以这些服务为参数去调用组件的构造函数。
+这就是我们所说的<em>依赖注入</em> 。</p>
+<p><code>HeroService</code>注入的过程看起来有点像这样：</p>
+<img src="/resources/injector-injects.png" alt="">
+<p>如果注入器还没有<code>HeroService</code>，它怎么知道该如何创建一个呢？</p>
+<p>简单的说，必须在要求注入<code>HeroService</code>之前，注册一个<code>HeroService</code>的<strong>提供商Provider</strong>到注入器。
+提供商可以创建并返回服务，通常返回的就是这个“服务类”本身。</p>
+<p>可以在应用程序的组件树中的任何级别上注册提供商。
+当需要一个服务的同一个实例在任何地方都是可用时，我们通常在应用引导程序中注册它。</p>
+<div class="example-title" style="margin-top:0px;">app/main.ts (节选)</div>
+<pre>
+	<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bootstrap(AppComponent, [BackendService, HeroService, Logger]);</span><br></pre></td></tr></table></figure>
+
+</pre>
+<p>或者，也可以把它注册在组件层……</p>
+<pre>
+	<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Component(&#123;</span><br><span class="line">  providers:   [HeroService]</span><br><span class="line">&#125;)</span><br><span class="line">export class HeroesComponent &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+
+</pre>
+<p>... 在这种情况下，那个组件的每一个新实例都会有一个(在该组件注册的)服务的新实例。</p>
+<p>在这个概览中，我们过度简化了依赖注入机制。
+在<a href="#">依赖注入</a>一章中，我们能学到关于它更详尽的知识。</p>
+<p>需要记住的要点是：</p>
+<ul>
+	<li><p>依赖注入渗透在整个框架中，并且被到处使用。</p>
+	</li>
+	<li><p>注入器<code>Injector</code>是本机制的核心。</p>
+		<ul>
+			<li><p>注入器负责维护一个<em>容器</em>，用于存放它创建过的服务实例。</p>
+			</li>
+			<li><p>注入器能使用<em>提供商</em>创建一个新的服务实例。</p>
+			</li>
+		</ul>
+	</li>
+	<li><p><em>提供商</em>是一个用于创建服务的“配方”。</p>
+	</li>
+	<li><p>把<em>提供商</em>注册到注入器。</p>
+	</li>
+</ul>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-dependency-injection/" data-id="ciqf72ppo0009m4vq930tdikk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-dependency-injection/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-dependency-injection/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/07/09/2016-07-09-angular2-architecture-wrap-up/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    Angular2-架构-Wrapup
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2016/07/09/2016-07-09-angular2-architecture-service/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">Angular2-架构-Service</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-dependency-injection/';
+            this.page.identifier = '2016/07/09/2016-07-09-angular2-architecture-dependency-injection/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//xiahl.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+
+
+    <section class="scroll" id="article-nav-button">
+    
+        <a href="/2016/07/09/2016-07-09-angular2-architecture-wrap-up/" title="上一篇">
+            <i class="fa fa-angle-left"></i>
+        </a>
+    
+
+    <a href="/archives" title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times hide"></i></a>
+
+    
+        <a href="/2016/07/09/2016-07-09-angular2-architecture-service/" title="下一篇">
+            <i class="fa fa-angle-right"></i>
+        </a>
+    
+</section>
+
+    <section class="scroll" id="article-scroll-button">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="if (false) load$hide(); return false;" title="查看评论" class="to-comment" style="display: none;"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</section>
+
+
+
+        	</div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+        <footer class="main-footer" id="footer">
+	<!-- To the right -->
+	<div class="pull-right hidden-xs">
+	  Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/Xiahl1990">tianxiamucun</a>
+	</div>
+	<!-- Default to the left -->
+	&copy; 2016 夏红林<br>
+</footer>
+        <!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+  <!-- Create the tabs -->
+  <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+    <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i> Info</a></li>
+    <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i> Setting</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+
+    <!-- Home tab content -->
+    <div class="tab-pane active" id="control-sidebar-home-tab">
+      <h4 class='control-sidebar-heading'>Motto</h4>
+      <p>No matter what to do, insist on</p>
+      <h4 class='control-sidebar-heading'>Calendar</h4>
+      <div id="calendar" style="width: 100%"></div>
+    </div>
+    <!-- /.tab-pane -->
+
+    <!-- Settings tab content -->
+    <div class="tab-pane" id="control-sidebar-settings-tab">
+      <h4 class='control-sidebar-heading'>Theme</h4>
+<ul class="list-unstyled clearfix" id="theme-list">
+    <li>
+    	<a class="label label-info" href="/icarus" title="Icarus" itemprop="theme-icarus">Icarus</a>
+    	<a class="label label-warning" href="/next" title="Next" itemprop="theme-next">Next</a>
+    	<a class="label label-success" href="/yelee" title="Yelee" itemprop="theme-yelee">Yelee</a>
+    </li>
+</ul>
+      <h4 class='control-sidebar-heading'>Skins</h4>
+<ul class="list-unstyled clearfix" id="skins-list">
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-blue" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px; background: #367fa9;"></span><span class="bg-light-blue" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-blue">Blue</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-black" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div style="box-shadow: 0 0 2px rgba(0,0,0,0.1)" class="clearfix"><span style="display:block; width: 20%; float: left; height: 7px; background: #fefefe;"></span><span style="display:block; width: 80%; float: left; height: 7px; background: #fefefe;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-black">Black</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-purple" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-purple-active"></span><span class="bg-purple" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-purple">Purple</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-green" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-green-active"></span><span class="bg-green" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-green">Green</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-red" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-red-active"></span><span class="bg-red" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-red">Red</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-yellow" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-yellow-active"></span><span class="bg-yellow" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-yellow">Yellow</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-blue-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px; background: #367fa9;"></span><span class="bg-light-blue" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-blue-light" style="font-size: 12px">Blue Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-black-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div style="box-shadow: 0 0 2px rgba(0,0,0,0.1)" class="clearfix"><span style="display:block; width: 20%; float: left; height: 7px; background: #fefefe;"></span><span style="display:block; width: 80%; float: left; height: 7px; background: #fefefe;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-black-light" style="font-size: 12px">Black Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-purple-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-purple-active"></span><span class="bg-purple" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-purple-light" style="font-size: 12px">Purple Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-green-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-green-active"></span><span class="bg-green" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-green-light" style="font-size: 12px">Green Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-red-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-red-active"></span><span class="bg-red" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-red-light" style="font-size: 12px">Red Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-yellow-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-yellow-active"></span><span class="bg-yellow" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-yellow-light" style="font-size: 12px;">Yellow Light</p>
+    </li>
+</ul>
+    </div>
+    <!-- /.tab-pane -->
+
+  </div>
+
+</aside>
+<!-- /.control-sidebar -->
+
+<div class="control-sidebar-bg"></div>
+    </div>
+    <!-- editormd -->
+<script src="/vendor/editor/editormd.js"></script>
+
+<!-- analytics -->
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/app.js"></script>
+
+<!-- Init Scripts -->
+<script>
+  $(function(){
+
+      $("html").niceScroll();
+
+      $(".box-fancybox").niceScroll({autohidemode: false });
+
+      //jQuery UI sortable for the todo list
+      $(".todo-list").sortable({
+        placeholder: "sort-highlight",
+        handle: ".handle",
+        forcePlaceholderSize: true,
+        zIndex: 999999
+      });
+
+      $(".fancybox-thumb").fancybox({
+        prevEffect  : 'none',
+        nextEffect  : 'none',
+        helpers : {
+          title : {
+            type: 'inside'
+          },
+          thumbs  : {
+            width : 50,
+            height  : 50
+          }
+        }
+      });
+
+      $("#calendar").datepicker({
+        todayHighlight: true,
+        language: "zh-CN"
+      });
+
+  });
+</script>
+
+</body>
+</html>

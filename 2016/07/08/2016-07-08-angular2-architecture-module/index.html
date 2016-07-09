@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Angular2-架构-Module | 夏红林</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="em {
+	    font-style: normal!important;
+	    font-weight: bold;
+	}
+	ul {
+		padding-left: 0;
+	}
+	.l-sub-section {
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular2-架构-Module">
+<meta property="og:url" content="http://xiahl.top/2016/07/08/2016-07-08-angular2-architecture-module/index.html">
+<meta property="og:site_name" content="夏红林">
+<meta property="og:description" content="em {
+	    font-style: normal!important;
+	    font-weight: bold;
+	}
+	ul {
+		padding-left: 0;
+	}
+	.l-sub-section {
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left:">
+<meta property="og:image" content="http://xiahl.top/resources/overview2.png">
+<meta property="og:updated_time" content="2016-07-09T07:52:39.856Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Angular2-架构-Module">
+<meta name="twitter:description" content="em {
+	    font-style: normal!important;
+	    font-weight: bold;
+	}
+	ul {
+		padding-left: 0;
+	}
+	.l-sub-section {
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left:">
+<meta name="twitter:image" content="http://xiahl.top/resources/overview2.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/red/pace-theme-flash.css" rel="stylesheet">    
+    <link href="//cdn.bootcss.com/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/vendor/editor/css/editormd.min.css">
+    <link rel="stylesheet" href="/css/tianxiamucun.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- jQuery -->
+    <script src="//cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- Pace -->
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+
+    <!-- niceScroll -->
+    <script src="//cdn.bootcss.com/jquery.nicescroll/3.6.7/jquery.nicescroll.min.js"></script>
+
+    <!-- fancyBox -->
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+    <link href="" rel="stylesheet">
+    <script src=""></script>
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/helpers/jquery.fancybox-thumbs.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/fancybox/2.1.5/helpers/jquery.fancybox-thumbs.js"></script>
+    <script src="//cdn.bootcss.com/fancybox/2.1.5/helpers/jquery.fancybox-media.js"></script>
+
+    <!-- bootstrap-datepicker -->
+    <script src="//cdn.bootcss.com/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap-datepicker/1.6.1/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+   
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="skin-blue sidebar-mini">
+    <div id="container" class="wrapper">
+        <header id="header" class="main-header">
+    <!-- Logo -->
+    <a href="/" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini">xhl</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg">夏红林</span>
+    </a>
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+
+                <!-- User Account Menu -->
+                <li class="dropdown user user-menu">
+                    <!-- Menu Toggle Button -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <!-- The user image in the navbar-->
+                        <img src="/img/xiahl.jpg" class="user-image" alt="User Image">
+                        <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                        <span class="hidden-xs">Xiahl</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- The user image in the menu -->
+                        <li class="user-header">
+                            <img src="/img/xiahl.jpg" class="img-circle" alt="User Image">
+                            <p>
+                                Web Developer & Designer
+                            </p>
+                            <p>
+                                Shenzhen, China
+                            </p>
+                        </li>
+                        <!-- Menu Body -->
+                        <li class="user-body">
+                          <nav class="header-nav">
+                            <ul class="social">
+                                
+                                    <a class="fa fa-email " 
+                                    href="mailto:xiahl1990@gmail.com" 
+                                    title="Email" 
+                                    style="background-color: #90C9E2 !important"></a>
+                                
+                                    <a class="fa fa-github " 
+                                    href="https://github.com/Xiahl1990" 
+                                    title="GitHub" 
+                                    style="background-color: #F5F5F5 !important"></a>
+                                
+                                    <a class="fa fa-rss " 
+                                    href="/atom.xml" 
+                                    title="RSS" 
+                                    style="background-color: #EB965D !important"></a>
+                                
+                                    <a class="fa fa-weibo " 
+                                    href="/" 
+                                    title="WeiBo" 
+                                    style="background-color: #E8CA86 !important"></a>
+                                
+                                    <a class="fa fa-weixin " 
+                                    href="/" 
+                                    title="WeiXin" 
+                                    style="background-color: #27AE60 !important"></a>
+                                
+                            </ul>
+                          </nav>                           
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="row">
+                                <div class="col-xs-12 text-center">
+                                    <a href="https://github.com/Xiahl1990">Follow</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Control Sidebar Toggle Button -->
+                <li>
+                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</header>
+        <!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+
+  <!-- sidebar -->
+  <section class="sidebar">
+    <!-- search form (Optional) -->
+    <form class="sidebar-form">
+      <div id="search-input-group" class="input-group">
+          <input type="text" class="form-control" placeholder="搜索" />
+          <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+          </span>
+      </div>
+    </form>
+       
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+        INPUTSELECTOR: '#search-input-group'
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+    <!-- /.search form -->
+
+    <!-- Sidebar Menu -->
+    <ul class="sidebar-menu">
+      <li class="header">HEADER</li>
+      <!-- Optionally, you can add icons to the links -->
+      
+        <li><a class="main-nav-link" href="/."><i class="fa fa-home"></i> <span>主页</span></a></li>
+      
+        <li><a class="main-nav-link" href="/archives"><i class="fa fa-folder"></i> <span>归档</span></a></li>
+      
+        <li><a class="main-nav-link" href="/categories"><i class="fa fa-copy"></i> <span>分类归档</span></a></li>
+      
+        <li><a class="main-nav-link" href="/tags"><i class="fa fa-tags"></i> <span>标签</span></a></li>
+      
+        <li><a class="main-nav-link" href="/editor"><i class="fa fa-edit"></i> <span>编辑器</span></a></li>
+      
+        <li><a class="main-nav-link" href="/about"><i class="fa fa-info-circle"></i> <span>关于我</span></a></li>
+      
+    </ul>
+    <!-- /.sidebar-menu -->
+
+  </section>
+  <!-- /.sidebar -->
+
+</aside>
+        <!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+    	<div class="container-fluid">
+    		<div class="row">
+        		<article id="post-2016-07-08-angular2-architecture-module" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Angular2-架构-Module
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/07/08/2016-07-08-angular2-architecture-module/">
+            <time datetime="2016-07-08T13:54:00.000Z" itemprop="datePublished">2016-07-08</time>
+        </a>
+    </div>
+
+
+                    
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Angular2/">Angular2</a>
+    </div>
+
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Architecture/">Architecture</a>, <a class="tag-link" href="/tags/Basics/">Basics</a>, <a class="tag-link" href="/tags/Module/">Module</a>
+    </div>
+
+                </div>
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <style type="text/css">
+	em {
+	    font-style: normal!important;
+	    font-weight: bold;
+	}
+	ul {
+		padding-left: 0;
+	}
+	.l-sub-section {
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left: 4px solid #8BC34A;
+		border-radius: 4px;
+	}
+	.example-title {
+	    color: #fff;
+	    padding: 0 16px;
+	    font-size: 14px;
+	    border-color: #1976D2;
+	    background: #1976D2;
+	    box-shadow: none;
+	    line-height: 32px;
+	    margin-bottom: -5px;
+	    z-index: 1;
+	    position: relative;
+	    border-bottom-right-radius: 0;
+	    border-bottom-left-radius: 0;
+        border-width: 2px;
+    	border-style: solid;
+	    border-radius: 4px;
+	}
+</style>
+<p>Angular 2 是一个用 HTML 和 JavaScript 构建客户端应用的框架。</p>
+<p>该框架包括一系列紧密合作的库，有些是核心库，有些是可选库。</p>
+<p>我们这样写应用程序：用带 Angular 扩展语法的 HTML 写 <strong>模板</strong> ，用 <strong>组件</strong> 类管理这些模板，用 <strong>服务</strong> 添加应用逻辑，用根组件完成 Angular <strong>启动</strong> 。</p>
+<p>Angular 在浏览器中接管、展现应用的内容，并根据我们提供的操作指令响应用户的交互。</p>
+<p>当然，这只是冰山一角。随着内容的深入，我们还会学到更多的细节。 我们先来看看宏观图景。</p>
+<p><img src="/resources/overview2.png" alt=""></p>
+<p>这个架构图展现了 Angular 应用中的 8 个主要构造块：</p>
+<ol style="padding:0;">
+    <li><a href="#module" title="模块 (Module)">模块 (Module)</a></li>
+    <li><a href="#component" title="[组件 (Component)]">组件 (Component)</a></li>
+    <li><a href="#template" title="[模板 (Template)]">模板 (Template)</a></li>
+    <li><a href="#metadata" title="[元数据 (Metadata)]">元数据 (Metadata)</a></li>
+    <li><a href="#data-binding" title="[数据绑定 (Data Binding)]">数据绑定 (Data Binding)</a></li>
+    <li><a href="#directive" title="[指令 (Directive)]">指令 (Directive)</a></li>
+    <li><a href="#service" title="[服务 (Service)]">服务 (Service)</a></li>
+    <li><a href="#dependency-injection" title="[依赖注入 (Dependency Injection)]">依赖注入 (Dependency Injection)</a></li>
+</ol>
+<p>掌握这 8 点，我们就可以开始使用 Angular 2 编写应用程序了。</p>
+<blockquote>
+    <p>本章所引用的代码可以从这个 <a href="https://angular.cn/resources/live-examples/architecture/ts/plnkr.html" title="在线例子" target="_blank" rel="external">在线例子</a> 中找到。</p>
+</blockquote>
+<h2 id="module"><a name="模块" class="reference-link"></a>模块</h2>
+<img src="/resources/module.png" alt="" align="left" style="width:240px; margin-right:10px">
+<p>Angular 应用是模块化的。</p>
+<p>应用程序通常都是由很多 <strong>模块</strong> 组装而成的。</p>
+<p>典型的模块是一个内聚的代码块，用以实现单一的目的。 在这些代码中，模块会 <strong>导出</strong> 一些东西，最典型的就是类。</p>
+<div class="l-sub-section">
+    <h3>模块是可选的</h3>    
+    <p>我们强烈推荐使用模块化设计。 TypeScript 对 ES2015 的模块语法支持很好，文档假设我们会利用这些语法来应用模块化方案。这就是为什么要把 <em> 模块 </em> 列为基本构造块之一。</p>
+    <p> Angular 本身并不需要模块化方案，也不需要使用这种特定的语法。如果你不喜欢，可以不用它。 就算你避开 <code>import</code> 和 <code>export</code> 语句，每章也会为你提供很多 ( 知识 ) 。</p>
+    <p>在 JavaScript( 你可以从页面顶部的组合框选择 JavaScript) 分支下，可以找到如何安装和组织的线索。 它示范了如何用老版本的 JavaScript 语言，在没有模块化系统支持的情况下进行 Angular 2 应用程序的开发。</p>
+</div>
+<p>我们遇到的第一个模块，很可能就是用于导出 <em> 组件 </em> 类的那个。
+组件是 Angular 中的基本构造块之一，我们会编写很多组件。我们将会在下一段继续讨论组件。
+目前，只要知道组件类是从模块中导出一种东西就行了。</p>
+<p>大多数应用都有一个 <code>AppComponent</code> 。按照惯例，它位于一个名叫 <code>app.component.ts</code> 的文件中。
+打开它，我们将会看到一个 <code>export</code> 语句，就像这样：</p>
+<div class="example-title">app/app.component.ts (节选)</div>
+<pre class="javascript" style="color: #c7254e;"><code>export class AppComponent { }</code></pre>
+<p> <code>export</code> 语句告诉 TypeScript ：这是一个模块，其中 <code>AppComponent</code> 类是公开的，可以被应用程序中的其它模块访问。</p>
+<p>当需要引用 <code>AppComponent</code> 时，要像这样 <strong> 导入 </strong> 它：</p>
+<div class="example-title">app/main.ts (节选)</div>
+<pre class="javascript" style="color: #c7254e;"><code>import { AppComponent } from './app.component';</code></pre>
+<p id="" class="translated translated-cn"> <code>import</code> 语句告诉系统，它能从附近名叫 <code>app.component</code> 的文件中获得 <code>AppComponent</code> 组件。
+ <strong> 模块名 </strong>( 又叫模块 ID) 通常和去掉扩展名后的文件名相同。</p>
+
+<h2 id="module"><a name="模块库" class="reference-link"></a>模块库</h2>
+<img src="/resources/library-module.png" alt="" align="left" style="width:240px; margin-right:10px">
+<p>有些模块是其它模块的库。</p>
+<p>Angular本身就是通过npm包发布的一组模块库，它们都以<code>@angular</code>为前缀。
+每个Angular库中都包含一个<strong>封装桶</strong>模块。
+它实际上是一个公开的外观层(façade)，囊括了一些逻辑相关的私有模块。</p>
+<p><code>@angular/core</code>库是主要的Angular模块库，从这里能获得大部分需要的东西。
+<br clear="all"></p>
+<p>还有另一些重要的Angular模块库，比如<code>@angular/common</code>、<code>@angular/router</code> 和 <code>@angular/http</code>。</p>
+<p>从Angular模块库中导入所需内容的方式都差不多。比如，从<em>@angular/core</em>中导入Angular <strong><code>Component</code><em>函数</em></strong>的代码是这样的：</p>
+<pre class="javascript" style="color: #c7254e;"><code>import { Component } from '@angular/core';</code></pre>
+<p>比较一下它和前面导入<code>AppComponent</code>时的语法。</p>
+<pre class="javascript" style="color: #c7254e;"><code>import { AppComponent } from './app.component';</code></pre>
+<p>注意到不同之处了吗？第一种，从Angular模块库中导入时，import语句引用的是“裸”模块名 —— <code>@angular/core</code> —— <em>不带路径前缀</em>。</p>
+<p>当我们从<em>自己的</em>文件中导入时，模块名中带有路径前缀。在这个例子中，前缀是一个相对路径(./)。这表示源模块和想导入它的模块位于同一个目录中(./)。如果源模块位于其它位置，我们还可以向上引用应用目录结构中的任意路径(如<code>../../../somewhere/</code>)。</p>
+<div class="l-sub-section" style="margin-top:10px;">
+	<p>这里导入和导出使用的是ECMAScript 2015 (ES2015)的语法。要学习关于此语法的更多知识，参见<a href="http://www.2ality.com/2014/09/es6-modules-final.html" target="_blank" rel="external">这里</a>，在网上很多别的地方也能找到相关资料。</p>
+	<p>“模块加载与导入”背后的基础设施是一个很重要的话题，但它不在Angular简介的范围内。目前的焦点是我们的应用程序，只需要知道<em>import</em>和<em>export</em>就够了。</p>
+</div>
+<p>这里的关键点是：</p>
+<ul>
+	<li><p>Angular应用是由模块组成的。</p>
+	</li>
+	<li><p>模块导出一些东西 —— 类，函数，值，供其它模块导入。</p>
+	</li>
+	<li><p>首选的写法是把应用写成一组模块，每个模块只导出一样东西。</p>
+	</li>
+</ul>
+<p>我们写的第一个模块将会导出一个组件。</p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://xiahl.top/2016/07/08/2016-07-08-angular2-architecture-module/" data-id="ciqf72pnn0001m4vqipjulfaj" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://xiahl.top/2016/07/08/2016-07-08-angular2-architecture-module/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://xiahl.top/2016/07/08/2016-07-08-angular2-architecture-module/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/07/09/2016-07-09-angular2-architecture-component/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    Angular2-架构-Component
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2016/07/08/2016-07-08-editor-markdown-02/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">markdown编辑器例子-02</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://xiahl.top/2016/07/08/2016-07-08-angular2-architecture-module/';
+            this.page.identifier = '2016/07/08/2016-07-08-angular2-architecture-module/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//xiahl.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+
+
+    <section class="scroll" id="article-nav-button">
+    
+        <a href="/2016/07/09/2016-07-09-angular2-architecture-component/" title="上一篇">
+            <i class="fa fa-angle-left"></i>
+        </a>
+    
+
+    <a href="/archives" title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times hide"></i></a>
+
+    
+        <a href="/2016/07/08/2016-07-08-editor-markdown-02/" title="下一篇">
+            <i class="fa fa-angle-right"></i>
+        </a>
+    
+</section>
+
+    <section class="scroll" id="article-scroll-button">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="if (false) load$hide(); return false;" title="查看评论" class="to-comment" style="display: none;"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</section>
+
+
+
+        	</div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+        <footer class="main-footer" id="footer">
+	<!-- To the right -->
+	<div class="pull-right hidden-xs">
+	  Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/Xiahl1990">tianxiamucun</a>
+	</div>
+	<!-- Default to the left -->
+	&copy; 2016 夏红林<br>
+</footer>
+        <!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+  <!-- Create the tabs -->
+  <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+    <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i> Info</a></li>
+    <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i> Setting</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+
+    <!-- Home tab content -->
+    <div class="tab-pane active" id="control-sidebar-home-tab">
+      <h4 class='control-sidebar-heading'>Motto</h4>
+      <p>No matter what to do, insist on</p>
+      <h4 class='control-sidebar-heading'>Calendar</h4>
+      <div id="calendar" style="width: 100%"></div>
+    </div>
+    <!-- /.tab-pane -->
+
+    <!-- Settings tab content -->
+    <div class="tab-pane" id="control-sidebar-settings-tab">
+      <h4 class='control-sidebar-heading'>Theme</h4>
+<ul class="list-unstyled clearfix" id="theme-list">
+    <li>
+    	<a class="label label-info" href="/icarus" title="Icarus" itemprop="theme-icarus">Icarus</a>
+    	<a class="label label-warning" href="/next" title="Next" itemprop="theme-next">Next</a>
+    	<a class="label label-success" href="/yelee" title="Yelee" itemprop="theme-yelee">Yelee</a>
+    </li>
+</ul>
+      <h4 class='control-sidebar-heading'>Skins</h4>
+<ul class="list-unstyled clearfix" id="skins-list">
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-blue" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px; background: #367fa9;"></span><span class="bg-light-blue" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-blue">Blue</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-black" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div style="box-shadow: 0 0 2px rgba(0,0,0,0.1)" class="clearfix"><span style="display:block; width: 20%; float: left; height: 7px; background: #fefefe;"></span><span style="display:block; width: 80%; float: left; height: 7px; background: #fefefe;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-black">Black</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-purple" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-purple-active"></span><span class="bg-purple" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-purple">Purple</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-green" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-green-active"></span><span class="bg-green" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-green">Green</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-red" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-red-active"></span><span class="bg-red" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-red">Red</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-yellow" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-yellow-active"></span><span class="bg-yellow" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-yellow">Yellow</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-blue-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px; background: #367fa9;"></span><span class="bg-light-blue" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-blue-light" style="font-size: 12px">Blue Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-black-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div style="box-shadow: 0 0 2px rgba(0,0,0,0.1)" class="clearfix"><span style="display:block; width: 20%; float: left; height: 7px; background: #fefefe;"></span><span style="display:block; width: 80%; float: left; height: 7px; background: #fefefe;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-black-light" style="font-size: 12px">Black Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-purple-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-purple-active"></span><span class="bg-purple" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-purple-light" style="font-size: 12px">Purple Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-green-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-green-active"></span><span class="bg-green" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-green-light" style="font-size: 12px">Green Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-red-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-red-active"></span><span class="bg-red" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-red-light" style="font-size: 12px">Red Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-yellow-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-yellow-active"></span><span class="bg-yellow" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-yellow-light" style="font-size: 12px;">Yellow Light</p>
+    </li>
+</ul>
+    </div>
+    <!-- /.tab-pane -->
+
+  </div>
+
+</aside>
+<!-- /.control-sidebar -->
+
+<div class="control-sidebar-bg"></div>
+    </div>
+    <!-- editormd -->
+<script src="/vendor/editor/editormd.js"></script>
+
+<!-- analytics -->
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/app.js"></script>
+
+<!-- Init Scripts -->
+<script>
+  $(function(){
+
+      $("html").niceScroll();
+
+      $(".box-fancybox").niceScroll({autohidemode: false });
+
+      //jQuery UI sortable for the todo list
+      $(".todo-list").sortable({
+        placeholder: "sort-highlight",
+        handle: ".handle",
+        forcePlaceholderSize: true,
+        zIndex: 999999
+      });
+
+      $(".fancybox-thumb").fancybox({
+        prevEffect  : 'none',
+        nextEffect  : 'none',
+        helpers : {
+          title : {
+            type: 'inside'
+          },
+          thumbs  : {
+            width : 50,
+            height  : 50
+          }
+        }
+      });
+
+      $("#calendar").datepicker({
+        todayHighlight: true,
+        language: "zh-CN"
+      });
+
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Angular2-架构-Databinding | 夏红林</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="em {
+	    font-style: normal!important;
+	    font-weight: bold;
+	}
+	ul {
+		padding-left: 0;
+	}
+	.l-sub-section {
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular2-架构-Databinding">
+<meta property="og:url" content="http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-databinding/index.html">
+<meta property="og:site_name" content="夏红林">
+<meta property="og:description" content="em {
+	    font-style: normal!important;
+	    font-weight: bold;
+	}
+	ul {
+		padding-left: 0;
+	}
+	.l-sub-section {
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left:">
+<meta property="og:image" content="http://xiahl.top/resources/databinding.png">
+<meta property="og:updated_time" content="2016-07-09T10:53:20.871Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Angular2-架构-Databinding">
+<meta name="twitter:description" content="em {
+	    font-style: normal!important;
+	    font-weight: bold;
+	}
+	ul {
+		padding-left: 0;
+	}
+	.l-sub-section {
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left:">
+<meta name="twitter:image" content="http://xiahl.top/resources/databinding.png">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/red/pace-theme-flash.css" rel="stylesheet">    
+    <link href="//cdn.bootcss.com/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/vendor/editor/css/editormd.min.css">
+    <link rel="stylesheet" href="/css/tianxiamucun.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- jQuery -->
+    <script src="//cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- Pace -->
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+
+    <!-- niceScroll -->
+    <script src="//cdn.bootcss.com/jquery.nicescroll/3.6.7/jquery.nicescroll.min.js"></script>
+
+    <!-- fancyBox -->
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+    <link href="" rel="stylesheet">
+    <script src=""></script>
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/helpers/jquery.fancybox-thumbs.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/fancybox/2.1.5/helpers/jquery.fancybox-thumbs.js"></script>
+    <script src="//cdn.bootcss.com/fancybox/2.1.5/helpers/jquery.fancybox-media.js"></script>
+
+    <!-- bootstrap-datepicker -->
+    <script src="//cdn.bootcss.com/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap-datepicker/1.6.1/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+   
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="skin-blue sidebar-mini">
+    <div id="container" class="wrapper">
+        <header id="header" class="main-header">
+    <!-- Logo -->
+    <a href="/" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini">xhl</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg">夏红林</span>
+    </a>
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+
+                <!-- User Account Menu -->
+                <li class="dropdown user user-menu">
+                    <!-- Menu Toggle Button -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <!-- The user image in the navbar-->
+                        <img src="/img/xiahl.jpg" class="user-image" alt="User Image">
+                        <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                        <span class="hidden-xs">Xiahl</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- The user image in the menu -->
+                        <li class="user-header">
+                            <img src="/img/xiahl.jpg" class="img-circle" alt="User Image">
+                            <p>
+                                Web Developer & Designer
+                            </p>
+                            <p>
+                                Shenzhen, China
+                            </p>
+                        </li>
+                        <!-- Menu Body -->
+                        <li class="user-body">
+                          <nav class="header-nav">
+                            <ul class="social">
+                                
+                                    <a class="fa fa-email " 
+                                    href="mailto:xiahl1990@gmail.com" 
+                                    title="Email" 
+                                    style="background-color: #90C9E2 !important"></a>
+                                
+                                    <a class="fa fa-github " 
+                                    href="https://github.com/Xiahl1990" 
+                                    title="GitHub" 
+                                    style="background-color: #F5F5F5 !important"></a>
+                                
+                                    <a class="fa fa-rss " 
+                                    href="/atom.xml" 
+                                    title="RSS" 
+                                    style="background-color: #EB965D !important"></a>
+                                
+                                    <a class="fa fa-weibo " 
+                                    href="/" 
+                                    title="WeiBo" 
+                                    style="background-color: #E8CA86 !important"></a>
+                                
+                                    <a class="fa fa-weixin " 
+                                    href="/" 
+                                    title="WeiXin" 
+                                    style="background-color: #27AE60 !important"></a>
+                                
+                            </ul>
+                          </nav>                           
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="row">
+                                <div class="col-xs-12 text-center">
+                                    <a href="https://github.com/Xiahl1990">Follow</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Control Sidebar Toggle Button -->
+                <li>
+                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</header>
+        <!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+
+  <!-- sidebar -->
+  <section class="sidebar">
+    <!-- search form (Optional) -->
+    <form class="sidebar-form">
+      <div id="search-input-group" class="input-group">
+          <input type="text" class="form-control" placeholder="搜索" />
+          <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+          </span>
+      </div>
+    </form>
+       
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+        INPUTSELECTOR: '#search-input-group'
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+    <!-- /.search form -->
+
+    <!-- Sidebar Menu -->
+    <ul class="sidebar-menu">
+      <li class="header">HEADER</li>
+      <!-- Optionally, you can add icons to the links -->
+      
+        <li><a class="main-nav-link" href="/."><i class="fa fa-home"></i> <span>主页</span></a></li>
+      
+        <li><a class="main-nav-link" href="/archives"><i class="fa fa-folder"></i> <span>归档</span></a></li>
+      
+        <li><a class="main-nav-link" href="/categories"><i class="fa fa-copy"></i> <span>分类归档</span></a></li>
+      
+        <li><a class="main-nav-link" href="/tags"><i class="fa fa-tags"></i> <span>标签</span></a></li>
+      
+        <li><a class="main-nav-link" href="/editor"><i class="fa fa-edit"></i> <span>编辑器</span></a></li>
+      
+        <li><a class="main-nav-link" href="/about"><i class="fa fa-info-circle"></i> <span>关于我</span></a></li>
+      
+    </ul>
+    <!-- /.sidebar-menu -->
+
+  </section>
+  <!-- /.sidebar -->
+
+</aside>
+        <!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+    	<div class="container-fluid">
+    		<div class="row">
+        		<article id="post-2016-07-09-angular2-architecture-databinding" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Angular2-架构-Databinding
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/07/09/2016-07-09-angular2-architecture-databinding/">
+            <time datetime="2016-07-09T10:26:00.000Z" itemprop="datePublished">2016-07-09</time>
+        </a>
+    </div>
+
+
+                    
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Angular2/">Angular2</a>
+    </div>
+
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Architecture/">Architecture</a>, <a class="tag-link" href="/tags/Basics/">Basics</a>, <a class="tag-link" href="/tags/Databinding/">Databinding</a>
+    </div>
+
+                </div>
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <style type="text/css">
+	em {
+	    font-style: normal!important;
+	    font-weight: bold;
+	}
+	ul {
+		padding-left: 0;
+	}
+	.l-sub-section {
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left: 4px solid #8BC34A;
+		border-radius: 4px;
+	}
+	.example-title {
+	    color: #fff;
+	    padding: 0 16px;
+	    font-size: 14px;
+	    border-color: #1976D2;
+	    background: #1976D2;
+	    box-shadow: none;
+	    line-height: 32px;
+	    margin-bottom: -5px;
+	    z-index: 1;
+	    position: relative;
+	    border-bottom-right-radius: 0;
+	    border-bottom-left-radius: 0;
+        border-width: 2px;
+    	border-style: solid;
+	    border-radius: 4px;
+	}
+	.highlight {
+		margin: 0!important;
+		padding: 0;
+	    color: inherit;
+	    background: inherit;
+	}
+</style>
+<h2 id="data-binding"><a name="数据绑定" class="reference-link"></a>数据绑定</h2>
+<p>如果没有框架，我们就得自己把数据值推送到HTML控件中，并把用户的反馈转换成动作和值更新。
+如果手工写代码来实现这些推/拉逻辑，肯定会枯燥乏味、容易出错，读起来简直是噩梦 —— 写过jQuery的程序员大概都对此深有体会。</p>
+<img src="/resources/databinding.png" alt="" align="left" style="width:240px; margin-right:10px">
+<p>Angular支持<strong>数据绑定</strong>，一种让模板的各部分与组件的各部分相互合作的机制。
+我们往模板HTML中添加绑定标记，来告诉Angular如何连接两者。</p>
+<p>数据绑定的语法有四种形式。每种形式都有一个方向 —— 从DOM来、到DOM去、双向，就像图中的箭头所示意的。</p>
+<p>在<a href="/2016/07/09/2016-07-09-angular2-architecture-template">范例</a>模板中，我们看到了数据绑定的三种形式：</p>
+<div class="example-title" style="margin-top:100px;">app/hero-list.component.html (节选)</div>
+<pre>
+	<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;&#123;&#123;hero.name&#125;&#125;&lt;/div&gt;</span><br><span class="line">&lt;hero-detail [hero]=&quot;selectedHero&quot;&gt;&lt;/hero-detail&gt;</span><br><span class="line">&lt;div (click)=&quot;selectHero(hero)&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+</pre>
+<ul>
+	<li><p><code>{ { hero.name } }</code><a href="#"><em>插值表达式</em></a>：在<code>&lt;div&gt;</code>标签中显示了组件的<code>hero.name</code>属性的值。 </p>
+	</li>
+	<li><p><code>[hero]</code><a href="#"><em>属性绑定</em></a>：把父组件<code>HeroListComponent</code>的<code>selectedHero</code>传到子组件<code>HeroDetailComponent</code>的<code>hero</code>属性中。</p>
+	</li>
+	<li><p><code>(click)</code><a href="#"><em>事件绑定</em></a>：当用户点击英雄的名字时，调用组件的<code>selectHero</code>方法。</p>
+	</li>
+	<li><p><strong>双向数据绑定</strong>：这是很重要的第四种绑定形式，它在<code>ngModel</code>指令这个单一标记中同时实现了属性绑定和事件绑定的功能。
+	在<code>HeroListComponent</code>模板中没有双向绑定，下面是一个来自<code>HeroDetailComponent</code>模板的范例(以前没展示过)：</p>
+	</li>
+</ul>
+<pre>
+	<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input [(ngModel)]=&quot;hero.name&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+</pre>
+<p>在双向绑定中，数据属性的值会从具有属性绑定的组件传到输入框。通过事件绑定，用户的修改被传回到组件，把属性值设置为最新的值。</p>
+<p>Angular在每个JavaScript事件周期中一次性处理<em>所有的</em>数据绑定，它会从组件树的根部开始，用深度优先的方式处理。</p>
+<img src="/resources/component-databinding.png" alt="" align="left" style="width:240px; margin-right:10px">
+<p>虽然还不清楚所有细节，但是我们从这些范例中至少弄明白一点：数据绑定在模板与对应组件的交互中扮演了一个很重要的角色。</p>
+<br clear="all">
+<img src="/resources/parent-child-binding.png" alt="" align="left" style="width:240px; margin-right:10px">
+<p>...在父组件与子组件的通讯中<strong><em>也同样如此</em></strong>。</p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-databinding/" data-id="ciqf72pr5000qm4vq3uid3pds" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-databinding/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-databinding/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/07/09/2016-07-09-angular2-architecture-directive/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    Angular2-架构-Directive
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2016/07/09/2016-07-09-angular2-architecture-metadata/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">Angular2-架构-Metadata</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-databinding/';
+            this.page.identifier = '2016/07/09/2016-07-09-angular2-architecture-databinding/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//xiahl.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+
+
+    <section class="scroll" id="article-nav-button">
+    
+        <a href="/2016/07/09/2016-07-09-angular2-architecture-directive/" title="上一篇">
+            <i class="fa fa-angle-left"></i>
+        </a>
+    
+
+    <a href="/archives" title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times hide"></i></a>
+
+    
+        <a href="/2016/07/09/2016-07-09-angular2-architecture-metadata/" title="下一篇">
+            <i class="fa fa-angle-right"></i>
+        </a>
+    
+</section>
+
+    <section class="scroll" id="article-scroll-button">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="if (false) load$hide(); return false;" title="查看评论" class="to-comment" style="display: none;"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</section>
+
+
+
+        	</div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+        <footer class="main-footer" id="footer">
+	<!-- To the right -->
+	<div class="pull-right hidden-xs">
+	  Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/Xiahl1990">tianxiamucun</a>
+	</div>
+	<!-- Default to the left -->
+	&copy; 2016 夏红林<br>
+</footer>
+        <!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+  <!-- Create the tabs -->
+  <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+    <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i> Info</a></li>
+    <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i> Setting</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+
+    <!-- Home tab content -->
+    <div class="tab-pane active" id="control-sidebar-home-tab">
+      <h4 class='control-sidebar-heading'>Motto</h4>
+      <p>No matter what to do, insist on</p>
+      <h4 class='control-sidebar-heading'>Calendar</h4>
+      <div id="calendar" style="width: 100%"></div>
+    </div>
+    <!-- /.tab-pane -->
+
+    <!-- Settings tab content -->
+    <div class="tab-pane" id="control-sidebar-settings-tab">
+      <h4 class='control-sidebar-heading'>Theme</h4>
+<ul class="list-unstyled clearfix" id="theme-list">
+    <li>
+    	<a class="label label-info" href="/icarus" title="Icarus" itemprop="theme-icarus">Icarus</a>
+    	<a class="label label-warning" href="/next" title="Next" itemprop="theme-next">Next</a>
+    	<a class="label label-success" href="/yelee" title="Yelee" itemprop="theme-yelee">Yelee</a>
+    </li>
+</ul>
+      <h4 class='control-sidebar-heading'>Skins</h4>
+<ul class="list-unstyled clearfix" id="skins-list">
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-blue" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px; background: #367fa9;"></span><span class="bg-light-blue" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-blue">Blue</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-black" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div style="box-shadow: 0 0 2px rgba(0,0,0,0.1)" class="clearfix"><span style="display:block; width: 20%; float: left; height: 7px; background: #fefefe;"></span><span style="display:block; width: 80%; float: left; height: 7px; background: #fefefe;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-black">Black</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-purple" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-purple-active"></span><span class="bg-purple" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-purple">Purple</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-green" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-green-active"></span><span class="bg-green" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-green">Green</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-red" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-red-active"></span><span class="bg-red" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-red">Red</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-yellow" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-yellow-active"></span><span class="bg-yellow" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-yellow">Yellow</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-blue-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px; background: #367fa9;"></span><span class="bg-light-blue" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-blue-light" style="font-size: 12px">Blue Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-black-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div style="box-shadow: 0 0 2px rgba(0,0,0,0.1)" class="clearfix"><span style="display:block; width: 20%; float: left; height: 7px; background: #fefefe;"></span><span style="display:block; width: 80%; float: left; height: 7px; background: #fefefe;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-black-light" style="font-size: 12px">Black Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-purple-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-purple-active"></span><span class="bg-purple" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-purple-light" style="font-size: 12px">Purple Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-green-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-green-active"></span><span class="bg-green" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-green-light" style="font-size: 12px">Green Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-red-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-red-active"></span><span class="bg-red" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-red-light" style="font-size: 12px">Red Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-yellow-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-yellow-active"></span><span class="bg-yellow" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-yellow-light" style="font-size: 12px;">Yellow Light</p>
+    </li>
+</ul>
+    </div>
+    <!-- /.tab-pane -->
+
+  </div>
+
+</aside>
+<!-- /.control-sidebar -->
+
+<div class="control-sidebar-bg"></div>
+    </div>
+    <!-- editormd -->
+<script src="/vendor/editor/editormd.js"></script>
+
+<!-- analytics -->
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/app.js"></script>
+
+<!-- Init Scripts -->
+<script>
+  $(function(){
+
+      $("html").niceScroll();
+
+      $(".box-fancybox").niceScroll({autohidemode: false });
+
+      //jQuery UI sortable for the todo list
+      $(".todo-list").sortable({
+        placeholder: "sort-highlight",
+        handle: ".handle",
+        forcePlaceholderSize: true,
+        zIndex: 999999
+      });
+
+      $(".fancybox-thumb").fancybox({
+        prevEffect  : 'none',
+        nextEffect  : 'none',
+        helpers : {
+          title : {
+            type: 'inside'
+          },
+          thumbs  : {
+            width : 50,
+            height  : 50
+          }
+        }
+      });
+
+      $("#calendar").datepicker({
+        todayHighlight: true,
+        language: "zh-CN"
+      });
+
+  });
+</script>
+
+</body>
+</html>

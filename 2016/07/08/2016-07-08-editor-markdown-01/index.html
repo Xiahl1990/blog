@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>markdown编辑器介绍-01 | 夏红林</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Markdown语法教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="markdown编辑器介绍-01">
+<meta property="og:url" content="http://xiahl.top/2016/07/08/2016-07-08-editor-markdown-01/index.html">
+<meta property="og:site_name" content="夏红林">
+<meta property="og:description" content="Markdown语法教程">
+<meta property="og:updated_time" content="2016-07-08T13:42:07.983Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="markdown编辑器介绍-01">
+<meta name="twitter:description" content="Markdown语法教程">
+    
+
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/red/pace-theme-flash.css" rel="stylesheet">    
+    <link href="//cdn.bootcss.com/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/vendor/editor/css/editormd.min.css">
+    <link rel="stylesheet" href="/css/tianxiamucun.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <!-- jQuery -->
+    <script src="//cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <!-- Pace -->
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+
+    <!-- niceScroll -->
+    <script src="//cdn.bootcss.com/jquery.nicescroll/3.6.7/jquery.nicescroll.min.js"></script>
+
+    <!-- fancyBox -->
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.pack.js"></script>
+    <link href="" rel="stylesheet">
+    <script src=""></script>
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/helpers/jquery.fancybox-thumbs.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/fancybox/2.1.5/helpers/jquery.fancybox-thumbs.js"></script>
+    <script src="//cdn.bootcss.com/fancybox/2.1.5/helpers/jquery.fancybox-media.js"></script>
+
+    <!-- bootstrap-datepicker -->
+    <script src="//cdn.bootcss.com/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>
+    <script src="//cdn.bootcss.com/bootstrap-datepicker/1.6.1/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+   
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="skin-blue sidebar-mini">
+    <div id="container" class="wrapper">
+        <header id="header" class="main-header">
+    <!-- Logo -->
+    <a href="/" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini">xhl</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg">夏红林</span>
+    </a>
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <!-- Navbar Right Menu -->
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+
+                <!-- User Account Menu -->
+                <li class="dropdown user user-menu">
+                    <!-- Menu Toggle Button -->
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <!-- The user image in the navbar-->
+                        <img src="/img/xiahl.jpg" class="user-image" alt="User Image">
+                        <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                        <span class="hidden-xs">Xiahl</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- The user image in the menu -->
+                        <li class="user-header">
+                            <img src="/img/xiahl.jpg" class="img-circle" alt="User Image">
+                            <p>
+                                Web Developer & Designer
+                            </p>
+                            <p>
+                                Shenzhen, China
+                            </p>
+                        </li>
+                        <!-- Menu Body -->
+                        <li class="user-body">
+                          <nav class="header-nav">
+                            <ul class="social">
+                                
+                                    <a class="fa fa-email " 
+                                    href="mailto:xiahl1990@gmail.com" 
+                                    title="Email" 
+                                    style="background-color: #90C9E2 !important"></a>
+                                
+                                    <a class="fa fa-github " 
+                                    href="https://github.com/Xiahl1990" 
+                                    title="GitHub" 
+                                    style="background-color: #F5F5F5 !important"></a>
+                                
+                                    <a class="fa fa-rss " 
+                                    href="/atom.xml" 
+                                    title="RSS" 
+                                    style="background-color: #EB965D !important"></a>
+                                
+                                    <a class="fa fa-weibo " 
+                                    href="/" 
+                                    title="WeiBo" 
+                                    style="background-color: #E8CA86 !important"></a>
+                                
+                                    <a class="fa fa-weixin " 
+                                    href="/" 
+                                    title="WeiXin" 
+                                    style="background-color: #27AE60 !important"></a>
+                                
+                            </ul>
+                          </nav>                           
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="row">
+                                <div class="col-xs-12 text-center">
+                                    <a href="https://github.com/Xiahl1990">Follow</a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                <!-- Control Sidebar Toggle Button -->
+                <li>
+                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</header>
+        <!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+
+  <!-- sidebar -->
+  <section class="sidebar">
+    <!-- search form (Optional) -->
+    <form class="sidebar-form">
+      <div id="search-input-group" class="input-group">
+          <input type="text" class="form-control" placeholder="搜索" />
+          <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+          </span>
+      </div>
+    </form>
+       
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+        INPUTSELECTOR: '#search-input-group'
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+    <!-- /.search form -->
+
+    <!-- Sidebar Menu -->
+    <ul class="sidebar-menu">
+      <li class="header">HEADER</li>
+      <!-- Optionally, you can add icons to the links -->
+      
+        <li><a class="main-nav-link" href="/."><i class="fa fa-home"></i> <span>主页</span></a></li>
+      
+        <li><a class="main-nav-link" href="/archives"><i class="fa fa-folder"></i> <span>归档</span></a></li>
+      
+        <li><a class="main-nav-link" href="/categories"><i class="fa fa-copy"></i> <span>分类归档</span></a></li>
+      
+        <li><a class="main-nav-link" href="/tags"><i class="fa fa-tags"></i> <span>标签</span></a></li>
+      
+        <li><a class="main-nav-link" href="/editor"><i class="fa fa-edit"></i> <span>编辑器</span></a></li>
+      
+        <li><a class="main-nav-link" href="/about"><i class="fa fa-info-circle"></i> <span>关于我</span></a></li>
+      
+    </ul>
+    <!-- /.sidebar-menu -->
+
+  </section>
+  <!-- /.sidebar -->
+
+</aside>
+        <!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+    	<div class="container-fluid">
+    		<div class="row">
+        		<article id="post-2016-07-08-editor-markdown-01" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            markdown编辑器介绍-01
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2016/07/08/2016-07-08-editor-markdown-01/">
+            <time datetime="2016-07-08T13:16:00.000Z" itemprop="datePublished">2016-07-08</time>
+        </a>
+    </div>
+
+
+                    
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/MarkDown/">MarkDown</a>
+    </div>
+
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/MarkDown/">MarkDown</a>
+    </div>
+
+                </div>
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#Markdown语法教程-Markdown-syntax-tutorial"><span class="toc-number">1.</span> <span class="toc-text">Markdown语法教程 (Markdown syntax tutorial)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#键盘快捷键-Keyboard-shortcuts"><span class="toc-number">2.</span> <span class="toc-text">键盘快捷键 (Keyboard shortcuts)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Emoji表情参考-Emoji-reference"><span class="toc-number">3.</span> <span class="toc-text">Emoji表情参考 (Emoji reference)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#流程图参考-Flowchart-reference"><span class="toc-number">4.</span> <span class="toc-text">流程图参考 (Flowchart reference)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#时序图参考-SequenceDiagram-reference"><span class="toc-number">5.</span> <span class="toc-text">时序图参考 (SequenceDiagram reference)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#TeX-LaTeX-reference"><span class="toc-number">6.</span> <span class="toc-text">TeX/LaTeX reference</span></a></li></ol>
+                </div>
+            
+            <p>Markdown语法教程<br><a id="more"></a></p>
+<h5 id="Markdown语法教程-Markdown-syntax-tutorial"><a href="#Markdown语法教程-Markdown-syntax-tutorial" class="headerlink" title="Markdown语法教程 (Markdown syntax tutorial)"></a>Markdown语法教程 (Markdown syntax tutorial)</h5><ul>
+<li><a href="http://daringfireball.net/projects/markdown/syntax/" title="Markdown Syntax" target="_blank" rel="external">Markdown Syntax</a></li>
+<li><a href="https://guides.github.com/features/mastering-markdown/" title="Mastering Markdown" target="_blank" rel="external">Mastering Markdown</a></li>
+<li><a href="https://help.github.com/articles/markdown-basics/" title="Markdown Basics" target="_blank" rel="external">Markdown Basics</a></li>
+<li><a href="https://help.github.com/articles/github-flavored-markdown/" title="GitHub Flavored Markdown" target="_blank" rel="external">GitHub Flavored Markdown</a></li>
+<li><a href="http://www.markdown.cn/" title="Markdown 语法说明（简体中文）" target="_blank" rel="external">Markdown 语法说明（简体中文）</a></li>
+<li><a href="http://markdown.tw/" title="Markdown 語法說明（繁體中文）" target="_blank" rel="external">Markdown 語法說明（繁體中文）</a></li>
+</ul>
+<h5 id="键盘快捷键-Keyboard-shortcuts"><a href="#键盘快捷键-Keyboard-shortcuts" class="headerlink" title="键盘快捷键 (Keyboard shortcuts)"></a>键盘快捷键 (Keyboard shortcuts)</h5><blockquote>
+<p>If Editor.md code editor is on focus, you can use keyboard shortcuts.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Keyboard shortcuts (键盘快捷键)</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">F9</td>
+<td style="text-align:left">切换实时预览</td>
+<td style="text-align:left">Switch watch/unwatch</td>
+</tr>
+<tr>
+<td style="text-align:left">F10</td>
+<td style="text-align:left">全屏HTML预览(按 Shift + ESC 退出)</td>
+<td style="text-align:left">Full preview HTML (Press Shift + ESC exit)</td>
+</tr>
+<tr>
+<td style="text-align:left">F11</td>
+<td style="text-align:left">切换全屏状态</td>
+<td style="text-align:left">Switch fullscreen (Press ESC exit)</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + 1~6 / Command + 1~6</td>
+<td style="text-align:left">插入标题1~6</td>
+<td style="text-align:left">Insert heading 1~6</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + A / Command + A</td>
+<td style="text-align:left">全选</td>
+<td style="text-align:left">Select all</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + B / Command + B</td>
+<td style="text-align:left">插入粗体</td>
+<td style="text-align:left">Insert bold</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + D / Command + D</td>
+<td style="text-align:left">插入日期时间</td>
+<td style="text-align:left">Insert datetime</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + E / Command + E</td>
+<td style="text-align:left">插入Emoji符号</td>
+<td style="text-align:left">Insert &#58;emoji&#58;</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + F / Command + F</td>
+<td style="text-align:left">查找/搜索</td>
+<td style="text-align:left">Start searching</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + G / Command + G</td>
+<td style="text-align:left">切换到下一个搜索结果项</td>
+<td style="text-align:left">Find next search results</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + H / Command + H</td>
+<td style="text-align:left">插入水平线</td>
+<td style="text-align:left">Insert horizontal rule</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + I / Command + I</td>
+<td style="text-align:left">插入斜体</td>
+<td style="text-align:left">Insert italic</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + K / Command + K</td>
+<td style="text-align:left">插入行内代码</td>
+<td style="text-align:left">Insert inline code</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + L / Command + L</td>
+<td style="text-align:left">插入链接</td>
+<td style="text-align:left">Insert link</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + U / Command + U</td>
+<td style="text-align:left">插入无序列表</td>
+<td style="text-align:left">Insert unordered list</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Q</td>
+<td style="text-align:left">代码折叠切换</td>
+<td style="text-align:left">Switch code fold</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Z / Command + Z</td>
+<td style="text-align:left">撤销</td>
+<td style="text-align:left">Undo</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Y / Command + Y</td>
+<td style="text-align:left">重做</td>
+<td style="text-align:left">Redo</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + A</td>
+<td style="text-align:left">插入@链接</td>
+<td style="text-align:left">Insert &#64;link</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + C</td>
+<td style="text-align:left">插入行内代码</td>
+<td style="text-align:left">Insert inline code</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + E</td>
+<td style="text-align:left">打开插入Emoji表情对话框</td>
+<td style="text-align:left">Open emoji dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + F / Command + Option + F</td>
+<td style="text-align:left">替换</td>
+<td style="text-align:left">Replace</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + G / Shift + Command + G</td>
+<td style="text-align:left">切换到上一个搜索结果项</td>
+<td style="text-align:left">Find previous search results</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + H</td>
+<td style="text-align:left">打开HTML实体字符对话框</td>
+<td style="text-align:left">Open HTML Entities dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + I</td>
+<td style="text-align:left">插入图片</td>
+<td style="text-align:left">Insert image &#33;[]&#40;&#41;</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + K</td>
+<td style="text-align:left">插入TeX(KaTeX)公式符号</td>
+<td style="text-align:left">Insert TeX(KaTeX) symbol &#36;&#36;TeX&#36;&#36;</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + L</td>
+<td style="text-align:left">打开插入链接对话框</td>
+<td style="text-align:left">Open link dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + O</td>
+<td style="text-align:left">插入有序列表</td>
+<td style="text-align:left">Insert ordered list</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + P</td>
+<td style="text-align:left">打开插入PRE对话框</td>
+<td style="text-align:left">Open Preformatted text dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + Q</td>
+<td style="text-align:left">插入引用</td>
+<td style="text-align:left">Insert blockquotes</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + R / Shift + Command + Option + F</td>
+<td style="text-align:left">全部替换</td>
+<td style="text-align:left">Replace all</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + S</td>
+<td style="text-align:left">插入删除线</td>
+<td style="text-align:left">Insert strikethrough</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + T</td>
+<td style="text-align:left">打开插入表格对话框</td>
+<td style="text-align:left">Open table dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + U</td>
+<td style="text-align:left">将所选文字转成大写</td>
+<td style="text-align:left">Selection text convert to uppercase</td>
+</tr>
+<tr>
+<td style="text-align:left">Shift + Alt + C</td>
+<td style="text-align:left">插入```代码</td>
+<td style="text-align:left">Insert code blocks (```)</td>
+</tr>
+<tr>
+<td style="text-align:left">Shift + Alt + H</td>
+<td style="text-align:left">打开使用帮助对话框</td>
+<td style="text-align:left">Open help dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Shift + Alt + L</td>
+<td style="text-align:left">将所选文本转成小写</td>
+<td style="text-align:left">Selection text convert to lowercase</td>
+</tr>
+<tr>
+<td style="text-align:left">Shift + Alt + P</td>
+<td style="text-align:left">插入分页符</td>
+<td style="text-align:left">Insert page break</td>
+</tr>
+<tr>
+<td style="text-align:left">Alt + L</td>
+<td style="text-align:left">将所选文本转成小写</td>
+<td style="text-align:left">Selection text convert to lowercase</td>
+</tr>
+<tr>
+<td style="text-align:left">Shift + Alt + U</td>
+<td style="text-align:left">将所选的每个单词的首字母转成大写</td>
+<td style="text-align:left">Selection words first letter convert to Uppercase</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + Alt + C</td>
+<td style="text-align:left">打开插入代码块对话框层</td>
+<td style="text-align:left">Open code blocks dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + Alt + I</td>
+<td style="text-align:left">打开插入图片对话框层</td>
+<td style="text-align:left">Open image dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + Alt + U</td>
+<td style="text-align:left">将所选文本的第一个首字母转成大写</td>
+<td style="text-align:left">Selection text first letter convert to uppercase</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Alt + G</td>
+<td style="text-align:left">跳转到指定的行</td>
+<td style="text-align:left">Goto line</td>
+</tr>
+</tbody>
+</table>
+<h5 id="Emoji表情参考-Emoji-reference"><a href="#Emoji表情参考-Emoji-reference" class="headerlink" title="Emoji表情参考 (Emoji reference)"></a>Emoji表情参考 (Emoji reference)</h5><ul>
+<li><a href="http://www.emoji-cheat-sheet.com/" title="Github emoji" target="_blank" rel="external">Github emoji</a></li>
+<li><a href="http://twitter.github.io/twemoji/preview.html" title="Twitter Emoji \(Twemoji\)" target="_blank" rel="external">Twitter Emoji (Twemoji)</a></li>
+<li><a href="http://fortawesome.github.io/Font-Awesome/icons/" title="FontAwesome icons emoji" target="_blank" rel="external">FontAwesome icons emoji</a></li>
+</ul>
+<h5 id="流程图参考-Flowchart-reference"><a href="#流程图参考-Flowchart-reference" class="headerlink" title="流程图参考 (Flowchart reference)"></a>流程图参考 (Flowchart reference)</h5><p><a href="http://adrai.github.io/flowchart.js/" target="_blank" rel="external">http://adrai.github.io/flowchart.js/</a></p>
+<h5 id="时序图参考-SequenceDiagram-reference"><a href="#时序图参考-SequenceDiagram-reference" class="headerlink" title="时序图参考 (SequenceDiagram reference)"></a>时序图参考 (SequenceDiagram reference)</h5><p><a href="http://bramp.github.io/js-sequence-diagrams/" target="_blank" rel="external">http://bramp.github.io/js-sequence-diagrams/</a></p>
+<h5 id="TeX-LaTeX-reference"><a href="#TeX-LaTeX-reference" class="headerlink" title="TeX/LaTeX reference"></a>TeX/LaTeX reference</h5><p><a href="http://meta.wikimedia.org/wiki/Help:Formula" target="_blank" rel="external">http://meta.wikimedia.org/wiki/Help:Formula</a></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://xiahl.top/2016/07/08/2016-07-08-editor-markdown-01/" data-id="ciqf72poh0007m4vq48mlcnzv" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://xiahl.top/2016/07/08/2016-07-08-editor-markdown-01/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://xiahl.top/2016/07/08/2016-07-08-editor-markdown-01/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2016/07/08/2016-07-08-editor-markdown-02/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    markdown编辑器例子-02
+                
+            </div>
+        </a>
+    
+    
+        <a href="/2016/07/07/update-npm/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">更新自身的npm</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://xiahl.top/2016/07/08/2016-07-08-editor-markdown-01/';
+            this.page.identifier = '2016/07/08/2016-07-08-editor-markdown-01/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//xiahl.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+
+
+    <section class="scroll" id="article-nav-button">
+    
+        <a href="/2016/07/08/2016-07-08-editor-markdown-02/" title="上一篇">
+            <i class="fa fa-angle-left"></i>
+        </a>
+    
+
+    <a href="/archives" title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times hide"></i></a>
+
+    
+        <a href="/2016/07/07/update-npm/" title="下一篇">
+            <i class="fa fa-angle-right"></i>
+        </a>
+    
+</section>
+
+    <section class="scroll" id="article-scroll-button">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="if (false) load$hide(); return false;" title="查看评论" class="to-comment" style="display: none;"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</section>
+
+
+
+        	</div>
+        </div>
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+        <footer class="main-footer" id="footer">
+	<!-- To the right -->
+	<div class="pull-right hidden-xs">
+	  Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="https://github.com/Xiahl1990">tianxiamucun</a>
+	</div>
+	<!-- Default to the left -->
+	&copy; 2016 夏红林<br>
+</footer>
+        <!-- Control Sidebar -->
+<aside class="control-sidebar control-sidebar-dark">
+  <!-- Create the tabs -->
+  <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+    <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i> Info</a></li>
+    <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i> Setting</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+
+    <!-- Home tab content -->
+    <div class="tab-pane active" id="control-sidebar-home-tab">
+      <h4 class='control-sidebar-heading'>Motto</h4>
+      <p>No matter what to do, insist on</p>
+      <h4 class='control-sidebar-heading'>Calendar</h4>
+      <div id="calendar" style="width: 100%"></div>
+    </div>
+    <!-- /.tab-pane -->
+
+    <!-- Settings tab content -->
+    <div class="tab-pane" id="control-sidebar-settings-tab">
+      <h4 class='control-sidebar-heading'>Theme</h4>
+<ul class="list-unstyled clearfix" id="theme-list">
+    <li>
+    	<a class="label label-info" href="/icarus" title="Icarus" itemprop="theme-icarus">Icarus</a>
+    	<a class="label label-warning" href="/next" title="Next" itemprop="theme-next">Next</a>
+    	<a class="label label-success" href="/yelee" title="Yelee" itemprop="theme-yelee">Yelee</a>
+    </li>
+</ul>
+      <h4 class='control-sidebar-heading'>Skins</h4>
+<ul class="list-unstyled clearfix" id="skins-list">
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-blue" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px; background: #367fa9;"></span><span class="bg-light-blue" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-blue">Blue</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-black" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div style="box-shadow: 0 0 2px rgba(0,0,0,0.1)" class="clearfix"><span style="display:block; width: 20%; float: left; height: 7px; background: #fefefe;"></span><span style="display:block; width: 80%; float: left; height: 7px; background: #fefefe;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-black">Black</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-purple" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-purple-active"></span><span class="bg-purple" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-purple">Purple</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-green" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-green-active"></span><span class="bg-green" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-green">Green</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-red" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-red-active"></span><span class="bg-red" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-red">Red</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-yellow" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-yellow-active"></span><span class="bg-yellow" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #222d32;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-yellow">Yellow</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-blue-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px; background: #367fa9;"></span><span class="bg-light-blue" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-blue-light" style="font-size: 12px">Blue Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-black-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div style="box-shadow: 0 0 2px rgba(0,0,0,0.1)" class="clearfix"><span style="display:block; width: 20%; float: left; height: 7px; background: #fefefe;"></span><span style="display:block; width: 80%; float: left; height: 7px; background: #fefefe;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-black-light" style="font-size: 12px">Black Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-purple-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-purple-active"></span><span class="bg-purple" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-purple-light" style="font-size: 12px">Purple Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-green-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-green-active"></span><span class="bg-green" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-green-light" style="font-size: 12px">Green Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-red-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-red-active"></span><span class="bg-red" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-red-light" style="font-size: 12px">Red Light</p>
+    </li>
+    <li style="float:left; width: 33.33333%; padding: 5px;">
+        <a href="javascript:void(0);" data-skin="skin-yellow-light" style="display: block; box-shadow: 0 0 3px rgba(0,0,0,0.4)" class="clearfix full-opacity-hover">
+            <div><span style="display:block; width: 20%; float: left; height: 7px;" class="bg-yellow-active"></span><span class="bg-yellow" style="display:block; width: 80%; float: left; height: 7px;"></span></div>
+            <div><span style="display:block; width: 20%; float: left; height: 20px; background: #f9fafc;"></span><span style="display:block; width: 80%; float: left; height: 20px; background: #f4f5f7;"></span></div>
+        </a>
+        <p class="text-center no-margin" data-skin="skin-yellow-light" style="font-size: 12px;">Yellow Light</p>
+    </li>
+</ul>
+    </div>
+    <!-- /.tab-pane -->
+
+  </div>
+
+</aside>
+<!-- /.control-sidebar -->
+
+<div class="control-sidebar-bg"></div>
+    </div>
+    <!-- editormd -->
+<script src="/vendor/editor/editormd.js"></script>
+
+<!-- analytics -->
+
+    
+        <script src="/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/app.js"></script>
+
+<!-- Init Scripts -->
+<script>
+  $(function(){
+
+      $("html").niceScroll();
+
+      $(".box-fancybox").niceScroll({autohidemode: false });
+
+      //jQuery UI sortable for the todo list
+      $(".todo-list").sortable({
+        placeholder: "sort-highlight",
+        handle: ".handle",
+        forcePlaceholderSize: true,
+        zIndex: 999999
+      });
+
+      $(".fancybox-thumb").fancybox({
+        prevEffect  : 'none',
+        nextEffect  : 'none',
+        helpers : {
+          title : {
+            type: 'inside'
+          },
+          thumbs  : {
+            width : 50,
+            height  : 50
+          }
+        }
+      });
+
+      $("#calendar").datepicker({
+        todayHighlight: true,
+        language: "zh-CN"
+      });
+
+  });
+</script>
+
+</body>
+</html>

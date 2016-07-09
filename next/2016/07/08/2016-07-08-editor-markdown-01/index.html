@@ -1,0 +1,994 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/next/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/next/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/next/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="MarkDown," />
+
+
+
+
+
+  <link rel="alternate" href="/next/atom.xml" title="夏红林" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/next/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Markdown语法教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="markdown编辑器介绍-01">
+<meta property="og:url" content="http://xiahl.top/2016/07/08/2016-07-08-editor-markdown-01/index.html">
+<meta property="og:site_name" content="夏红林">
+<meta property="og:description" content="Markdown语法教程">
+<meta property="og:updated_time" content="2016-07-08T13:42:07.983Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="markdown编辑器介绍-01">
+<meta name="twitter:description" content="Markdown语法教程">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://xiahl.top/2016/07/08/2016-07-08-editor-markdown-01/"/>
+
+  <title> markdown编辑器介绍-01 | 夏红林 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="http://xiahl.top"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">夏红林</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/next/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/next/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/next/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                markdown编辑器介绍-01
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-08T21:16:00+08:00" content="2016-07-08">
+              2016-07-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/next/categories/MarkDown/" itemprop="url" rel="index">
+                    <span itemprop="name">MarkDown</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Markdown语法教程<br><a id="more"></a></p>
+<h5 id="Markdown语法教程-Markdown-syntax-tutorial"><a href="#Markdown语法教程-Markdown-syntax-tutorial" class="headerlink" title="Markdown语法教程 (Markdown syntax tutorial)"></a>Markdown语法教程 (Markdown syntax tutorial)</h5><ul>
+<li><a href="http://daringfireball.net/projects/markdown/syntax/" title="Markdown Syntax" target="_blank" rel="external">Markdown Syntax</a></li>
+<li><a href="https://guides.github.com/features/mastering-markdown/" title="Mastering Markdown" target="_blank" rel="external">Mastering Markdown</a></li>
+<li><a href="https://help.github.com/articles/markdown-basics/" title="Markdown Basics" target="_blank" rel="external">Markdown Basics</a></li>
+<li><a href="https://help.github.com/articles/github-flavored-markdown/" title="GitHub Flavored Markdown" target="_blank" rel="external">GitHub Flavored Markdown</a></li>
+<li><a href="http://www.markdown.cn/" title="Markdown 语法说明（简体中文）" target="_blank" rel="external">Markdown 语法说明（简体中文）</a></li>
+<li><a href="http://markdown.tw/" title="Markdown 語法說明（繁體中文）" target="_blank" rel="external">Markdown 語法說明（繁體中文）</a></li>
+</ul>
+<h5 id="键盘快捷键-Keyboard-shortcuts"><a href="#键盘快捷键-Keyboard-shortcuts" class="headerlink" title="键盘快捷键 (Keyboard shortcuts)"></a>键盘快捷键 (Keyboard shortcuts)</h5><blockquote>
+<p>If Editor.md code editor is on focus, you can use keyboard shortcuts.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Keyboard shortcuts (键盘快捷键)</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">F9</td>
+<td style="text-align:left">切换实时预览</td>
+<td style="text-align:left">Switch watch/unwatch</td>
+</tr>
+<tr>
+<td style="text-align:left">F10</td>
+<td style="text-align:left">全屏HTML预览(按 Shift + ESC 退出)</td>
+<td style="text-align:left">Full preview HTML (Press Shift + ESC exit)</td>
+</tr>
+<tr>
+<td style="text-align:left">F11</td>
+<td style="text-align:left">切换全屏状态</td>
+<td style="text-align:left">Switch fullscreen (Press ESC exit)</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + 1~6 / Command + 1~6</td>
+<td style="text-align:left">插入标题1~6</td>
+<td style="text-align:left">Insert heading 1~6</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + A / Command + A</td>
+<td style="text-align:left">全选</td>
+<td style="text-align:left">Select all</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + B / Command + B</td>
+<td style="text-align:left">插入粗体</td>
+<td style="text-align:left">Insert bold</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + D / Command + D</td>
+<td style="text-align:left">插入日期时间</td>
+<td style="text-align:left">Insert datetime</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + E / Command + E</td>
+<td style="text-align:left">插入Emoji符号</td>
+<td style="text-align:left">Insert &#58;emoji&#58;</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + F / Command + F</td>
+<td style="text-align:left">查找/搜索</td>
+<td style="text-align:left">Start searching</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + G / Command + G</td>
+<td style="text-align:left">切换到下一个搜索结果项</td>
+<td style="text-align:left">Find next search results</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + H / Command + H</td>
+<td style="text-align:left">插入水平线</td>
+<td style="text-align:left">Insert horizontal rule</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + I / Command + I</td>
+<td style="text-align:left">插入斜体</td>
+<td style="text-align:left">Insert italic</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + K / Command + K</td>
+<td style="text-align:left">插入行内代码</td>
+<td style="text-align:left">Insert inline code</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + L / Command + L</td>
+<td style="text-align:left">插入链接</td>
+<td style="text-align:left">Insert link</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + U / Command + U</td>
+<td style="text-align:left">插入无序列表</td>
+<td style="text-align:left">Insert unordered list</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Q</td>
+<td style="text-align:left">代码折叠切换</td>
+<td style="text-align:left">Switch code fold</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Z / Command + Z</td>
+<td style="text-align:left">撤销</td>
+<td style="text-align:left">Undo</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Y / Command + Y</td>
+<td style="text-align:left">重做</td>
+<td style="text-align:left">Redo</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + A</td>
+<td style="text-align:left">插入@链接</td>
+<td style="text-align:left">Insert &#64;link</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + C</td>
+<td style="text-align:left">插入行内代码</td>
+<td style="text-align:left">Insert inline code</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + E</td>
+<td style="text-align:left">打开插入Emoji表情对话框</td>
+<td style="text-align:left">Open emoji dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + F / Command + Option + F</td>
+<td style="text-align:left">替换</td>
+<td style="text-align:left">Replace</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + G / Shift + Command + G</td>
+<td style="text-align:left">切换到上一个搜索结果项</td>
+<td style="text-align:left">Find previous search results</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + H</td>
+<td style="text-align:left">打开HTML实体字符对话框</td>
+<td style="text-align:left">Open HTML Entities dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + I</td>
+<td style="text-align:left">插入图片</td>
+<td style="text-align:left">Insert image &#33;[]&#40;&#41;</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + K</td>
+<td style="text-align:left">插入TeX(KaTeX)公式符号</td>
+<td style="text-align:left">Insert TeX(KaTeX) symbol &#36;&#36;TeX&#36;&#36;</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + L</td>
+<td style="text-align:left">打开插入链接对话框</td>
+<td style="text-align:left">Open link dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + O</td>
+<td style="text-align:left">插入有序列表</td>
+<td style="text-align:left">Insert ordered list</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + P</td>
+<td style="text-align:left">打开插入PRE对话框</td>
+<td style="text-align:left">Open Preformatted text dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + Q</td>
+<td style="text-align:left">插入引用</td>
+<td style="text-align:left">Insert blockquotes</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + R / Shift + Command + Option + F</td>
+<td style="text-align:left">全部替换</td>
+<td style="text-align:left">Replace all</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + S</td>
+<td style="text-align:left">插入删除线</td>
+<td style="text-align:left">Insert strikethrough</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + T</td>
+<td style="text-align:left">打开插入表格对话框</td>
+<td style="text-align:left">Open table dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + U</td>
+<td style="text-align:left">将所选文字转成大写</td>
+<td style="text-align:left">Selection text convert to uppercase</td>
+</tr>
+<tr>
+<td style="text-align:left">Shift + Alt + C</td>
+<td style="text-align:left">插入```代码</td>
+<td style="text-align:left">Insert code blocks (```)</td>
+</tr>
+<tr>
+<td style="text-align:left">Shift + Alt + H</td>
+<td style="text-align:left">打开使用帮助对话框</td>
+<td style="text-align:left">Open help dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Shift + Alt + L</td>
+<td style="text-align:left">将所选文本转成小写</td>
+<td style="text-align:left">Selection text convert to lowercase</td>
+</tr>
+<tr>
+<td style="text-align:left">Shift + Alt + P</td>
+<td style="text-align:left">插入分页符</td>
+<td style="text-align:left">Insert page break</td>
+</tr>
+<tr>
+<td style="text-align:left">Alt + L</td>
+<td style="text-align:left">将所选文本转成小写</td>
+<td style="text-align:left">Selection text convert to lowercase</td>
+</tr>
+<tr>
+<td style="text-align:left">Shift + Alt + U</td>
+<td style="text-align:left">将所选的每个单词的首字母转成大写</td>
+<td style="text-align:left">Selection words first letter convert to Uppercase</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + Alt + C</td>
+<td style="text-align:left">打开插入代码块对话框层</td>
+<td style="text-align:left">Open code blocks dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + Alt + I</td>
+<td style="text-align:left">打开插入图片对话框层</td>
+<td style="text-align:left">Open image dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + Alt + U</td>
+<td style="text-align:left">将所选文本的第一个首字母转成大写</td>
+<td style="text-align:left">Selection text first letter convert to uppercase</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Alt + G</td>
+<td style="text-align:left">跳转到指定的行</td>
+<td style="text-align:left">Goto line</td>
+</tr>
+</tbody>
+</table>
+<h5 id="Emoji表情参考-Emoji-reference"><a href="#Emoji表情参考-Emoji-reference" class="headerlink" title="Emoji表情参考 (Emoji reference)"></a>Emoji表情参考 (Emoji reference)</h5><ul>
+<li><a href="http://www.emoji-cheat-sheet.com/" title="Github emoji" target="_blank" rel="external">Github emoji</a></li>
+<li><a href="http://twitter.github.io/twemoji/preview.html" title="Twitter Emoji \(Twemoji\)" target="_blank" rel="external">Twitter Emoji (Twemoji)</a></li>
+<li><a href="http://fortawesome.github.io/Font-Awesome/icons/" title="FontAwesome icons emoji" target="_blank" rel="external">FontAwesome icons emoji</a></li>
+</ul>
+<h5 id="流程图参考-Flowchart-reference"><a href="#流程图参考-Flowchart-reference" class="headerlink" title="流程图参考 (Flowchart reference)"></a>流程图参考 (Flowchart reference)</h5><p><a href="http://adrai.github.io/flowchart.js/" target="_blank" rel="external">http://adrai.github.io/flowchart.js/</a></p>
+<h5 id="时序图参考-SequenceDiagram-reference"><a href="#时序图参考-SequenceDiagram-reference" class="headerlink" title="时序图参考 (SequenceDiagram reference)"></a>时序图参考 (SequenceDiagram reference)</h5><p><a href="http://bramp.github.io/js-sequence-diagrams/" target="_blank" rel="external">http://bramp.github.io/js-sequence-diagrams/</a></p>
+<h5 id="TeX-LaTeX-reference"><a href="#TeX-LaTeX-reference" class="headerlink" title="TeX/LaTeX reference"></a>TeX/LaTeX reference</h5><p><a href="http://meta.wikimedia.org/wiki/Help:Formula" target="_blank" rel="external">http://meta.wikimedia.org/wiki/Help:Formula</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/next/tags/MarkDown/" rel="tag">#MarkDown</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/next/2016/07/07/update-npm/" rel="next" title="更新自身的npm">
+                <i class="fa fa-chevron-left"></i> 更新自身的npm
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/next/2016/07/08/2016-07-08-editor-markdown-02/" rel="prev" title="markdown编辑器例子-02">
+                markdown编辑器例子-02 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/next/images/avatar.png"
+               alt="夏红林" />
+          <p class="site-author-name" itemprop="name">夏红林</p>
+          <p class="site-description motion-element" itemprop="description">夏红林的个人博客</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/next/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/next/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#Markdown语法教程-Markdown-syntax-tutorial"><span class="nav-number">1.</span> <span class="nav-text">Markdown语法教程 (Markdown syntax tutorial)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#键盘快捷键-Keyboard-shortcuts"><span class="nav-number">2.</span> <span class="nav-text">键盘快捷键 (Keyboard shortcuts)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Emoji表情参考-Emoji-reference"><span class="nav-number">3.</span> <span class="nav-text">Emoji表情参考 (Emoji reference)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#流程图参考-Flowchart-reference"><span class="nav-number">4.</span> <span class="nav-text">流程图参考 (Flowchart reference)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#时序图参考-SequenceDiagram-reference"><span class="nav-number">5.</span> <span class="nav-text">时序图参考 (SequenceDiagram reference)</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TeX-LaTeX-reference"><span class="nav-number">6.</span> <span class="nav-text">TeX/LaTeX reference</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夏红林</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/next/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/next/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/next/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/next/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/next/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/next/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/next/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/next/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/next/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/next/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/next/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/next/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

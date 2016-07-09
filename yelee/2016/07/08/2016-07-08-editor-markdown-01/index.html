@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="夏红林" />
+
+
+
+<meta name="description" content="Markdown语法教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="markdown编辑器介绍-01">
+<meta property="og:url" content="http://xiahl.top/2016/07/08/2016-07-08-editor-markdown-01/index.html">
+<meta property="og:site_name" content="夏红林">
+<meta property="og:description" content="Markdown语法教程">
+<meta property="og:updated_time" content="2016-07-08T13:42:07.983Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="markdown编辑器介绍-01">
+<meta name="twitter:description" content="Markdown语法教程">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="夏红林" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/yelee/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>markdown编辑器介绍-01 | 夏红林</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: true
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="http://xiahl.top" class="profilepic">
+            <img src="/yelee/img/avatar.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="http://xiahl.top">夏红林</a></h1>
+        </hgroup>
+
+        
+
+        
+            <form id="search-form">
+            <input type="text" id="local-search-input" name="q" results="0" placeholder="search..." class="search form-control" autocomplete="off" autocorrect="off" searchonload="false" />
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+            </form>
+            <div id="local-search-result"></div>
+            <p class='no-result'>No results found <i class='fa fa-spinner fa-pulse'></i></p>
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/yelee/">主页</a></li>
+                        
+                            <li><a href="/yelee/archives/">所有文章</a></li>
+                        
+                            <li><a href="/yelee/tags/">标签云</a></li>
+                        
+                            <li><a href="/yelee/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" href="mailto:xiahl1990@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" href="https://github.com/Xiahl1990" title="GitHub"></a>
+                            
+                                <a class="fa RSS" href="/yelee/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/yelee/tags/Architecture/">Architecture</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yelee/tags/Basics/">Basics</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yelee/tags/Component/">Component</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yelee/tags/Databinding/">Databinding</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yelee/tags/Dependency-Injection/">Dependency Injection</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yelee/tags/Directive/">Directive</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yelee/tags/MarkDown/">MarkDown</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yelee/tags/Metadata/">Metadata</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yelee/tags/Module/">Module</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yelee/tags/Node/">Node</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yelee/tags/Service/">Service</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yelee/tags/Template/">Template</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yelee/tags/Wrapup/">Wrapup</a></li><li class="tag-list-item"><a class="tag-list-link" href="/yelee/tags/npm/">npm</a></li></ul>
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a class="main-nav-link switch-friends-link" href="https://github.com/Xiahl1990/hexo-theme-tianxiamucun">Tianxiamucun</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="http://xiahl.top" title="回到主页">夏红林</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="http://xiahl.top" class="profilepic">
+                <img src="/yelee/img/avatar.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="http://xiahl.top" title="回到主页">夏红林</a></h1>
+            </hgroup>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/yelee/">主页</a></li>
+                
+                    <li><a href="/yelee/archives/">所有文章</a></li>
+                
+                    <li><a href="/yelee/tags/">标签云</a></li>
+                
+                    <li><a href="/yelee/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:xiahl1990@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/Xiahl1990" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/yelee/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-2016-07-08-editor-markdown-01" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/yelee/2016/07/08/2016-07-08-editor-markdown-01/" class="article-date">
+      <time datetime="2016-07-08T13:16:00.000Z" itemprop="datePublished">2016-07-08</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      markdown编辑器介绍-01
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+    <div class="article-category tagcloud">
+    <a class="article-category-link" href="/yelee/categories/MarkDown/">MarkDown</a>
+    </div>
+
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/yelee/tags/MarkDown/">MarkDown</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>Markdown语法教程<br><a id="more"></a></p>
+<h5 id="Markdown语法教程-Markdown-syntax-tutorial"><a href="#Markdown语法教程-Markdown-syntax-tutorial" class="headerlink" title="Markdown语法教程 (Markdown syntax tutorial)"></a>Markdown语法教程 (Markdown syntax tutorial)</h5><ul>
+<li><a href="http://daringfireball.net/projects/markdown/syntax/" title="Markdown Syntax" target="_blank" rel="external">Markdown Syntax</a></li>
+<li><a href="https://guides.github.com/features/mastering-markdown/" title="Mastering Markdown" target="_blank" rel="external">Mastering Markdown</a></li>
+<li><a href="https://help.github.com/articles/markdown-basics/" title="Markdown Basics" target="_blank" rel="external">Markdown Basics</a></li>
+<li><a href="https://help.github.com/articles/github-flavored-markdown/" title="GitHub Flavored Markdown" target="_blank" rel="external">GitHub Flavored Markdown</a></li>
+<li><a href="http://www.markdown.cn/" title="Markdown 语法说明（简体中文）" target="_blank" rel="external">Markdown 语法说明（简体中文）</a></li>
+<li><a href="http://markdown.tw/" title="Markdown 語法說明（繁體中文）" target="_blank" rel="external">Markdown 語法說明（繁體中文）</a></li>
+</ul>
+<h5 id="键盘快捷键-Keyboard-shortcuts"><a href="#键盘快捷键-Keyboard-shortcuts" class="headerlink" title="键盘快捷键 (Keyboard shortcuts)"></a>键盘快捷键 (Keyboard shortcuts)</h5><blockquote>
+<p>If Editor.md code editor is on focus, you can use keyboard shortcuts.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Keyboard shortcuts (键盘快捷键)</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">F9</td>
+<td style="text-align:left">切换实时预览</td>
+<td style="text-align:left">Switch watch/unwatch</td>
+</tr>
+<tr>
+<td style="text-align:left">F10</td>
+<td style="text-align:left">全屏HTML预览(按 Shift + ESC 退出)</td>
+<td style="text-align:left">Full preview HTML (Press Shift + ESC exit)</td>
+</tr>
+<tr>
+<td style="text-align:left">F11</td>
+<td style="text-align:left">切换全屏状态</td>
+<td style="text-align:left">Switch fullscreen (Press ESC exit)</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + 1~6 / Command + 1~6</td>
+<td style="text-align:left">插入标题1~6</td>
+<td style="text-align:left">Insert heading 1~6</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + A / Command + A</td>
+<td style="text-align:left">全选</td>
+<td style="text-align:left">Select all</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + B / Command + B</td>
+<td style="text-align:left">插入粗体</td>
+<td style="text-align:left">Insert bold</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + D / Command + D</td>
+<td style="text-align:left">插入日期时间</td>
+<td style="text-align:left">Insert datetime</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + E / Command + E</td>
+<td style="text-align:left">插入Emoji符号</td>
+<td style="text-align:left">Insert &#58;emoji&#58;</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + F / Command + F</td>
+<td style="text-align:left">查找/搜索</td>
+<td style="text-align:left">Start searching</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + G / Command + G</td>
+<td style="text-align:left">切换到下一个搜索结果项</td>
+<td style="text-align:left">Find next search results</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + H / Command + H</td>
+<td style="text-align:left">插入水平线</td>
+<td style="text-align:left">Insert horizontal rule</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + I / Command + I</td>
+<td style="text-align:left">插入斜体</td>
+<td style="text-align:left">Insert italic</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + K / Command + K</td>
+<td style="text-align:left">插入行内代码</td>
+<td style="text-align:left">Insert inline code</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + L / Command + L</td>
+<td style="text-align:left">插入链接</td>
+<td style="text-align:left">Insert link</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + U / Command + U</td>
+<td style="text-align:left">插入无序列表</td>
+<td style="text-align:left">Insert unordered list</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Q</td>
+<td style="text-align:left">代码折叠切换</td>
+<td style="text-align:left">Switch code fold</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Z / Command + Z</td>
+<td style="text-align:left">撤销</td>
+<td style="text-align:left">Undo</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Y / Command + Y</td>
+<td style="text-align:left">重做</td>
+<td style="text-align:left">Redo</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + A</td>
+<td style="text-align:left">插入@链接</td>
+<td style="text-align:left">Insert &#64;link</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + C</td>
+<td style="text-align:left">插入行内代码</td>
+<td style="text-align:left">Insert inline code</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + E</td>
+<td style="text-align:left">打开插入Emoji表情对话框</td>
+<td style="text-align:left">Open emoji dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + F / Command + Option + F</td>
+<td style="text-align:left">替换</td>
+<td style="text-align:left">Replace</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + G / Shift + Command + G</td>
+<td style="text-align:left">切换到上一个搜索结果项</td>
+<td style="text-align:left">Find previous search results</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + H</td>
+<td style="text-align:left">打开HTML实体字符对话框</td>
+<td style="text-align:left">Open HTML Entities dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + I</td>
+<td style="text-align:left">插入图片</td>
+<td style="text-align:left">Insert image &#33;[]&#40;&#41;</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + K</td>
+<td style="text-align:left">插入TeX(KaTeX)公式符号</td>
+<td style="text-align:left">Insert TeX(KaTeX) symbol &#36;&#36;TeX&#36;&#36;</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + L</td>
+<td style="text-align:left">打开插入链接对话框</td>
+<td style="text-align:left">Open link dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + O</td>
+<td style="text-align:left">插入有序列表</td>
+<td style="text-align:left">Insert ordered list</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + P</td>
+<td style="text-align:left">打开插入PRE对话框</td>
+<td style="text-align:left">Open Preformatted text dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + Q</td>
+<td style="text-align:left">插入引用</td>
+<td style="text-align:left">Insert blockquotes</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + R / Shift + Command + Option + F</td>
+<td style="text-align:left">全部替换</td>
+<td style="text-align:left">Replace all</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + S</td>
+<td style="text-align:left">插入删除线</td>
+<td style="text-align:left">Insert strikethrough</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + T</td>
+<td style="text-align:left">打开插入表格对话框</td>
+<td style="text-align:left">Open table dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + U</td>
+<td style="text-align:left">将所选文字转成大写</td>
+<td style="text-align:left">Selection text convert to uppercase</td>
+</tr>
+<tr>
+<td style="text-align:left">Shift + Alt + C</td>
+<td style="text-align:left">插入```代码</td>
+<td style="text-align:left">Insert code blocks (```)</td>
+</tr>
+<tr>
+<td style="text-align:left">Shift + Alt + H</td>
+<td style="text-align:left">打开使用帮助对话框</td>
+<td style="text-align:left">Open help dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Shift + Alt + L</td>
+<td style="text-align:left">将所选文本转成小写</td>
+<td style="text-align:left">Selection text convert to lowercase</td>
+</tr>
+<tr>
+<td style="text-align:left">Shift + Alt + P</td>
+<td style="text-align:left">插入分页符</td>
+<td style="text-align:left">Insert page break</td>
+</tr>
+<tr>
+<td style="text-align:left">Alt + L</td>
+<td style="text-align:left">将所选文本转成小写</td>
+<td style="text-align:left">Selection text convert to lowercase</td>
+</tr>
+<tr>
+<td style="text-align:left">Shift + Alt + U</td>
+<td style="text-align:left">将所选的每个单词的首字母转成大写</td>
+<td style="text-align:left">Selection words first letter convert to Uppercase</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + Alt + C</td>
+<td style="text-align:left">打开插入代码块对话框层</td>
+<td style="text-align:left">Open code blocks dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + Alt + I</td>
+<td style="text-align:left">打开插入图片对话框层</td>
+<td style="text-align:left">Open image dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + Alt + U</td>
+<td style="text-align:left">将所选文本的第一个首字母转成大写</td>
+<td style="text-align:left">Selection text first letter convert to uppercase</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Alt + G</td>
+<td style="text-align:left">跳转到指定的行</td>
+<td style="text-align:left">Goto line</td>
+</tr>
+</tbody>
+</table>
+<h5 id="Emoji表情参考-Emoji-reference"><a href="#Emoji表情参考-Emoji-reference" class="headerlink" title="Emoji表情参考 (Emoji reference)"></a>Emoji表情参考 (Emoji reference)</h5><ul>
+<li><a href="http://www.emoji-cheat-sheet.com/" title="Github emoji" target="_blank" rel="external">Github emoji</a></li>
+<li><a href="http://twitter.github.io/twemoji/preview.html" title="Twitter Emoji \(Twemoji\)" target="_blank" rel="external">Twitter Emoji (Twemoji)</a></li>
+<li><a href="http://fortawesome.github.io/Font-Awesome/icons/" title="FontAwesome icons emoji" target="_blank" rel="external">FontAwesome icons emoji</a></li>
+</ul>
+<h5 id="流程图参考-Flowchart-reference"><a href="#流程图参考-Flowchart-reference" class="headerlink" title="流程图参考 (Flowchart reference)"></a>流程图参考 (Flowchart reference)</h5><p><a href="http://adrai.github.io/flowchart.js/" target="_blank" rel="external">http://adrai.github.io/flowchart.js/</a></p>
+<h5 id="时序图参考-SequenceDiagram-reference"><a href="#时序图参考-SequenceDiagram-reference" class="headerlink" title="时序图参考 (SequenceDiagram reference)"></a>时序图参考 (SequenceDiagram reference)</h5><p><a href="http://bramp.github.io/js-sequence-diagrams/" target="_blank" rel="external">http://bramp.github.io/js-sequence-diagrams/</a></p>
+<h5 id="TeX-LaTeX-reference"><a href="#TeX-LaTeX-reference" class="headerlink" title="TeX/LaTeX reference"></a>TeX/LaTeX reference</h5><p><a href="http://meta.wikimedia.org/wiki/Help:Formula" target="_blank" rel="external">http://meta.wikimedia.org/wiki/Help:Formula</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/yelee/2016/07/08/2016-07-08-editor-markdown-01/">markdown编辑器介绍-01</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">夏红林</a></p>
+        <p><span>发布时间:</span>2016-07-08, 21:16:00</p>
+        <p><span>最后更新:</span>2016-07-08, 21:42:07</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/yelee/2016/07/08/2016-07-08-editor-markdown-01/" title="markdown编辑器介绍-01">http://xiahl.top/yelee/2016/07/08/2016-07-08-editor-markdown-01/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://xiahl.top/yelee/2016/07/08/2016-07-08-editor-markdown-01/　　作者: 夏红林" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+            <div id="article-nav-newer" class="article-nav-title">
+                <a href="/yelee/2016/07/08/2016-07-08-editor-markdown-02/">
+                    markdown编辑器例子-02
+                </a>
+            </div>
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/yelee/2016/07/07/update-npm/">
+                    更新自身的npm
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#Markdown语法教程-Markdown-syntax-tutorial"><span class="toc-number">1.</span> <span class="toc-text">Markdown语法教程 (Markdown syntax tutorial)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#键盘快捷键-Keyboard-shortcuts"><span class="toc-number">2.</span> <span class="toc-text">键盘快捷键 (Keyboard shortcuts)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Emoji表情参考-Emoji-reference"><span class="toc-number">3.</span> <span class="toc-text">Emoji表情参考 (Emoji reference)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#流程图参考-Flowchart-reference"><span class="toc-number">4.</span> <span class="toc-text">流程图参考 (Flowchart reference)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#时序图参考-SequenceDiagram-reference"><span class="toc-number">5.</span> <span class="toc-text">时序图参考 (SequenceDiagram reference)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#TeX-LaTeX-reference"><span class="toc-number">6.</span> <span class="toc-text">TeX/LaTeX reference</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script>
+    yiliaConfig.toc = ["隐藏目录", "显示目录", !!"false"];
+</script>
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"markdown编辑器介绍-01　| 夏红林　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+        <section id="comments">
+    <style> aside.comment-bar { margin: auto 30px; }</style>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function(){
+            this.page.url = 'http://xiahl.top/yelee/2016/07/08/2016-07-08-editor-markdown-01/';
+            this.page.identifier = '2016/07/08/2016-07-08-editor-markdown-01/';
+        };
+        var loadComment = function(){
+            var d = document, s = d.createElement('script');
+            s.src = '//xiahl.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    </script>
+    
+    <script> loadComment(); </script>
+
+</section>
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/yelee/2016/07/08/2016-07-08-editor-markdown-02/" title="上一篇: markdown编辑器例子-02">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/yelee/2016/07/07/update-npm/" title="下一篇: 更新自身的npm">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/yelee/2016/07/09/2016-07-09-angular2-architecture-wrap-up/">Angular2-架构-Wrapup</a></li><li class="post-list-item"><a class="post-list-link" href="/yelee/2016/07/09/2016-07-09-angular2-architecture-dependency-injection/">Angular2-架构-DependencyInjection</a></li><li class="post-list-item"><a class="post-list-link" href="/yelee/2016/07/09/2016-07-09-angular2-architecture-service/">Angular2-架构-Service</a></li><li class="post-list-item"><a class="post-list-link" href="/yelee/2016/07/09/2016-07-09-angular2-architecture-directive/">Angular2-架构-Directive</a></li><li class="post-list-item"><a class="post-list-link" href="/yelee/2016/07/09/2016-07-09-angular2-architecture-databinding/">Angular2-架构-Databinding</a></li><li class="post-list-item"><a class="post-list-link" href="/yelee/2016/07/09/2016-07-09-angular2-architecture-metadata/">Angular2-架构-Metadata</a></li><li class="post-list-item"><a class="post-list-link" href="/yelee/2016/07/09/2016-07-09-angular2-architecture-template/">Angular2-架构-Template</a></li><li class="post-list-item"><a class="post-list-link" href="/yelee/2016/07/09/2016-07-09-angular2-architecture-component/">Angular2-架构-Component</a></li><li class="post-list-item"><a class="post-list-link" href="/yelee/2016/07/08/2016-07-08-angular2-architecture-module/">Angular2-架构-Module</a></li><li class="post-list-item"><a class="post-list-link" href="/yelee/2016/07/08/2016-07-08-editor-markdown-02/">markdown编辑器例子-02</a></li><li class="post-list-item"><a class="post-list-link" href="/yelee/2016/07/08/2016-07-08-editor-markdown-01/">markdown编辑器介绍-01</a></li><li class="post-list-item"><a class="post-list-link" href="/yelee/2016/07/07/update-npm/">更新自身的npm</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 夏红林
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.5">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/yelee/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 5;
+                var backgroundimg = "url(/yelee/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" onclick="load$hide();" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    // Open in New Window
+    
+        var oOpenInNew = {
+            
+            
+            
+            
+            
+            
+             archives: ".archive-article-title", 
+             miniArchives: "a.post-list-link", 
+            
+             friends: "#js-friends a", 
+             socail: ".social a" 
+        }
+        for (var x in oOpenInNew) {
+            $(oOpenInNew[x]).attr("target", "_blank");
+        }
+    
+</script>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>

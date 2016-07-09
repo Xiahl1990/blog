@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>markdown编辑器介绍-01 | 夏红林</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Markdown语法教程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="markdown编辑器介绍-01">
+<meta property="og:url" content="http://xiahl.top/2016/07/08/2016-07-08-editor-markdown-01/index.html">
+<meta property="og:site_name" content="夏红林">
+<meta property="og:description" content="Markdown语法教程">
+<meta property="og:updated_time" content="2016-07-08T13:42:07.983Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="markdown编辑器介绍-01">
+<meta name="twitter:description" content="Markdown语法教程">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/icarus/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/icarus/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/icarus/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/icarus/css/style.css">
+
+    <!-- jQuery -->
+    <script src="//cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/icarus/vendor/fancybox/jquery.fancybox.css">
+    
+    
+    
+    
+
+</head>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="http://xiahl.top" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">夏红林</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/icarus/.">Home</a>
+                
+                    <a class="main-nav-link" href="/icarus/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/icarus/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/icarus/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/icarus/about">About</a>
+                
+                    <a class="main-nav-link" href="http://xiahl.top/">Theme</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/icarus/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/icarus/',
+        CONTENT_URL: '/icarus/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/icarus/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/icarus/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/icarus/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/icarus/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/icarus/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/icarus/about">About</a></td>
+                
+                    <td><a class="main-nav-link" href="http://xiahl.top/">Theme</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/icarus/css/images/avatar.png" />
+            <h2 id="name">Tianxiamucun</h2>
+            <h3 id="title">Web Developer &amp; Designer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Shenzhen, China</span>
+            <a id="follow" target="_blank" href="https://github.com/Xiahl1990">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                12
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                14
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/Xiahl1990/hexo-theme-tianxiamucun" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/icarus/" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/icarus/" target="_blank" title="facebook" class=tooltip>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/icarus/" target="_blank" title="dribbble" class=tooltip>
+                            <i class="fa fa-dribbble"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/icarus/atom.xml" target="_blank" title="rss" class=tooltip>
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-2016-07-08-editor-markdown-01" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            markdown编辑器介绍-01
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/icarus/2016/07/08/2016-07-08-editor-markdown-01/">
+            <time datetime="2016-07-08T13:16:00.000Z" itemprop="datePublished">2016-07-08</time>
+        </a>
+    </div>
+
+
+                    
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/icarus/categories/MarkDown/">MarkDown</a>
+    </div>
+
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/icarus/tags/MarkDown/">MarkDown</a>
+    </div>
+
+                </div>
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#Markdown语法教程-Markdown-syntax-tutorial"><span class="toc-number">1.</span> <span class="toc-text">Markdown语法教程 (Markdown syntax tutorial)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#键盘快捷键-Keyboard-shortcuts"><span class="toc-number">2.</span> <span class="toc-text">键盘快捷键 (Keyboard shortcuts)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Emoji表情参考-Emoji-reference"><span class="toc-number">3.</span> <span class="toc-text">Emoji表情参考 (Emoji reference)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#流程图参考-Flowchart-reference"><span class="toc-number">4.</span> <span class="toc-text">流程图参考 (Flowchart reference)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#时序图参考-SequenceDiagram-reference"><span class="toc-number">5.</span> <span class="toc-text">时序图参考 (SequenceDiagram reference)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#TeX-LaTeX-reference"><span class="toc-number">6.</span> <span class="toc-text">TeX/LaTeX reference</span></a></li></ol>
+                </div>
+            
+            <p>Markdown语法教程<br><a id="more"></a></p>
+<h5 id="Markdown语法教程-Markdown-syntax-tutorial"><a href="#Markdown语法教程-Markdown-syntax-tutorial" class="headerlink" title="Markdown语法教程 (Markdown syntax tutorial)"></a>Markdown语法教程 (Markdown syntax tutorial)</h5><ul>
+<li><a href="http://daringfireball.net/projects/markdown/syntax/" title="Markdown Syntax" target="_blank" rel="external">Markdown Syntax</a></li>
+<li><a href="https://guides.github.com/features/mastering-markdown/" title="Mastering Markdown" target="_blank" rel="external">Mastering Markdown</a></li>
+<li><a href="https://help.github.com/articles/markdown-basics/" title="Markdown Basics" target="_blank" rel="external">Markdown Basics</a></li>
+<li><a href="https://help.github.com/articles/github-flavored-markdown/" title="GitHub Flavored Markdown" target="_blank" rel="external">GitHub Flavored Markdown</a></li>
+<li><a href="http://www.markdown.cn/" title="Markdown 语法说明（简体中文）" target="_blank" rel="external">Markdown 语法说明（简体中文）</a></li>
+<li><a href="http://markdown.tw/" title="Markdown 語法說明（繁體中文）" target="_blank" rel="external">Markdown 語法說明（繁體中文）</a></li>
+</ul>
+<h5 id="键盘快捷键-Keyboard-shortcuts"><a href="#键盘快捷键-Keyboard-shortcuts" class="headerlink" title="键盘快捷键 (Keyboard shortcuts)"></a>键盘快捷键 (Keyboard shortcuts)</h5><blockquote>
+<p>If Editor.md code editor is on focus, you can use keyboard shortcuts.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Keyboard shortcuts (键盘快捷键)</th>
+<th style="text-align:left">说明</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">F9</td>
+<td style="text-align:left">切换实时预览</td>
+<td style="text-align:left">Switch watch/unwatch</td>
+</tr>
+<tr>
+<td style="text-align:left">F10</td>
+<td style="text-align:left">全屏HTML预览(按 Shift + ESC 退出)</td>
+<td style="text-align:left">Full preview HTML (Press Shift + ESC exit)</td>
+</tr>
+<tr>
+<td style="text-align:left">F11</td>
+<td style="text-align:left">切换全屏状态</td>
+<td style="text-align:left">Switch fullscreen (Press ESC exit)</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + 1~6 / Command + 1~6</td>
+<td style="text-align:left">插入标题1~6</td>
+<td style="text-align:left">Insert heading 1~6</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + A / Command + A</td>
+<td style="text-align:left">全选</td>
+<td style="text-align:left">Select all</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + B / Command + B</td>
+<td style="text-align:left">插入粗体</td>
+<td style="text-align:left">Insert bold</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + D / Command + D</td>
+<td style="text-align:left">插入日期时间</td>
+<td style="text-align:left">Insert datetime</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + E / Command + E</td>
+<td style="text-align:left">插入Emoji符号</td>
+<td style="text-align:left">Insert &#58;emoji&#58;</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + F / Command + F</td>
+<td style="text-align:left">查找/搜索</td>
+<td style="text-align:left">Start searching</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + G / Command + G</td>
+<td style="text-align:left">切换到下一个搜索结果项</td>
+<td style="text-align:left">Find next search results</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + H / Command + H</td>
+<td style="text-align:left">插入水平线</td>
+<td style="text-align:left">Insert horizontal rule</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + I / Command + I</td>
+<td style="text-align:left">插入斜体</td>
+<td style="text-align:left">Insert italic</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + K / Command + K</td>
+<td style="text-align:left">插入行内代码</td>
+<td style="text-align:left">Insert inline code</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + L / Command + L</td>
+<td style="text-align:left">插入链接</td>
+<td style="text-align:left">Insert link</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + U / Command + U</td>
+<td style="text-align:left">插入无序列表</td>
+<td style="text-align:left">Insert unordered list</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Q</td>
+<td style="text-align:left">代码折叠切换</td>
+<td style="text-align:left">Switch code fold</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Z / Command + Z</td>
+<td style="text-align:left">撤销</td>
+<td style="text-align:left">Undo</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Y / Command + Y</td>
+<td style="text-align:left">重做</td>
+<td style="text-align:left">Redo</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + A</td>
+<td style="text-align:left">插入@链接</td>
+<td style="text-align:left">Insert &#64;link</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + C</td>
+<td style="text-align:left">插入行内代码</td>
+<td style="text-align:left">Insert inline code</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + E</td>
+<td style="text-align:left">打开插入Emoji表情对话框</td>
+<td style="text-align:left">Open emoji dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + F / Command + Option + F</td>
+<td style="text-align:left">替换</td>
+<td style="text-align:left">Replace</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + G / Shift + Command + G</td>
+<td style="text-align:left">切换到上一个搜索结果项</td>
+<td style="text-align:left">Find previous search results</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + H</td>
+<td style="text-align:left">打开HTML实体字符对话框</td>
+<td style="text-align:left">Open HTML Entities dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + I</td>
+<td style="text-align:left">插入图片</td>
+<td style="text-align:left">Insert image &#33;[]&#40;&#41;</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + K</td>
+<td style="text-align:left">插入TeX(KaTeX)公式符号</td>
+<td style="text-align:left">Insert TeX(KaTeX) symbol &#36;&#36;TeX&#36;&#36;</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + L</td>
+<td style="text-align:left">打开插入链接对话框</td>
+<td style="text-align:left">Open link dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + O</td>
+<td style="text-align:left">插入有序列表</td>
+<td style="text-align:left">Insert ordered list</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + P</td>
+<td style="text-align:left">打开插入PRE对话框</td>
+<td style="text-align:left">Open Preformatted text dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + Q</td>
+<td style="text-align:left">插入引用</td>
+<td style="text-align:left">Insert blockquotes</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + R / Shift + Command + Option + F</td>
+<td style="text-align:left">全部替换</td>
+<td style="text-align:left">Replace all</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + S</td>
+<td style="text-align:left">插入删除线</td>
+<td style="text-align:left">Insert strikethrough</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + T</td>
+<td style="text-align:left">打开插入表格对话框</td>
+<td style="text-align:left">Open table dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + U</td>
+<td style="text-align:left">将所选文字转成大写</td>
+<td style="text-align:left">Selection text convert to uppercase</td>
+</tr>
+<tr>
+<td style="text-align:left">Shift + Alt + C</td>
+<td style="text-align:left">插入```代码</td>
+<td style="text-align:left">Insert code blocks (```)</td>
+</tr>
+<tr>
+<td style="text-align:left">Shift + Alt + H</td>
+<td style="text-align:left">打开使用帮助对话框</td>
+<td style="text-align:left">Open help dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Shift + Alt + L</td>
+<td style="text-align:left">将所选文本转成小写</td>
+<td style="text-align:left">Selection text convert to lowercase</td>
+</tr>
+<tr>
+<td style="text-align:left">Shift + Alt + P</td>
+<td style="text-align:left">插入分页符</td>
+<td style="text-align:left">Insert page break</td>
+</tr>
+<tr>
+<td style="text-align:left">Alt + L</td>
+<td style="text-align:left">将所选文本转成小写</td>
+<td style="text-align:left">Selection text convert to lowercase</td>
+</tr>
+<tr>
+<td style="text-align:left">Shift + Alt + U</td>
+<td style="text-align:left">将所选的每个单词的首字母转成大写</td>
+<td style="text-align:left">Selection words first letter convert to Uppercase</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + Alt + C</td>
+<td style="text-align:left">打开插入代码块对话框层</td>
+<td style="text-align:left">Open code blocks dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + Alt + I</td>
+<td style="text-align:left">打开插入图片对话框层</td>
+<td style="text-align:left">Open image dialog</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Shift + Alt + U</td>
+<td style="text-align:left">将所选文本的第一个首字母转成大写</td>
+<td style="text-align:left">Selection text first letter convert to uppercase</td>
+</tr>
+<tr>
+<td style="text-align:left">Ctrl + Alt + G</td>
+<td style="text-align:left">跳转到指定的行</td>
+<td style="text-align:left">Goto line</td>
+</tr>
+</tbody>
+</table>
+<h5 id="Emoji表情参考-Emoji-reference"><a href="#Emoji表情参考-Emoji-reference" class="headerlink" title="Emoji表情参考 (Emoji reference)"></a>Emoji表情参考 (Emoji reference)</h5><ul>
+<li><a href="http://www.emoji-cheat-sheet.com/" title="Github emoji" target="_blank" rel="external">Github emoji</a></li>
+<li><a href="http://twitter.github.io/twemoji/preview.html" title="Twitter Emoji \(Twemoji\)" target="_blank" rel="external">Twitter Emoji (Twemoji)</a></li>
+<li><a href="http://fortawesome.github.io/Font-Awesome/icons/" title="FontAwesome icons emoji" target="_blank" rel="external">FontAwesome icons emoji</a></li>
+</ul>
+<h5 id="流程图参考-Flowchart-reference"><a href="#流程图参考-Flowchart-reference" class="headerlink" title="流程图参考 (Flowchart reference)"></a>流程图参考 (Flowchart reference)</h5><p><a href="http://adrai.github.io/flowchart.js/" target="_blank" rel="external">http://adrai.github.io/flowchart.js/</a></p>
+<h5 id="时序图参考-SequenceDiagram-reference"><a href="#时序图参考-SequenceDiagram-reference" class="headerlink" title="时序图参考 (SequenceDiagram reference)"></a>时序图参考 (SequenceDiagram reference)</h5><p><a href="http://bramp.github.io/js-sequence-diagrams/" target="_blank" rel="external">http://bramp.github.io/js-sequence-diagrams/</a></p>
+<h5 id="TeX-LaTeX-reference"><a href="#TeX-LaTeX-reference" class="headerlink" title="TeX/LaTeX reference"></a>TeX/LaTeX reference</h5><p><a href="http://meta.wikimedia.org/wiki/Help:Formula" target="_blank" rel="external">http://meta.wikimedia.org/wiki/Help:Formula</a></p>
+
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://xiahl.top/icarus/2016/07/08/2016-07-08-editor-markdown-01/" data-id="ciqf7fmsz00074cvqjmdl9jhf" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://xiahl.top/icarus/2016/07/08/2016-07-08-editor-markdown-01/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://xiahl.top/icarus/2016/07/08/2016-07-08-editor-markdown-01/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/icarus/2016/07/08/2016-07-08-editor-markdown-02/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    markdown编辑器例子-02
+                
+            </div>
+        </a>
+    
+    
+        <a href="/icarus/2016/07/07/update-npm/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">更新自身的npm</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-wrap-up/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/icarus/categories/Angular2/">Angular2</a></p>
+                            <p class="item-title"><a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-wrap-up/" class="title">Angular2-架构-Wrapup</a></p>
+                            <p class="item-date"><time datetime="2016-07-09T11:00:00.000Z" itemprop="datePublished">2016-07-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-dependency-injection/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/resources/dependency-injection.png)" alt="Angular2-架构-DependencyInjection" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/icarus/categories/Angular2/">Angular2</a></p>
+                            <p class="item-title"><a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-dependency-injection/" class="title">Angular2-架构-DependencyInjection</a></p>
+                            <p class="item-date"><time datetime="2016-07-09T10:59:00.000Z" itemprop="datePublished">2016-07-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-service/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/resources/service.png)" alt="Angular2-架构-Service" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/icarus/categories/Angular2/">Angular2</a></p>
+                            <p class="item-title"><a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-service/" class="title">Angular2-架构-Service</a></p>
+                            <p class="item-date"><time datetime="2016-07-09T10:57:00.000Z" itemprop="datePublished">2016-07-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-directive/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/resources/directive.png)" alt="Angular2-架构-Directive" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/icarus/categories/Angular2/">Angular2</a></p>
+                            <p class="item-title"><a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-directive/" class="title">Angular2-架构-Directive</a></p>
+                            <p class="item-date"><time datetime="2016-07-09T10:55:00.000Z" itemprop="datePublished">2016-07-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-databinding/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/resources/databinding.png)" alt="Angular2-架构-Databinding" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/icarus/categories/Angular2/">Angular2</a></p>
+                            <p class="item-title"><a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-databinding/" class="title">Angular2-架构-Databinding</a></p>
+                            <p class="item-date"><time datetime="2016-07-09T10:26:00.000Z" itemprop="datePublished">2016-07-09</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/icarus/categories/Angular2/">Angular2</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/icarus/categories/MarkDown/">MarkDown</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/icarus/categories/NPM/">NPM</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/icarus/archives/2016/07/">七月 2016</a><span class="archive-list-count">12</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Architecture/">Architecture</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Basics/">Basics</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Component/">Component</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Databinding/">Databinding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Dependency-Injection/">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Directive/">Directive</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/MarkDown/">MarkDown</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Metadata/">Metadata</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Module/">Module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Node/">Node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Service/">Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Template/">Template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Wrapup/">Wrapup</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/npm/">npm</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/icarus/tags/Architecture/" style="font-size: 20px;">Architecture</a> <a href="/icarus/tags/Basics/" style="font-size: 20px;">Basics</a> <a href="/icarus/tags/Component/" style="font-size: 10px;">Component</a> <a href="/icarus/tags/Databinding/" style="font-size: 10px;">Databinding</a> <a href="/icarus/tags/Dependency-Injection/" style="font-size: 10px;">Dependency Injection</a> <a href="/icarus/tags/Directive/" style="font-size: 10px;">Directive</a> <a href="/icarus/tags/MarkDown/" style="font-size: 15px;">MarkDown</a> <a href="/icarus/tags/Metadata/" style="font-size: 10px;">Metadata</a> <a href="/icarus/tags/Module/" style="font-size: 10px;">Module</a> <a href="/icarus/tags/Node/" style="font-size: 10px;">Node</a> <a href="/icarus/tags/Service/" style="font-size: 10px;">Service</a> <a href="/icarus/tags/Template/" style="font-size: 10px;">Template</a> <a href="/icarus/tags/Wrapup/" style="font-size: 10px;">Wrapup</a> <a href="/icarus/tags/npm/" style="font-size: 10px;">npm</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2016 夏红林<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'xiahl';
+    
+    
+    var disqus_url = 'http://xiahl.top/icarus/2016/07/08/2016-07-08-editor-markdown-01/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/icarus/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/icarus/js/main.js"></script>
+
+    </div>
+</body>
+</html>

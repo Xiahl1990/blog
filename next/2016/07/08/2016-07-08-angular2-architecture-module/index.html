@@ -1,0 +1,891 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/next/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/next/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/next/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Basics,Architecture,Module," />
+
+
+
+
+
+  <link rel="alternate" href="/next/atom.xml" title="夏红林" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/next/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="em {
+	    font-style: normal!important;
+	    font-weight: bold;
+	}
+	ul {
+		padding-left: 0;
+	}
+	.l-sub-section {
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular2-架构-Module">
+<meta property="og:url" content="http://xiahl.top/2016/07/08/2016-07-08-angular2-architecture-module/index.html">
+<meta property="og:site_name" content="夏红林">
+<meta property="og:description" content="em {
+	    font-style: normal!important;
+	    font-weight: bold;
+	}
+	ul {
+		padding-left: 0;
+	}
+	.l-sub-section {
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left:">
+<meta property="og:image" content="http://xiahl.top/resources/overview2.png">
+<meta property="og:image" content="http://xiahl.top/resources/module.png">
+<meta property="og:image" content="http://xiahl.top/resources/library-module.png">
+<meta property="og:updated_time" content="2016-07-09T07:52:39.856Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Angular2-架构-Module">
+<meta name="twitter:description" content="em {
+	    font-style: normal!important;
+	    font-weight: bold;
+	}
+	ul {
+		padding-left: 0;
+	}
+	.l-sub-section {
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left:">
+<meta name="twitter:image" content="http://xiahl.top/resources/overview2.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://xiahl.top/2016/07/08/2016-07-08-angular2-architecture-module/"/>
+
+  <title> Angular2-架构-Module | 夏红林 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="http://xiahl.top"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">夏红林</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/next/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/next/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/next/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Angular2-架构-Module
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-08T21:54:00+08:00" content="2016-07-08">
+              2016-07-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/next/categories/Angular2/" itemprop="url" rel="index">
+                    <span itemprop="name">Angular2</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <style type="text/css">
+	em {
+	    font-style: normal!important;
+	    font-weight: bold;
+	}
+	ul {
+		padding-left: 0;
+	}
+	.l-sub-section {
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left: 4px solid #8BC34A;
+		border-radius: 4px;
+	}
+	.example-title {
+	    color: #fff;
+	    padding: 0 16px;
+	    font-size: 14px;
+	    border-color: #1976D2;
+	    background: #1976D2;
+	    box-shadow: none;
+	    line-height: 32px;
+	    margin-bottom: -5px;
+	    z-index: 1;
+	    position: relative;
+	    border-bottom-right-radius: 0;
+	    border-bottom-left-radius: 0;
+        border-width: 2px;
+    	border-style: solid;
+	    border-radius: 4px;
+	}
+</style>
+<p>Angular 2 是一个用 HTML 和 JavaScript 构建客户端应用的框架。</p>
+<p>该框架包括一系列紧密合作的库，有些是核心库，有些是可选库。</p>
+<p>我们这样写应用程序：用带 Angular 扩展语法的 HTML 写 <strong>模板</strong> ，用 <strong>组件</strong> 类管理这些模板，用 <strong>服务</strong> 添加应用逻辑，用根组件完成 Angular <strong>启动</strong> 。</p>
+<p>Angular 在浏览器中接管、展现应用的内容，并根据我们提供的操作指令响应用户的交互。</p>
+<p>当然，这只是冰山一角。随着内容的深入，我们还会学到更多的细节。 我们先来看看宏观图景。</p>
+<p><img src="/resources/overview2.png" alt=""></p>
+<p>这个架构图展现了 Angular 应用中的 8 个主要构造块：</p>
+<ol style="padding:0;">
+    <li><a href="#module" title="模块 (Module)">模块 (Module)</a></li>
+    <li><a href="#component" title="[组件 (Component)]">组件 (Component)</a></li>
+    <li><a href="#template" title="[模板 (Template)]">模板 (Template)</a></li>
+    <li><a href="#metadata" title="[元数据 (Metadata)]">元数据 (Metadata)</a></li>
+    <li><a href="#data-binding" title="[数据绑定 (Data Binding)]">数据绑定 (Data Binding)</a></li>
+    <li><a href="#directive" title="[指令 (Directive)]">指令 (Directive)</a></li>
+    <li><a href="#service" title="[服务 (Service)]">服务 (Service)</a></li>
+    <li><a href="#dependency-injection" title="[依赖注入 (Dependency Injection)]">依赖注入 (Dependency Injection)</a></li>
+</ol>
+<p>掌握这 8 点，我们就可以开始使用 Angular 2 编写应用程序了。</p>
+<blockquote>
+    <p>本章所引用的代码可以从这个 <a href="https://angular.cn/resources/live-examples/architecture/ts/plnkr.html" title="在线例子" target="_blank" rel="external">在线例子</a> 中找到。</p>
+</blockquote>
+<h2 id="module"><a name="模块" class="reference-link"></a>模块</h2>
+<img src="/resources/module.png" alt="" align="left" style="width:240px; margin-right:10px">
+<p>Angular 应用是模块化的。</p>
+<p>应用程序通常都是由很多 <strong>模块</strong> 组装而成的。</p>
+<p>典型的模块是一个内聚的代码块，用以实现单一的目的。 在这些代码中，模块会 <strong>导出</strong> 一些东西，最典型的就是类。</p>
+<div class="l-sub-section">
+    <h3>模块是可选的</h3>    
+    <p>我们强烈推荐使用模块化设计。 TypeScript 对 ES2015 的模块语法支持很好，文档假设我们会利用这些语法来应用模块化方案。这就是为什么要把 <em> 模块 </em> 列为基本构造块之一。</p>
+    <p> Angular 本身并不需要模块化方案，也不需要使用这种特定的语法。如果你不喜欢，可以不用它。 就算你避开 <code>import</code> 和 <code>export</code> 语句，每章也会为你提供很多 ( 知识 ) 。</p>
+    <p>在 JavaScript( 你可以从页面顶部的组合框选择 JavaScript) 分支下，可以找到如何安装和组织的线索。 它示范了如何用老版本的 JavaScript 语言，在没有模块化系统支持的情况下进行 Angular 2 应用程序的开发。</p>
+</div>
+<p>我们遇到的第一个模块，很可能就是用于导出 <em> 组件 </em> 类的那个。
+组件是 Angular 中的基本构造块之一，我们会编写很多组件。我们将会在下一段继续讨论组件。
+目前，只要知道组件类是从模块中导出一种东西就行了。</p>
+<p>大多数应用都有一个 <code>AppComponent</code> 。按照惯例，它位于一个名叫 <code>app.component.ts</code> 的文件中。
+打开它，我们将会看到一个 <code>export</code> 语句，就像这样：</p>
+<div class="example-title">app/app.component.ts (节选)</div>
+<pre class="javascript" style="color: #c7254e;"><code>export class AppComponent { }</code></pre>
+<p> <code>export</code> 语句告诉 TypeScript ：这是一个模块，其中 <code>AppComponent</code> 类是公开的，可以被应用程序中的其它模块访问。</p>
+<p>当需要引用 <code>AppComponent</code> 时，要像这样 <strong> 导入 </strong> 它：</p>
+<div class="example-title">app/main.ts (节选)</div>
+<pre class="javascript" style="color: #c7254e;"><code>import { AppComponent } from './app.component';</code></pre>
+<p id="" class="translated translated-cn"> <code>import</code> 语句告诉系统，它能从附近名叫 <code>app.component</code> 的文件中获得 <code>AppComponent</code> 组件。
+ <strong> 模块名 </strong>( 又叫模块 ID) 通常和去掉扩展名后的文件名相同。</p>
+
+<h2 id="module"><a name="模块库" class="reference-link"></a>模块库</h2>
+<img src="/resources/library-module.png" alt="" align="left" style="width:240px; margin-right:10px">
+<p>有些模块是其它模块的库。</p>
+<p>Angular本身就是通过npm包发布的一组模块库，它们都以<code>@angular</code>为前缀。
+每个Angular库中都包含一个<strong>封装桶</strong>模块。
+它实际上是一个公开的外观层(façade)，囊括了一些逻辑相关的私有模块。</p>
+<p><code>@angular/core</code>库是主要的Angular模块库，从这里能获得大部分需要的东西。
+<br clear="all"></p>
+<p>还有另一些重要的Angular模块库，比如<code>@angular/common</code>、<code>@angular/router</code> 和 <code>@angular/http</code>。</p>
+<p>从Angular模块库中导入所需内容的方式都差不多。比如，从<em>@angular/core</em>中导入Angular <strong><code>Component</code><em>函数</em></strong>的代码是这样的：</p>
+<pre class="javascript" style="color: #c7254e;"><code>import { Component } from '@angular/core';</code></pre>
+<p>比较一下它和前面导入<code>AppComponent</code>时的语法。</p>
+<pre class="javascript" style="color: #c7254e;"><code>import { AppComponent } from './app.component';</code></pre>
+<p>注意到不同之处了吗？第一种，从Angular模块库中导入时，import语句引用的是“裸”模块名 —— <code>@angular/core</code> —— <em>不带路径前缀</em>。</p>
+<p>当我们从<em>自己的</em>文件中导入时，模块名中带有路径前缀。在这个例子中，前缀是一个相对路径(./)。这表示源模块和想导入它的模块位于同一个目录中(./)。如果源模块位于其它位置，我们还可以向上引用应用目录结构中的任意路径(如<code>../../../somewhere/</code>)。</p>
+<div class="l-sub-section" style="margin-top:10px;">
+	<p>这里导入和导出使用的是ECMAScript 2015 (ES2015)的语法。要学习关于此语法的更多知识，参见<a href="http://www.2ality.com/2014/09/es6-modules-final.html" target="_blank" rel="external">这里</a>，在网上很多别的地方也能找到相关资料。</p>
+	<p>“模块加载与导入”背后的基础设施是一个很重要的话题，但它不在Angular简介的范围内。目前的焦点是我们的应用程序，只需要知道<em>import</em>和<em>export</em>就够了。</p>
+</div>
+<p>这里的关键点是：</p>
+<ul>
+	<li><p>Angular应用是由模块组成的。</p>
+	</li>
+	<li><p>模块导出一些东西 —— 类，函数，值，供其它模块导入。</p>
+	</li>
+	<li><p>首选的写法是把应用写成一组模块，每个模块只导出一样东西。</p>
+	</li>
+</ul>
+<p>我们写的第一个模块将会导出一个组件。</p>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/next/tags/Basics/" rel="tag">#Basics</a>
+          
+            <a href="/next/tags/Architecture/" rel="tag">#Architecture</a>
+          
+            <a href="/next/tags/Module/" rel="tag">#Module</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/next/2016/07/08/2016-07-08-editor-markdown-02/" rel="next" title="markdown编辑器例子-02">
+                <i class="fa fa-chevron-left"></i> markdown编辑器例子-02
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/next/2016/07/09/2016-07-09-angular2-architecture-component/" rel="prev" title="Angular2-架构-Component">
+                Angular2-架构-Component <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/next/images/avatar.png"
+               alt="夏红林" />
+          <p class="site-author-name" itemprop="name">夏红林</p>
+          <p class="site-description motion-element" itemprop="description">夏红林的个人博客</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/next/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/next/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#module"><span class="nav-number">1.</span> <span class="nav-text">模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#undefined"><span class="nav-number">1.1.</span> <span class="nav-text">模块是可选的</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#module"><span class="nav-number">2.</span> <span class="nav-text">模块库</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夏红林</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/next/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/next/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/next/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/next/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/next/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/next/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/next/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/next/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/next/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/next/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/next/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/next/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+
+</body>
+</html>

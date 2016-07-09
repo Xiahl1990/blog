@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Angular2-架构-Metadata | 夏红林</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="em {
+	    font-style: normal!important;
+	    font-weight: bold;
+	}
+	ul {
+		padding-left: 0;
+	}
+	.l-sub-section {
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular2-架构-Metadata">
+<meta property="og:url" content="http://xiahl.top/2016/07/09/2016-07-09-angular2-architecture-metadata/index.html">
+<meta property="og:site_name" content="夏红林">
+<meta property="og:description" content="em {
+	    font-style: normal!important;
+	    font-weight: bold;
+	}
+	ul {
+		padding-left: 0;
+	}
+	.l-sub-section {
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left:">
+<meta property="og:image" content="http://xiahl.top/resources/metadata.png">
+<meta property="og:updated_time" content="2016-07-09T10:44:51.016Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Angular2-架构-Metadata">
+<meta name="twitter:description" content="em {
+	    font-style: normal!important;
+	    font-weight: bold;
+	}
+	ul {
+		padding-left: 0;
+	}
+	.l-sub-section {
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left:">
+<meta name="twitter:image" content="http://xiahl.top/resources/metadata.png">
+    
+
+    
+
+    
+
+    <link rel="stylesheet" href="/icarus/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/icarus/vendor/open-sans/styles.css">
+    <link rel="stylesheet" href="/icarus/vendor/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/icarus/css/style.css">
+
+    <!-- jQuery -->
+    <script src="//cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/icarus/vendor/fancybox/jquery.fancybox.css">
+    
+    
+    
+    
+
+</head>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="http://xiahl.top" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">夏红林</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/icarus/.">Home</a>
+                
+                    <a class="main-nav-link" href="/icarus/archives">Archives</a>
+                
+                    <a class="main-nav-link" href="/icarus/categories">Categories</a>
+                
+                    <a class="main-nav-link" href="/icarus/tags">Tags</a>
+                
+                    <a class="main-nav-link" href="/icarus/about">About</a>
+                
+                    <a class="main-nav-link" href="http://xiahl.top/">Theme</a>
+                
+            </nav>
+            
+                
+                <nav id="sub-nav">
+                    <div class="profile" id="profile-nav">
+                        <a id="profile-anchor" href="javascript:;">
+                            <img class="avatar" src="/icarus/css/images/avatar.png" />
+                            <i class="fa fa-caret-down"></i>
+                        </a>
+                    </div>
+                </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/icarus/',
+        CONTENT_URL: '/icarus/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/icarus/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/icarus/.">Home</a></td>
+                
+                    <td><a class="main-nav-link" href="/icarus/archives">Archives</a></td>
+                
+                    <td><a class="main-nav-link" href="/icarus/categories">Categories</a></td>
+                
+                    <td><a class="main-nav-link" href="/icarus/tags">Tags</a></td>
+                
+                    <td><a class="main-nav-link" href="/icarus/about">About</a></td>
+                
+                    <td><a class="main-nav-link" href="http://xiahl.top/">Theme</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+                
+
+<aside id="profile">
+    <div class="inner profile-inner">
+        <div class="base-info profile-block">
+            <img id="avatar" src="/icarus/css/images/avatar.png" />
+            <h2 id="name">Tianxiamucun</h2>
+            <h3 id="title">Web Developer &amp; Designer</h3>
+            <span id="location"><i class="fa fa-map-marker"></i>Shenzhen, China</span>
+            <a id="follow" target="_blank" href="https://github.com/Xiahl1990">关注我</a>
+        </div>
+        <div class="article-info profile-block">
+            <div class="article-info-block">
+                12
+                <span>文章</span>
+            </div>
+            <div class="article-info-block">
+                14
+                <span>标签</span>
+            </div>
+        </div>
+        
+        <div class="profile-block social-links">
+            <table>
+                <tr>
+                    
+                    
+                    <td>
+                        <a href="https://github.com/Xiahl1990/hexo-theme-tianxiamucun" target="_blank" title="github" class=tooltip>
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/icarus/" target="_blank" title="twitter" class=tooltip>
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/icarus/" target="_blank" title="facebook" class=tooltip>
+                            <i class="fa fa-facebook"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/icarus/" target="_blank" title="dribbble" class=tooltip>
+                            <i class="fa fa-dribbble"></i>
+                        </a>
+                    </td>
+                    
+                    <td>
+                        <a href="/icarus/atom.xml" target="_blank" title="rss" class=tooltip>
+                            <i class="fa fa-rss"></i>
+                        </a>
+                    </td>
+                    
+                </tr>
+            </table>
+        </div>
+        
+    </div>
+</aside>
+
+            
+            <section id="main"><article id="post-2016-07-09-angular2-architecture-metadata" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Angular2-架构-Metadata
+        </h1>
+    
+
+                <div class="article-meta">
+                    
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-metadata/">
+            <time datetime="2016-07-09T08:04:00.000Z" itemprop="datePublished">2016-07-09</time>
+        </a>
+    </div>
+
+
+                    
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/icarus/categories/Angular2/">Angular2</a>
+    </div>
+
+                    
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/icarus/tags/Architecture/">Architecture</a>, <a class="tag-link" href="/icarus/tags/Basics/">Basics</a>, <a class="tag-link" href="/icarus/tags/Metadata/">Metadata</a>
+    </div>
+
+                </div>
+            </header>
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+            
+            <style type="text/css">
+	em {
+	    font-style: normal!important;
+	    font-weight: bold;
+	}
+	ul {
+		padding-left: 0;
+	}
+	.l-sub-section {
+		margin: 100px 0 32px 0;
+		padding: 16px 24px;
+		background: #f5f6f7;
+		border-left: 4px solid #8BC34A;
+		border-radius: 4px;
+	}
+	.example-title {
+	    color: #fff;
+	    padding: 0 16px;
+	    font-size: 14px;
+	    border-color: #1976D2;
+	    background: #1976D2;
+	    box-shadow: none;
+	    line-height: 32px;
+	    margin-bottom: -5px;
+	    z-index: 1;
+	    position: relative;
+	    border-bottom-right-radius: 0;
+	    border-bottom-left-radius: 0;
+        border-width: 2px;
+    	border-style: solid;
+	    border-radius: 4px;
+	}
+	.highlight {
+		margin: 0!important;
+		padding: 0;
+	    color: inherit;
+	    background: inherit;
+	}
+</style>
+<h2 id="metadata"><a name="元数据" class="reference-link"></a>元数据</h2>
+<img src="/resources/metadata.png" alt="" align="left" style="width:240px; margin-right:10px">
+<p style="padding-top:10px">元数据告诉Angular如何处理一个类。</p>
+<p><a href="/2016/07/09/2016-07-09-angular2-architecture-component">回头看看 </a><code>HeroListComponent</code> 就会明白：它只是一个类。 一点框架的痕迹也没有，里面完全没有出现 "Angular" 的字样。</p>
+<p>实际上，它真的 <strong>只是一个类</strong> 。直到我们 <strong>告诉 Angular</strong> 这是一个组件为止。</p>
+<p>只要把 <strong>元数据</strong> 附加到这个类，就相当于告诉 Angular ： <strong>HeroListComponent</strong> 是个组件。</p>
+<p>在 TypeScript 中， <strong>装饰器 (decorator)</strong> 是附加元数据的简易途径。 下面就是 <code>HeroListComponent</code> 的一些元数据。</p>
+<div class="example-title">app/hero-list.component.ts (元数据)</div>
+<pre>
+	<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Component(&#123;</span><br><span class="line">  selector:    &apos;hero-list&apos;,</span><br><span class="line">  templateUrl: &apos;app/hero-list.component.html&apos;,</span><br><span class="line">  directives:  [HeroDetailComponent],</span><br><span class="line">  providers:   [HeroService]</span><br><span class="line">&#125;)</span><br><span class="line">export class HeroesComponent &#123; ... &#125;</span><br></pre></td></tr></table></figure>
+
+</pre>
+<p>这里看到<code>@Component</code>装饰器(毫无悬念的)把紧随其后的类标记成了组件类。</p>
+<p>装饰器就是函数，它们通常还带有配置参数。
+<code>@Component</code>装饰器能接受一个配置对象，Angular会基于这些信息创建和展示组件及其视图。</p>
+<p>来看下<code>@Component</code>中的一些配置项：</p>
+<ul>
+<li>
+<p><code>selector</code> - 一个css选择器，它告诉Angular在<em>父级</em>HTML中寻找一个<code>&lt;hero-list&gt;</code>标签，然后创建该组件，并插入此标签中。
+比如，如果应用“壳”(组件)的模板包含如下代码：</p>
+<pre>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;hero-list&gt;&lt;/hero-list&gt;</span><br></pre></td></tr></table></figure>
+
+</pre>
+<p>Angular就会在这些标签中插入<code>HeroListComponent</code>视图的一个实例。</p>
+</li>
+<li><p><code>templateUrl</code> - 组件模板的地址，我们在<a href="/2016/07/09/2016-07-09-angular2-architecture-template">前面</a>见过。</p>
+</li>
+<li><p><code>directives</code> - 一个数组，包含<em>此</em>模板需要依赖的组件或指令。
+看看模板的最后一行，这表示我们期待Angular把<code>HeroDetailComponent</code>的实例放在<code>&lt;hero-detail&gt;</code>标签中。
+但是，只有在<code>directives</code>数组中提及到<code>HeroDetailComponent</code>的时候，Angular才会这么做。</p>
+</li>
+<li><p><code>providers</code> - 一个数组，包含组件所依赖的服务所需要的<em>依赖注入提供商</em>。 
+这是在告诉Angular：该组件的构造函数需要一个<code>HeroService</code>服务，这样组件就可以从服务中获得用来显示英雄列表的那些数据。
+我们一会儿就讲到了依赖注入。</p>
+</li>
+</ul>
+<img src="/resources/template-metadata-component.png" alt="" align="left" style="height:200px; margin-right:10px">
+<p><code>@Component</code>函数接收一个配置对象，并把它转换成元数据，附加到组件类的定义上。
+Angular在运行期间会找出这份元数据，并由此知道该如何去“做正确的事”。</p>
+<p>模板、元数据和组件共同描绘出这个视图。</p>
+<p>我们也会沿用类似的风格，用其它元数据装饰器来指导Angular的行为。
+比如<code>@Injectable</code>、<code>@Input</code>、<code>@Output</code>和<code>@RouterConfig</code>等是一些最常用的装饰器。
+随着对Angular认识的逐步深化，我们也将逐步掌握它们。</p>
+<p>这种架构所决定的是：必须往代码中添加元数据，以便Angular知道该做什么。</p>
+        
+        </div>
+        <footer class="article-footer">
+            <div class="share-container">
+
+
+
+</div>
+
+    <a data-url="http://xiahl.top/icarus/2016/07/09/2016-07-09-angular2-architecture-metadata/" data-id="ciqf7fmv1000x4cvq3en8438r" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        // Prevent duplicate binding
+        if (typeof(__SHARE_BUTTON_BINDED__) === 'undefined' || !__SHARE_BUTTON_BINDED__) {
+            __SHARE_BUTTON_BINDED__ = true;
+        } else {
+            return;
+        }
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+            
+    
+        <a href="http://xiahl.top/icarus/2016/07/09/2016-07-09-angular2-architecture-metadata/#comments" class="article-comment-link disqus-comment-count" data-disqus-url="http://xiahl.top/icarus/2016/07/09/2016-07-09-angular2-architecture-metadata/">评论</a>
+    
+
+        </footer>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-databinding/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    Angular2-架构-Databinding
+                
+            </div>
+        </a>
+    
+    
+        <a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-template/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">Angular2-架构-Template</div>
+        </a>
+    
+</nav>
+
+
+    
+</article>
+
+
+    
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+</section>
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-wrap-up/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/icarus/categories/Angular2/">Angular2</a></p>
+                            <p class="item-title"><a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-wrap-up/" class="title">Angular2-架构-Wrapup</a></p>
+                            <p class="item-date"><time datetime="2016-07-09T11:00:00.000Z" itemprop="datePublished">2016-07-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-dependency-injection/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/resources/dependency-injection.png)" alt="Angular2-架构-DependencyInjection" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/icarus/categories/Angular2/">Angular2</a></p>
+                            <p class="item-title"><a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-dependency-injection/" class="title">Angular2-架构-DependencyInjection</a></p>
+                            <p class="item-date"><time datetime="2016-07-09T10:59:00.000Z" itemprop="datePublished">2016-07-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-service/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/resources/service.png)" alt="Angular2-架构-Service" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/icarus/categories/Angular2/">Angular2</a></p>
+                            <p class="item-title"><a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-service/" class="title">Angular2-架构-Service</a></p>
+                            <p class="item-date"><time datetime="2016-07-09T10:57:00.000Z" itemprop="datePublished">2016-07-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-directive/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/resources/directive.png)" alt="Angular2-架构-Directive" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/icarus/categories/Angular2/">Angular2</a></p>
+                            <p class="item-title"><a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-directive/" class="title">Angular2-架构-Directive</a></p>
+                            <p class="item-date"><time datetime="2016-07-09T10:55:00.000Z" itemprop="datePublished">2016-07-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-databinding/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/resources/databinding.png)" alt="Angular2-架构-Databinding" class="thumbnail-image"></span>
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/icarus/categories/Angular2/">Angular2</a></p>
+                            <p class="item-title"><a href="/icarus/2016/07/09/2016-07-09-angular2-architecture-databinding/" class="title">Angular2-架构-Databinding</a></p>
+                            <p class="item-date"><time datetime="2016-07-09T10:26:00.000Z" itemprop="datePublished">2016-07-09</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/icarus/categories/Angular2/">Angular2</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/icarus/categories/MarkDown/">MarkDown</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/icarus/categories/NPM/">NPM</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/icarus/archives/2016/07/">七月 2016</a><span class="archive-list-count">12</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Architecture/">Architecture</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Basics/">Basics</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Component/">Component</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Databinding/">Databinding</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Dependency-Injection/">Dependency Injection</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Directive/">Directive</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/MarkDown/">MarkDown</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Metadata/">Metadata</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Module/">Module</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Node/">Node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Service/">Service</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Template/">Template</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/Wrapup/">Wrapup</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/icarus/tags/npm/">npm</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/icarus/tags/Architecture/" style="font-size: 20px;">Architecture</a> <a href="/icarus/tags/Basics/" style="font-size: 20px;">Basics</a> <a href="/icarus/tags/Component/" style="font-size: 10px;">Component</a> <a href="/icarus/tags/Databinding/" style="font-size: 10px;">Databinding</a> <a href="/icarus/tags/Dependency-Injection/" style="font-size: 10px;">Dependency Injection</a> <a href="/icarus/tags/Directive/" style="font-size: 10px;">Directive</a> <a href="/icarus/tags/MarkDown/" style="font-size: 15px;">MarkDown</a> <a href="/icarus/tags/Metadata/" style="font-size: 10px;">Metadata</a> <a href="/icarus/tags/Module/" style="font-size: 10px;">Module</a> <a href="/icarus/tags/Node/" style="font-size: 10px;">Node</a> <a href="/icarus/tags/Service/" style="font-size: 10px;">Service</a> <a href="/icarus/tags/Template/" style="font-size: 10px;">Template</a> <a href="/icarus/tags/Wrapup/" style="font-size: 10px;">Wrapup</a> <a href="/icarus/tags/npm/" style="font-size: 10px;">npm</a>
+        </div>
+    </div>
+
+    
+        
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            &copy; 2016 夏红林<br>
+            Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme by <a href="http://github.com/ppoffice">PPOffice</a>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'xiahl';
+    
+    
+    var disqus_url = 'http://xiahl.top/icarus/2016/07/09/2016-07-09-angular2-architecture-metadata/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+    
+        <script src="/icarus/vendor/fancybox/jquery.fancybox.pack.js"></script>
+    
+
+
+<!-- Custom Scripts -->
+<script src="/icarus/js/main.js"></script>
+
+    </div>
+</body>
+</html>
